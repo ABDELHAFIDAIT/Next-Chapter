@@ -29,20 +29,20 @@ La réinsertion des ex-détenus dans le monde professionnel est un véritable d�
 - 🔹 Suivi des activités des utilisateurs (formations, offres, événements).
 - 🔹 Publication d’événements et de reviews.
 ### ✨ Besoins Fonctionnels
-🧑‍💻 Ex-Détenus<br>
+#### 🧑‍💻 Ex-Détenus<br>
 - Modifier leurs informations personnelles (photo de profil, CV, etc.).
 - Rechercher des formations ou des offres d’emploi selon leurs préférences.
 - Suivre et enregistrer des offres et formations favorites.
 - Réagir et commenter les publications de formations ou d’événements.
-🏢 Employeurs<br>
+#### 🏢 Employeurs
 - Publier des offres d’emploi avec description et critères.
 - Modifier et supprimer des offres.
 - Évaluer les profils des ex-détenus pour des recrutements.
-👩‍🏫 Formateurs<br>
+#### 👩‍🏫 Formateurs
 - Publier des cours interactifs et des évaluations.
 - Suivre les progrès des participants.
 - Générer des certificats de réussite.
-🔧 Organisme Administrateur<br>
+#### 🔧 Organisme Administrateur
 - Gérer tous les comptes utilisateurs (création, approbation, suspension).
 - Publier et suivre des événements et des formations présentielles.
 - Analyser les progrès des ex-détenus via des tableaux de bord.
