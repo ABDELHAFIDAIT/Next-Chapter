@@ -1,6 +1,6 @@
 ## 🌟 Next-Chapter : Plateforme de Réinsertion des Ex-Détenus dans le Monde du Travail 🌟
 ---
-### 📝 Description du Projet
+### 📝 Description du Projet<br>
 La réinsertion des ex-détenus dans le monde professionnel est un véritable défi. Stigmatisation sociale, manque de compétences adaptées, et difficulté d'accès aux opportunités d'emploi sont autant d'obstacles à surmonter. Cette plateforme a pour mission de proposer une solution technologique inclusive pour reconnecter les ex-détenus, les employeurs bienveillants et les organismes de soutien.
 ---
 ### 🎯 Objectifs Principaux
