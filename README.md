@@ -1,23 +1,23 @@
-# Next-Chapter
-Plateforme de Réinsertion des Ex-Détenus dans le Monde du Travail
-🌟 Plateforme de Réinsertion des Ex-Détenus dans le Monde du Travail 🌟
-📝 Description du Projet
+## 🌟 Next-Chapter : Plateforme de Réinsertion des Ex-Détenus dans le Monde du Travail 🌟
+---
+### 📝 Description du Projet
 La réinsertion des ex-détenus dans le monde professionnel est un véritable défi. Stigmatisation sociale, manque de compétences adaptées, et difficulté d'accès aux opportunités d'emploi sont autant d'obstacles à surmonter. Cette plateforme a pour mission de proposer une solution technologique inclusive pour reconnecter les ex-détenus, les employeurs bienveillants et les organismes de soutien.
+---
+### 🎯 Objectifs Principaux
+- 🔗 Faciliter l'accès aux opportunités d’emploi pour les ex-détenus.
+- 📚 Offrir des formations adaptées pour développer leurs compétences.
+- 🤝 Connecter les ex-détenus avec des employeurs engagés et des organismes de soutien.
+- 🛠️ Promouvoir la réintégration sociale et professionnelle en brisant les barrières de stigmatisation.
+---
+### 👥 Acteurs du Système
+1. 1️⃣ Ex-Détenus
+- 🔹 Création de comptes personnels.
+- 🔹 Accès à des formations en ligne et à des offres d'emploi.
+- 🔹 Suivi de leurs progrès via un tableau de bord interactif.
+- 🔹 Réception de certificats de complétion après formation.
+- 🔹 Interaction avec les événements et les offres d'emploi.
 
-🎯 Objectifs Principaux
-🔗 Faciliter l'accès aux opportunités d’emploi pour les ex-détenus.
-📚 Offrir des formations adaptées pour développer leurs compétences.
-🤝 Connecter les ex-détenus avec des employeurs engagés et des organismes de soutien.
-🛠️ Promouvoir la réintégration sociale et professionnelle en brisant les barrières de stigmatisation.
-👥 Acteurs du Système
-1️⃣ Ex-Détenus
-🔹 Création de comptes personnels.
-🔹 Accès à des formations en ligne et à des offres d'emploi.
-🔹 Suivi de leurs progrès via un tableau de bord interactif.
-🔹 Réception de certificats de complétion après formation.
-🔹 Interaction avec les événements et les offres d'emploi.
-
-2️⃣ Employeurs
+2️⃣ Employeurs<br>
 🔹 Création d’un espace professionnel.
 🔹 Publication et gestion des offres d’emploi.
 🔹 Consultation des profils des ex-détenus.
