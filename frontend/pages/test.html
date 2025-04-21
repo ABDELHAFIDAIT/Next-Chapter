@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Chapter - Your Profile</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-white min-h-screen">
+    <!-- Header -->
+    <header class="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div class="logo">
+            <img src="/api/placeholder/100/60" alt="Next Chapter Logo" class="h-12">
+        </div>
+        <div class="profile-menu">
+            <div class="flex items-center">
+                <img src="/api/placeholder/40/40" alt="Profile" class="w-10 h-10 rounded-full border border-gray-200">
+                <svg class="w-4 h-4 ml-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Welcome Banner -->
+        <div class="flex justify-between items-center mb-12">
+            <h1 class="text-2xl font-bold text-gray-800">Welcome to Your Profile</h1>
+            <button class="bg-amber-50 text-amber-600 px-6 py-3 rounded-lg font-medium">Access my Student Space</button>
+        </div>
+
+        <!-- Profile Information -->
+        <div class="border-b border-gray-200 pb-8 mb-8">
+            <div class="flex items-start">
+                <div class="relative">
+                    <img src="/api/placeholder/120/120" alt="Profile Picture" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow">
+                    <button class="absolute bottom-0 right-0 bg-white p-1 rounded-full border border-gray-200 shadow-sm">
+                        <svg class="w-4 h-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="ml-6 flex-1">
+                    <h2 class="text-2xl font-bold text-gray-800">Abdelhafid AIT EL MOKHTAR</h2>
+                    <div class="mt-4 space-y-3">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span class="ml-3 text-gray-600">abdelhafid.aitelmokhtar@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span class="ml-3 text-gray-600">+212 691766935</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span class="ml-3 text-gray-600">Agadir</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About You Section -->
+        <div class="border-b border-gray-200 py-8">
+            <div class="flex">
+                <h3 class="text-lg font-semibold text-gray-800 w-1/4">About You</h3>
+                <div class="w-3/4 text-gray-600">
+                    <p>21 ans, diplômé en informatique de l'école supérieure de technologie d'Agadir.</p>
+                    <p class="mt-2">Actuellement, je perfectionne mes compétences en développement informatique à YouCode, Safi, pour devenir un développeur Full-Stack avec une passion pour les plateformes web et mobiles.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CV Section -->
+        <div class="border-b border-gray-200 py-8">
+            <div class="flex">
+                <h3 class="text-lg font-semibold text-gray-800 w-1/4">CV</h3>
+                <div class="w-3/4">
+                    <a href="#" class="text-gray-600 hover:text-blue-600">CV-ABDELHAFID-AIT-EL-MOKHTAR.pdf</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- External Links Section -->
+        <div class="border-b border-gray-200 py-8">
+            <div class="flex">
+                <h3 class="text-lg font-semibold text-gray-800 w-1/4">External links</h3>
+                <div class="w-3/4 space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                            <i class="fab fa-linkedin-in text-blue-600"></i>
+                        </div>
+                        <a href="https://www.linkedin.com/in/abdelhafid-ait-el-mokhtar-670491245/" class="ml-3 text-gray-600 hover:text-blue-600">https://www.linkedin.com/in/abdelhafid-ait-el-mokhtar-670491245/</a>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
+                            <i class="fab fa-github text-gray-700"></i>
+                        </div>
+                        <a href="https://github.com/ABDELHAFIDAIT" class="ml-3 text-gray-600 hover:text-blue-600">https://github.com/ABDELHAFIDAIT</a>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
+                            <i class="fas fa-globe text-gray-700"></i>
+                        </div>
+                        <a href="https://abdelhafidait.github.io/Portfolio/" class="ml-3 text-gray-600 hover:text-blue-600">https://abdelhafidait.github.io/Portfolio/</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Information Section -->
+        <div class="py-8">
+            <div class="flex justify-between items-center">
+                <p class="text-gray-700">Would you like to change any other information?</p>
+                <button class="bg-blue-600 text-white px-6 py-2 rounded font-medium hover:bg-blue-700">Update</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo and Tagline -->
+                <div class="col-span-1">
+                    <img src="/api/placeholder/100/60" alt="Next Chapter Logo" class="h-12 mb-4">
+                    <p class="text-gray-300 mt-4">Every Journey Starts with a First Step</p>
+                    <button class="text-yellow-400 font-medium mt-2">Take Yours Now!</button>
+                </div>
+                
+                <!-- Pages -->
+                <div class="col-span-1">
+                    <h3 class="text-lg font-semibold mb-4">PAGES</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Services</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div class="col-span-1">
+                    <h3 class="text-lg font-semibold mb-4">SUPPORT</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Help</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Feedbacks</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Licence</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="col-span-1">
+                    <h3 class="text-lg font-semibold mb-4">CONTACT INFOS</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3"></i>
+                            <span>+212 504658800</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>contact@youademy.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-3"></i>
+                            <span>Safi, Morocco</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <div class="social flex space-x-4 mb-4 md:mb-0">
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                
+                <div class="copyright text-gray-400 text-sm">
+                    NEXT CHAPTER 2025 © All Rights Reserved
+                </div>
+                
+                <div class="language">
+                    <button class="text-gray-400 hover:text-white">
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for additional interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profile menu dropdown functionality
+            const profileMenu = document.querySelector('.profile-menu');
+            profileMenu.addEventListener('click', function() {
+                // Toggle dropdown menu
+                console.log('Profile menu clicked');
+                // Implement dropdown toggle here
+            });
+
+            // Update button functionality
+            const updateButton = document.querySelector('button.bg-blue-600');
+            updateButton.addEventListener('click', function() {
+                alert('Update profile functionality would go here');
+            });
+
+            // Student space button functionality
+            const studentSpaceButton = document.querySelector('button.bg-amber-50');
+            studentSpaceButton.addEventListener('click', function() {
+                console.log('Accessing student space...');
+                // Implement redirect or modal here
+            });
+        });
+    </script>
+</body>
+</html>

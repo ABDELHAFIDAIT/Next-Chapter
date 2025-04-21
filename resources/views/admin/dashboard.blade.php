@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ asset('storage/images/logo-white.png') }}">
+    @vite('resources/js/app.js')
+    @vite('resources/css/app.css')
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <main class="flex">
+        <!-- Sidebar Navigation -->
+        <nav class="flex flex-col justify-between h-screen bg-[#222222] text-white p-4 w-72">
+            <!-- Logo and Title -->
+            <div class="flex items-center gap-5">
+                <img src="{{ asset('storage/images/logo-white.png') }}" alt="Logo White de Next Chapter" class="w-14 h-14">
+                <h1 class="text-xl font-semibold">Dashboard</h1>
+            </div>
+            <!-- Navigation Links -->
+            <div class="flex flex-col gap-2">
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black hover:rounded-lg transition-all ease-in-out duration-300 rounded-lg bg-[#D6FF40] text-black">
+                    <svg class="w-[20px] h-[20px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                        </path>
+                    </svg>
+                    <span>Statistics</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black hover:rounded-lg transition-all ease-in-out duration-300">
+                    <svg class="w-[20px] h-[20px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                    <span>Prisonners</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black hover:rounded-lg transition-all ease-in-out duration-300">
+                    <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                    <span>Teachers</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black hover:rounded-lg transition-all ease-in-out duration-300">
+                    <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span>Recruiters</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black hover:rounded-lg transition-all ease-in-out duration-300">
+                    <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    <span>Courses</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black hover:rounded-lg transition-all ease-in-out duration-300">
+                    <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                    <span>Announcements</span>
+                </a>
+            </div>
+            <!-- Logout Button -->
+            <form method="post" action="{{ route('logout') }}" class="">
+                @csrf
+                <button class="flex justify-start cursor-pointer text-xs items-center gap-3 p-3 hover:scale-105 transition-all ease-in-out duration-300">
+                    <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    <span>Logout</span>
+                </button>
+            </form>
+        </nav>
+
+        <section class="flex-1">
+            <!-- Header Section -->
+            <header class="bg-[#222] flex items-center justify-between px-14 py-4">
+                <!-- Search Section -->
+                <form action="">
+                    <input type="text" placeholder="Search..." class="outline-none text-sm py-[6px] px-3 rounded-lg bg-[#EDF7F1] text-black w-64" />
+                </form>
+                <!-- Notification and Profile Section -->
+                <a href="#" class="flex items-center gap-2">
+                    <img src="{{ asset('storage/images/profile.png') }}" class="w-9 h-9 rounded-full" alt="User Profile" />
+                    <div class="flex flex-col justify-around">
+                        <h1 class="text-gray-200 text-sm">Abdelhafid</h1>
+                        <p class="text-[#FFE500] text-xs font-light">Administrator</p>
+                    </div>
+                </a>
+            </header>
+
+            <!-- Main Content Section -->
+            <section class="p-10 h-[calc(100vh-70px)] overflow-auto">
+                <h1 class="text-2xl font-semibold">Welcome back, Abdelhafid!</h1>
+                <p class="text-gray-500 text-sm mt-2">Here is your dashboard overview.</p>
+
+                <!-- Cards Section -->
+                <div class="grid grid-cols-3 gap-4 mt-10">
+                    <div class="bg-[#D6FF40] p-5 rounded-lg shadow-lg flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <h2 class="text-xl font-semibold">Total Students</h2>
+                            <p class="text-gray-700 text-sm">1500</p>
+                        </div>
+                        <i class="fas fa-users text-3xl"></i>
+                    </div>
+                    <div class="bg-[#D6FF40] p-5 rounded-lg shadow-lg flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <h2 class="text-xl font-semibold">Total Courses</h2>
+                            <p class="text-gray-700 text-sm">25</p>
+                        </div>
+                        <i class="fas fa-book text-3xl"></i>
+                    </div>
+                    <div class="bg-[#D6FF40] p-5 rounded-lg shadow-lg flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <h2 class="text-xl font-semibold">Total Teachers</h2>
+                            <p class="text-gray-700 text-sm">50</p>
+                        </div>
+                        <i class="fas fa-chalkboard-teacher text-3xl"></i>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

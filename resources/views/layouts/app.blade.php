@@ -14,7 +14,7 @@
     <header class="px-20">
         <!-- Navigation -->
         <nav class="py-10 flex justify-between items-center">
-            <a href="#">
+            <a href="{{ route('home') }}">
                 <img src="{{ asset('storage/images/logo-black.png') }}" alt="Logo de Next Chapter" class="w-16">
             </a>
             <ul class="flex items-center gap-10">
@@ -23,7 +23,7 @@
                 <a href="#"><li>Blog</li></a>
                 <a href="#"><li>Contact</li></a>
             </ul>
-            <a href="{{ route('login') }}" class="border border-black rounded-full px-10 py-2 hover:bg-[#222] hover:text-white transition-all ease-in-out duration-300">Login</a>
+            <a href="{{ route('show.login') }}" class="border border-black rounded-full px-10 py-2 hover:bg-[#222] hover:text-white transition-all ease-in-out duration-300">Login</a>
         </nav>
 
         @yield('hero')
