@@ -18,10 +18,10 @@
                 <img src="{{ asset('storage/images/logo-black.png') }}" alt="Logo de Next Chapter" class="w-16">
             </a>
             <ul class="flex items-center gap-10">
-                <a href="#"><li>Home</li></a>
+                <a href="{{ route('home') }}"><li>Home</li></a>
                 <a href="#"><li>Services</li></a>
                 <a href="#"><li>Blog</li></a>
-                <a href="#"><li>Contact</li></a>
+                <a href="{{ route('show.contact') }}"><li>Contact</li></a>
             </ul>
             <a href="{{ route('show.login') }}" class="border border-black rounded-full px-10 py-2 hover:bg-[#222] hover:text-white transition-all ease-in-out duration-300">Login</a>
         </nav>

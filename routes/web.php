@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -47,3 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
+Route::middleware(['guest'])->group(function(){
+    Route::get('/contact',[ContactController::class, 'showContact'])->name('show.contact');
+    Route::post('/contact',[ContactController::class, 'sendContactEmail'])->name('contact');
+});
