@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="../images/logo-white.png">
+        <title>Next Chapter</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+
+        <header class="px-20">
+            <!-- Navigation links -->
+            <nav class="flex items-center justify-between py-10">
+                <img src="../images/logo-black.png" class="w-16">
+                <ul class="flex items-center gap-10">
+                    <a href="explore.html"><li>Home</li></a>
+                    <a href="courses.html"><li>Courses</li></a>
+                    <a href="#"><li>Jobs</li></a>
+                </ul>
+                <div id="toggle-menu" class="flex items-center gap-5 p-1 border border-gray-400 rounded-full cursor-pointer">
+                    <img src="../images/profile.jpg" class="w-10 rounded-full">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-chevron-down"><polyline
+                            points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <div id="menu"
+                    class="absolute hidden bg-[#222] text-sm flex flex-col w-42 text-white rounded-sm top-[90px] right-[80px]">
+                    <a href="dashboard.html"
+                        class="px-5 flex items-center gap-2 hover:bg-[#D6FF40] hover:text-[#222222] rounded-t-sm py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
+                        <svg width="16px" height="16px" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-grid"><rect x="3" y="3"
+                                width="7" height="7"></rect><rect x="14" y="3"
+                                width="7" height="7"></rect><rect x="14" y="14"
+                                width="7" height="7"></rect><rect x="3" y="14"
+                                width="7" height="7"></rect></svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="profile.html"
+                        class="px-5 flex items-center gap-2 hover:bg-[#D6FF40] hover:text-[#222222] py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
+                        <svg width="16px" height="16px" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-user"><path
+                                d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle
+                                cx="12" cy="7" r="4"></circle></svg>
+                        <span>Profile</span>
+                    </a>
+                    <form action
+                        class="px-5 hover:bg-[#D6FF40] hover:text-[#222222] py-3 transition-all ease-in-out duration-300 rounded-b-sm cursor-pointer">
+                        <button class="cursor-pointer flex items-center gap-2">
+                            <svg width="16px" height="16px" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-log-out"><path
+                                    d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline
+                                    points="16 17 21 12 16 7"></polyline><line
+                                    x1="21" y1="12" x2="9" y2="12"></line></svg>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+
+        <main class="mt-10">
+            <section class="px-20 py-5">
+                <a href="#" class="flex items-center gap-1 font-medium text-lg">
+                    <svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
+                        <path d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z"/>
+                    </svg>
+                    <span>All Courses</span>
+                </a>
+            </section>
+            <section class="grid grid-cols-2 gap-10 px-20 py-20">
+                <div class="flex flex-col gap-5 justify-center">
+                    <h1 class="font-medium text-xl text-gray-500">FINANCE</h1>
+                    <h1 class="font-semibold text-[40px] leading-[60px]">Python: Introduction to Programming with Python</h1>
+                    <p class="text-justify text-lg font-light">Discover the basics of accounting: balance sheets, income statements, financial transactions, and book keeping essentials. A must-have course for anyone interested... </p>
+                    <div class="flex gap-20">
+                        <div class="flex items-center gap-2">
+                            <svg height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 305 305" xml:space="preserve" fill="#FFF">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier"> 
+                                    <g> 
+                                        <path style="fill:#000000;" d="M305,173.726c0-41.662-16.799-79.469-43.972-107.02c-0.212-0.282-0.438-0.558-0.695-0.815 c-0.257-0.257-0.532-0.483-0.814-0.694C231.968,38.024,194.161,21.226,152.5,21.226c-41.661,0-79.468,16.799-107.02,43.971 c-0.282,0.212-0.557,0.438-0.814,0.694c-0.257,0.257-0.483,0.532-0.695,0.815C16.799,94.257,0,132.064,0,173.726 c0,40.729,15.859,79.018,44.655,107.821c0.004,0.004,0.008,0.009,0.012,0.013c0.003,0.002,0.005,0.005,0.008,0.007 c0.004,0.004,0.008,0.008,0.012,0.012c1.464,1.464,3.383,2.195,5.302,2.195c1.92,0,3.84-0.732,5.304-2.197 c0.125-0.125,0.238-0.258,0.352-0.39l23.112-23.113c2.929-2.93,2.929-7.678,0-10.607c-2.929-2.928-7.678-2.928-10.606,0 l-18.036,18.036c-21.031-23.403-33.232-52.857-34.91-84.277h25.507c4.142,0,7.5-3.357,7.5-7.5s-3.358-7.5-7.5-7.5H15.207 c1.744-32.272,14.668-61.618,34.957-84.229l17.987,17.987c1.464,1.464,3.384,2.196,5.303,2.196c1.919,0,3.839-0.732,5.303-2.196 c2.929-2.93,2.929-7.678,0-10.607L60.771,71.389C83.383,51.1,112.728,38.176,145,36.433v25.506c0,4.143,3.358,7.5,7.5,7.5 s7.5-3.357,7.5-7.5V36.433c32.272,1.743,61.617,14.668,84.229,34.957l-17.987,17.987c-2.929,2.93-2.929,7.678,0,10.607 c1.464,1.464,3.384,2.196,5.303,2.196s3.839-0.732,5.303-2.196l17.987-17.987c20.289,22.612,33.214,51.957,34.957,84.229h-25.506 c-4.142,0-7.5,3.357-7.5,7.5s3.358,7.5,7.5,7.5h25.507c-1.678,31.42-13.878,60.875-34.909,84.278l-18.036-18.037 c-2.928-2.928-7.677-2.928-10.606,0c-2.929,2.93-2.929,7.678,0,10.607l23.485,23.485c1.464,1.464,3.384,2.196,5.303,2.196 c0.959,0,1.919-0.183,2.822-0.549c0.903-0.366,1.749-0.915,2.482-1.647C289.137,252.755,305,214.459,305,173.726z"></path> 
+                                        <path style="fill:#000000;" d="M186.956,87.718c-3.847-1.541-8.211,0.327-9.751,4.173l-21.673,54.1 c-1.01-0.108-2.02-0.182-3.031-0.182c-10.556,0-20.091,5.847-24.886,15.259c-5.012,9.839-3.728,21.595,3.432,31.445 c0.732,1.007,1.652,1.928,2.666,2.665c5.817,4.229,12.314,6.464,18.788,6.464c10.556,0,20.092-5.847,24.886-15.259 c5.012-9.839,3.728-21.594-3.427-31.437c-0.732-1.01-1.654-1.934-2.671-2.674c-0.547-0.398-1.106-0.761-1.665-1.123l21.505-53.681 C192.669,93.624,190.801,89.258,186.956,87.718z M164.02,179.574c-2.221,4.359-6.635,7.067-11.52,7.067 c-3.204,0-6.429-1.119-9.589-3.327c-3.6-5.169-4.307-10.773-1.93-15.438c2.22-4.359,6.634-7.067,11.52-7.067 c1.558,0,3.12,0.27,4.678,0.795c0.051,0.021,0.098,0.048,0.15,0.069c0.164,0.065,0.329,0.118,0.494,0.171 c1.43,0.549,2.854,1.305,4.266,2.291C165.688,169.304,166.396,174.909,164.02,179.574z"></path> 
+                                    </g>
+                                </g>
+                            </svg>
+                            <span>Moyen</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg width="20px" height="20px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M7.50009 0.877014C3.84241 0.877014 0.877258 3.84216 0.877258 7.49984C0.877258 11.1575 3.8424 14.1227 7.50009 14.1227C11.1578 14.1227 14.1229 11.1575 14.1229 7.49984C14.1229 3.84216 11.1577 0.877014 7.50009 0.877014ZM1.82726 7.49984C1.82726 4.36683 4.36708 1.82701 7.50009 1.82701C10.6331 1.82701 13.1729 4.36683 13.1729 7.49984C13.1729 10.6328 10.6331 13.1727 7.50009 13.1727C4.36708 13.1727 1.82726 10.6328 1.82726 7.49984ZM8 4.50001C8 4.22387 7.77614 4.00001 7.5 4.00001C7.22386 4.00001 7 4.22387 7 4.50001V7.50001C7 7.63262 7.05268 7.7598 7.14645 7.85357L9.14645 9.85357C9.34171 10.0488 9.65829 10.0488 9.85355 9.85357C10.0488 9.65831 10.0488 9.34172 9.85355 9.14646L8 7.29291V4.50001Z"
+                                  fill="#000000"
+                                />
+                            </svg>
+                            <span>12 hours</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="../images/finance.jpg" class="rounded-md">
+                </div>
+                <div class="col-span-2 ">
+                    <a href="#">
+                        <button class="py-2 px-28 bg-[#222] text-white font-medium rounded-lg cursor-pointer transition-all ease-in-out duration-300 hover:bg-[#303030]">Subscribe To Course</button>
+                    </a>
+                </div>
+            </section>
+            <section class="grid grid-cols-2 gap-10 px-20 pt-10 pb-20">
+                <div>
+                    <h1 class="mb-8 font-semibold text-3xl text-[#003877]">Overview</h1>
+                    <p class="font-light text-justify">
+                        Do you have a lot of tedious, repetitive tasks at work? Do you want to be able to do things more efficiently? Python can help!
+                        <br><br>
+                        Python is one of the most widely used programming languages. Learning to code with Python is a highly sought-after skill in many professions. And not just for full-time software developers. Anyone can learn!
+                        <br><br>
+                        Python lets you automate tasks, like sending e-mails or writing to files... All to help you complete tasks more efficiently.
+                        <br><br>
+                        This course is for people who have never seen a line of code or heard of Python. We'll go step by step together in a fun, easy-to-understand way. I know what it's like to be intimidated by code, or to understand nothing about it. So I want to make sure no one feels the same way. 
+                        <br><br>
+                        In this course, you'll store information as data in Python. You'll control the logic in your code with conditions, loops and functions. You'll also automate the retrieval of data from the web with the Requests, Beautiful Soup and CSV packages, in the process called web data extraction. You'll learn a lot and have a great time!
+                        <br><br>
+                        What are we waiting for? Let's get started!
+                    </p>
+                </div>
+                <div>
+                    <h1 class="mb-8 font-semibold text-3xl text-[#003877]">Resume</h1>
+                    <div>
+                        <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Course 1 : Introduction to Python</h1>
+                        <div class="ml-10 border-l border-l-gray-400 py-5 flex flex-col gap-5">
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Chapter I : </span>
+                                    Set up your Python Environment
+                                </h1>
+                            </div>
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Chapter II : </span>
+                                    Set up your Python Environment
+                                </h1>
+                            </div>
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Chapter III : </span>
+                                    Set up your Python Environment
+                                </h1>
+                            </div>
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Chapter VI : </span>
+                                    Set up your Python Environment
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Course 2 : Introduction to Python</h1>
+                        <div class="ml-10 border-l border-l-gray-400 py-5 flex flex-col gap-5">
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Chapter I : </span>
+                                    Set up your Python Environment
+                                </h1>
+                            </div>
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Chapter II : </span>
+                                    Set up your Python Environment
+                                </h1>
+                            </div>
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Chapter III : </span>
+                                    Set up your Python Environment
+                                </h1>
+                            </div>
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Chapter VI : </span>
+                                    Set up your Python Environment
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Course 3 : Introduction to Python</h1>
+                        <div class="ml-10 border-l border-l-gray-400 pt-5 flex flex-col gap-5">
+                            <div class="text-sm flex items-end gap-3">
+                                <div class="bg-gray-400 h-[0.5px] w-10"></div>
+                                <h1 class="font-light flex items-center gap-1">
+                                    <span class="font-medium">Chapter I : </span>
+                                    <p>Set up your Python Environment</p>
+                                </h1>
+                            </div>
+                            <div class="text-sm flex items-end gap-3">
+                                <div class="bg-gray-400 h-[0.5px] w-10"></div>
+                                <h1 class="font-light flex items-center gap-1">
+                                    <span class="font-medium">Chapter II : </span>
+                                    <p>Set up your Python Environment</p>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-[#222] py-10 px-20 grid grid-cols-2 gap-10">
+                <div class="flex flex-col gap-8">
+                    <h1 class="font-medium text-[#D6FF40] text-2xl">Teaching objectives</h1>
+                    <div class="flex flex-col gap-5">
+                        <div class="flex items-center gap-3 text-white font-light">
+                            <div class="border border-white rounded-full">
+                                <svg class="p-1" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.8562 15.6858L14.8562 15.6858C14.8219 15.769 14.7885 15.8525 14.7562 15.9363C12.9685 16.5341 11.0314 16.534 9.24375 15.9362C9.21144 15.8524 9.17811 15.7689 9.14377 15.6858C9.04854 15.4554 9.00093 15.3401 8.91839 15.2337C8.83585 15.1273 8.69186 15.0193 8.40387 14.8033C6.94433 13.7089 6 11.9647 6 10C6 6.68629 8.68629 4 12 4C15.3137 4 18 6.68629 18 10C18 11.9647 17.0557 13.7089 15.5961 14.8033L15.5961 14.8034C15.3081 15.0193 15.1641 15.1273 15.0816 15.2337C14.9991 15.3401 14.9515 15.4554 14.8562 15.6858ZM9.85021 18.1664C9.93686 18.6932 9.98631 19.227 9.99753 19.7639C10.0006 19.9086 10.0817 20.0409 10.2111 20.1056C11.3373 20.6686 12.6627 20.6686 13.7889 20.1056C13.9183 20.0409 13.9994 19.9086 14.0025 19.7639C14.0137 19.227 14.0631 18.6933 14.1498 18.1665C12.7318 18.4573 11.2682 18.4573 9.85021 18.1664Z" fill="#FFF"/>
+                                </svg>
+                            </div>
+                            <p>Create data with Python</p>
+                        </div>
+                        <div class="flex items-center gap-3 text-white font-light">
+                            <div class="border border-white rounded-full">
+                                <svg class="p-1" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.8562 15.6858L14.8562 15.6858C14.8219 15.769 14.7885 15.8525 14.7562 15.9363C12.9685 16.5341 11.0314 16.534 9.24375 15.9362C9.21144 15.8524 9.17811 15.7689 9.14377 15.6858C9.04854 15.4554 9.00093 15.3401 8.91839 15.2337C8.83585 15.1273 8.69186 15.0193 8.40387 14.8033C6.94433 13.7089 6 11.9647 6 10C6 6.68629 8.68629 4 12 4C15.3137 4 18 6.68629 18 10C18 11.9647 17.0557 13.7089 15.5961 14.8033L15.5961 14.8034C15.3081 15.0193 15.1641 15.1273 15.0816 15.2337C14.9991 15.3401 14.9515 15.4554 14.8562 15.6858ZM9.85021 18.1664C9.93686 18.6932 9.98631 19.227 9.99753 19.7639C10.0006 19.9086 10.0817 20.0409 10.2111 20.1056C11.3373 20.6686 12.6627 20.6686 13.7889 20.1056C13.9183 20.0409 13.9994 19.9086 14.0025 19.7639C14.0137 19.227 14.0631 18.6933 14.1498 18.1665C12.7318 18.4573 11.2682 18.4573 9.85021 18.1664Z" fill="#FFF"/>
+                                </svg>
+                            </div>
+                            <p>Manage programming logic in Python</p>
+                        </div>
+                        <div class="flex items-center gap-3 text-white font-light">
+                            <div class="border border-white rounded-full">
+                                <svg class="p-1" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.8562 15.6858L14.8562 15.6858C14.8219 15.769 14.7885 15.8525 14.7562 15.9363C12.9685 16.5341 11.0314 16.534 9.24375 15.9362C9.21144 15.8524 9.17811 15.7689 9.14377 15.6858C9.04854 15.4554 9.00093 15.3401 8.91839 15.2337C8.83585 15.1273 8.69186 15.0193 8.40387 14.8033C6.94433 13.7089 6 11.9647 6 10C6 6.68629 8.68629 4 12 4C15.3137 4 18 6.68629 18 10C18 11.9647 17.0557 13.7089 15.5961 14.8033L15.5961 14.8034C15.3081 15.0193 15.1641 15.1273 15.0816 15.2337C14.9991 15.3401 14.9515 15.4554 14.8562 15.6858ZM9.85021 18.1664C9.93686 18.6932 9.98631 19.227 9.99753 19.7639C10.0006 19.9086 10.0817 20.0409 10.2111 20.1056C11.3373 20.6686 12.6627 20.6686 13.7889 20.1056C13.9183 20.0409 13.9994 19.9086 14.0025 19.7639C14.0137 19.227 14.0631 18.6933 14.1498 18.1665C12.7318 18.4573 11.2682 18.4573 9.85021 18.1664Z" fill="#FFF"/>
+                                </svg>
+                            </div>
+                            <p>Extract data from the web with Python and some of its packages</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <h1 class="font-medium text-[#D6FF40] text-2xl">Contributers</h1>
+                    <div class="flex items-center gap-3">
+                        <img src="../images/teacher.jpg" class="w-14 h-14 rounded-full border-2 border-[#E19219]">
+                        <div class="flex flex-col gap-1">
+                            <h1 class="font-medium text-white">Ahmed Alamai</h1>
+                            <div class="flex items-center gap-2">
+                                <svg fill="#FFF" width="14px" height="14px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/>
+                                </svg>
+                                <span class="text-xs text-white font-light">01 March 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <img src="../images/logo-white.png" class="w-16 h-16">
+                        <div class="flex flex-col gap-1">
+                            <h1 class="font-medium text-white">Next Chapter</h1>
+                            <div class="flex items-center text-xs text-white gap-1">
+                                <p class="font-light">Licence</p>
+                                <svg width="16px" height="16px" viewBox="-10 -5 1034 1034" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+                                    <path fill="#FFF"
+                                 d="M499 226q-166 0 -280 117q-58 58 -88.5 131t-30.5 152.5t30 152t87.5 130t130 87.5t152 30t153.5 -30.5t133 -88.5q56 -55 85 -127t29 -153.5t-29.5 -154t-85.5 -128.5q-118 -118 -286 -118zM501 299q135 0 232 96q46 47 70.5 106t24.5 125q0 138 -94 230
+                                 q-48 47 -108.5 72t-125 25t-124 -24.5t-106.5 -71.5t-72.5 -106.5t-25.5 -124.5t25.5 -124.5t72.5 -107.5q94 -95 231 -95zM389 502q-50 0 -83.5 33.5t-33.5 91.5t33 91t86 33q34 0 62 -17t43 -46l-49 -25q-14 34 -49 34q-27 0 -40.5 -19t-13.5 -52q0 -70 54 -70
+                                 q11 0 23.5 7t20.5 25l54 -28q-32 -58 -107 -58zM621 502q-51 0 -84 33.5t-33 91.5t32.5 91t86.5 33q33 0 60.5 -17t44.5 -46l-50 -25q-14 34 -49 34q-27 0 -40.5 -19t-13.5 -52q0 -70 54 -70q11 0 23.5 7t21.5 25l52 -28q-31 -58 -105 -58z" />
+                                 </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="px-20 py-10">
+                <h1 class="font-semibold text-3xl text-[#303030] py-5">You May be Interested in ...</h1>
+                <div class="flex flex-col gap-10 pt-10 pb-5">
+                    <div class="grid grid-cols-3 gap-x-5 border border-gray-200 shadow-lg">
+                        <div class="py-3 pl-5 pr-3">
+                            <img src="../images/finance.jpg" class="rounded-sm">
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-3 py-3 pr-5">
+                            <h1 class="text-xl font-semibold">Accounting: Introduction to General Accounting</h1>
+                            <p class=" font-light text-justify">Discover the basics of accounting: balance sheets, income statements, financial transactions, and bookkeeping essentials. A must-have course for anyone interested. Discover the basics of accounting: balance sheets, income statements, financial transactions, and bookkeeping essentials. A must-have course for anyone interested .</p>
+                            <div class="flex items-end justify-between pt-2">
+                                <div class="flex items-center gap-3 pt-3">
+                                    <img src="../images/teacher.jpg" class="w-10 h-10 rounded-full border-2 border-[#E19219]">
+                                    <div class="flex flex-col gap-1">
+                                        <h1 class="text-xs font-medium">Ahmed Alamai</h1>
+                                        <div class="flex items-center gap-2">
+                                            <svg fill="#000000" width="14px" height="14px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/>
+                                            </svg>
+                                            <span class="text-xs">01 March 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="flex items-center gap-2 text-sm font-light underline">
+                                    <span>SEE DETAILS</span>
+                                    <svg width="16px" height="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.354 15.354L3.7 21H8v1H2v-6h1v4.285l5.646-5.639zM22 2h-6v1h4.3l-5.654 5.646.707.708L21 3.715V8h1zm-6 20h6v-6h-1v4.285l-5.646-5.639-.707.708L20.3 21H16zM8 2H2v6h1V3.715l5.646 5.639.707-.708L3.7 3H8z"/><path fill="none" d="M0 0h24v24H0z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-[#D6FF40] col-span-3 flex items-center justify-between bg-[#222] px-5 py-2 font-light">
+                            <h1 class="font-medium">Finance</h1>
+                            <div class="flex items-center gap-2">
+                                <svg height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 305 305" xml:space="preserve" fill="#FFF">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier"> 
+                                        <g> 
+                                            <path style="fill:#D6FF40;" d="M305,173.726c0-41.662-16.799-79.469-43.972-107.02c-0.212-0.282-0.438-0.558-0.695-0.815 c-0.257-0.257-0.532-0.483-0.814-0.694C231.968,38.024,194.161,21.226,152.5,21.226c-41.661,0-79.468,16.799-107.02,43.971 c-0.282,0.212-0.557,0.438-0.814,0.694c-0.257,0.257-0.483,0.532-0.695,0.815C16.799,94.257,0,132.064,0,173.726 c0,40.729,15.859,79.018,44.655,107.821c0.004,0.004,0.008,0.009,0.012,0.013c0.003,0.002,0.005,0.005,0.008,0.007 c0.004,0.004,0.008,0.008,0.012,0.012c1.464,1.464,3.383,2.195,5.302,2.195c1.92,0,3.84-0.732,5.304-2.197 c0.125-0.125,0.238-0.258,0.352-0.39l23.112-23.113c2.929-2.93,2.929-7.678,0-10.607c-2.929-2.928-7.678-2.928-10.606,0 l-18.036,18.036c-21.031-23.403-33.232-52.857-34.91-84.277h25.507c4.142,0,7.5-3.357,7.5-7.5s-3.358-7.5-7.5-7.5H15.207 c1.744-32.272,14.668-61.618,34.957-84.229l17.987,17.987c1.464,1.464,3.384,2.196,5.303,2.196c1.919,0,3.839-0.732,5.303-2.196 c2.929-2.93,2.929-7.678,0-10.607L60.771,71.389C83.383,51.1,112.728,38.176,145,36.433v25.506c0,4.143,3.358,7.5,7.5,7.5 s7.5-3.357,7.5-7.5V36.433c32.272,1.743,61.617,14.668,84.229,34.957l-17.987,17.987c-2.929,2.93-2.929,7.678,0,10.607 c1.464,1.464,3.384,2.196,5.303,2.196s3.839-0.732,5.303-2.196l17.987-17.987c20.289,22.612,33.214,51.957,34.957,84.229h-25.506 c-4.142,0-7.5,3.357-7.5,7.5s3.358,7.5,7.5,7.5h25.507c-1.678,31.42-13.878,60.875-34.909,84.278l-18.036-18.037 c-2.928-2.928-7.677-2.928-10.606,0c-2.929,2.93-2.929,7.678,0,10.607l23.485,23.485c1.464,1.464,3.384,2.196,5.303,2.196 c0.959,0,1.919-0.183,2.822-0.549c0.903-0.366,1.749-0.915,2.482-1.647C289.137,252.755,305,214.459,305,173.726z"></path> 
+                                            <path style="fill:#D6FF40;" d="M186.956,87.718c-3.847-1.541-8.211,0.327-9.751,4.173l-21.673,54.1 c-1.01-0.108-2.02-0.182-3.031-0.182c-10.556,0-20.091,5.847-24.886,15.259c-5.012,9.839-3.728,21.595,3.432,31.445 c0.732,1.007,1.652,1.928,2.666,2.665c5.817,4.229,12.314,6.464,18.788,6.464c10.556,0,20.092-5.847,24.886-15.259 c5.012-9.839,3.728-21.594-3.427-31.437c-0.732-1.01-1.654-1.934-2.671-2.674c-0.547-0.398-1.106-0.761-1.665-1.123l21.505-53.681 C192.669,93.624,190.801,89.258,186.956,87.718z M164.02,179.574c-2.221,4.359-6.635,7.067-11.52,7.067 c-3.204,0-6.429-1.119-9.589-3.327c-3.6-5.169-4.307-10.773-1.93-15.438c2.22-4.359,6.634-7.067,11.52-7.067 c1.558,0,3.12,0.27,4.678,0.795c0.051,0.021,0.098,0.048,0.15,0.069c0.164,0.065,0.329,0.118,0.494,0.171 c1.43,0.549,2.854,1.305,4.266,2.291C165.688,169.304,166.396,174.909,164.02,179.574z"></path> 
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span>Moyen</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg width="20px" height="20px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M7.50009 0.877014C3.84241 0.877014 0.877258 3.84216 0.877258 7.49984C0.877258 11.1575 3.8424 14.1227 7.50009 14.1227C11.1578 14.1227 14.1229 11.1575 14.1229 7.49984C14.1229 3.84216 11.1577 0.877014 7.50009 0.877014ZM1.82726 7.49984C1.82726 4.36683 4.36708 1.82701 7.50009 1.82701C10.6331 1.82701 13.1729 4.36683 13.1729 7.49984C13.1729 10.6328 10.6331 13.1727 7.50009 13.1727C4.36708 13.1727 1.82726 10.6328 1.82726 7.49984ZM8 4.50001C8 4.22387 7.77614 4.00001 7.5 4.00001C7.22386 4.00001 7 4.22387 7 4.50001V7.50001C7 7.63262 7.05268 7.7598 7.14645 7.85357L9.14645 9.85357C9.34171 10.0488 9.65829 10.0488 9.85355 9.85357C10.0488 9.65831 10.0488 9.34172 9.85355 9.14646L8 7.29291V4.50001Z"
+                                      fill="#D6FF40"
+                                    />
+                                </svg>
+                                <span>12 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-x-5 border border-gray-200 shadow-lg">
+                        <div class="py-3 pl-5 pr-3">
+                            <img src="../images/finance.jpg" class="rounded-sm">
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-3 py-3 pr-5">
+                            <h1 class="text-xl font-semibold">Accounting: Introduction to General Accounting</h1>
+                            <p class=" font-light text-justify">Discover the basics of accounting: balance sheets, income statements, financial transactions, and bookkeeping essentials. A must-have course for anyone interested. Discover the basics of accounting: balance sheets, income statements, financial transactions, and bookkeeping essentials. A must-have course for anyone interested .</p>
+                            <div class="flex items-end justify-between pt-2">
+                                <div class="flex items-center gap-3 pt-3">
+                                    <img src="../images/teacher.jpg" class="w-10 h-10 rounded-full border-2 border-[#E19219]">
+                                    <div class="flex flex-col gap-1">
+                                        <h1 class="text-xs font-medium">Ahmed Alamai</h1>
+                                        <div class="flex items-center gap-2">
+                                            <svg fill="#000000" width="14px" height="14px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/>
+                                            </svg>
+                                            <span class="text-xs">01 March 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="flex items-center gap-2 text-sm font-light underline">
+                                    <span>SEE DETAILS</span>
+                                    <svg width="16px" height="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.354 15.354L3.7 21H8v1H2v-6h1v4.285l5.646-5.639zM22 2h-6v1h4.3l-5.654 5.646.707.708L21 3.715V8h1zm-6 20h6v-6h-1v4.285l-5.646-5.639-.707.708L20.3 21H16zM8 2H2v6h1V3.715l5.646 5.639.707-.708L3.7 3H8z"/><path fill="none" d="M0 0h24v24H0z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-[#D6FF40] col-span-3 flex items-center justify-between bg-[#222] px-5 py-2 font-light">
+                            <h1 class="font-medium">Finance</h1>
+                            <div class="flex items-center gap-2">
+                                <svg height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 305 305" xml:space="preserve" fill="#FFF">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier"> 
+                                        <g> 
+                                            <path style="fill:#D6FF40;" d="M305,173.726c0-41.662-16.799-79.469-43.972-107.02c-0.212-0.282-0.438-0.558-0.695-0.815 c-0.257-0.257-0.532-0.483-0.814-0.694C231.968,38.024,194.161,21.226,152.5,21.226c-41.661,0-79.468,16.799-107.02,43.971 c-0.282,0.212-0.557,0.438-0.814,0.694c-0.257,0.257-0.483,0.532-0.695,0.815C16.799,94.257,0,132.064,0,173.726 c0,40.729,15.859,79.018,44.655,107.821c0.004,0.004,0.008,0.009,0.012,0.013c0.003,0.002,0.005,0.005,0.008,0.007 c0.004,0.004,0.008,0.008,0.012,0.012c1.464,1.464,3.383,2.195,5.302,2.195c1.92,0,3.84-0.732,5.304-2.197 c0.125-0.125,0.238-0.258,0.352-0.39l23.112-23.113c2.929-2.93,2.929-7.678,0-10.607c-2.929-2.928-7.678-2.928-10.606,0 l-18.036,18.036c-21.031-23.403-33.232-52.857-34.91-84.277h25.507c4.142,0,7.5-3.357,7.5-7.5s-3.358-7.5-7.5-7.5H15.207 c1.744-32.272,14.668-61.618,34.957-84.229l17.987,17.987c1.464,1.464,3.384,2.196,5.303,2.196c1.919,0,3.839-0.732,5.303-2.196 c2.929-2.93,2.929-7.678,0-10.607L60.771,71.389C83.383,51.1,112.728,38.176,145,36.433v25.506c0,4.143,3.358,7.5,7.5,7.5 s7.5-3.357,7.5-7.5V36.433c32.272,1.743,61.617,14.668,84.229,34.957l-17.987,17.987c-2.929,2.93-2.929,7.678,0,10.607 c1.464,1.464,3.384,2.196,5.303,2.196s3.839-0.732,5.303-2.196l17.987-17.987c20.289,22.612,33.214,51.957,34.957,84.229h-25.506 c-4.142,0-7.5,3.357-7.5,7.5s3.358,7.5,7.5,7.5h25.507c-1.678,31.42-13.878,60.875-34.909,84.278l-18.036-18.037 c-2.928-2.928-7.677-2.928-10.606,0c-2.929,2.93-2.929,7.678,0,10.607l23.485,23.485c1.464,1.464,3.384,2.196,5.303,2.196 c0.959,0,1.919-0.183,2.822-0.549c0.903-0.366,1.749-0.915,2.482-1.647C289.137,252.755,305,214.459,305,173.726z"></path> 
+                                            <path style="fill:#D6FF40;" d="M186.956,87.718c-3.847-1.541-8.211,0.327-9.751,4.173l-21.673,54.1 c-1.01-0.108-2.02-0.182-3.031-0.182c-10.556,0-20.091,5.847-24.886,15.259c-5.012,9.839-3.728,21.595,3.432,31.445 c0.732,1.007,1.652,1.928,2.666,2.665c5.817,4.229,12.314,6.464,18.788,6.464c10.556,0,20.092-5.847,24.886-15.259 c5.012-9.839,3.728-21.594-3.427-31.437c-0.732-1.01-1.654-1.934-2.671-2.674c-0.547-0.398-1.106-0.761-1.665-1.123l21.505-53.681 C192.669,93.624,190.801,89.258,186.956,87.718z M164.02,179.574c-2.221,4.359-6.635,7.067-11.52,7.067 c-3.204,0-6.429-1.119-9.589-3.327c-3.6-5.169-4.307-10.773-1.93-15.438c2.22-4.359,6.634-7.067,11.52-7.067 c1.558,0,3.12,0.27,4.678,0.795c0.051,0.021,0.098,0.048,0.15,0.069c0.164,0.065,0.329,0.118,0.494,0.171 c1.43,0.549,2.854,1.305,4.266,2.291C165.688,169.304,166.396,174.909,164.02,179.574z"></path> 
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span>Moyen</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg width="20px" height="20px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M7.50009 0.877014C3.84241 0.877014 0.877258 3.84216 0.877258 7.49984C0.877258 11.1575 3.8424 14.1227 7.50009 14.1227C11.1578 14.1227 14.1229 11.1575 14.1229 7.49984C14.1229 3.84216 11.1577 0.877014 7.50009 0.877014ZM1.82726 7.49984C1.82726 4.36683 4.36708 1.82701 7.50009 1.82701C10.6331 1.82701 13.1729 4.36683 13.1729 7.49984C13.1729 10.6328 10.6331 13.1727 7.50009 13.1727C4.36708 13.1727 1.82726 10.6328 1.82726 7.49984ZM8 4.50001C8 4.22387 7.77614 4.00001 7.5 4.00001C7.22386 4.00001 7 4.22387 7 4.50001V7.50001C7 7.63262 7.05268 7.7598 7.14645 7.85357L9.14645 9.85357C9.34171 10.0488 9.65829 10.0488 9.85355 9.85357C10.0488 9.65831 10.0488 9.34172 9.85355 9.14646L8 7.29291V4.50001Z"
+                                      fill="#D6FF40"
+                                    />
+                                </svg>
+                                <span>12 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="relative bg-[#222222] px-20 py-14 grid grid-cols-5 gap-y-24">
+            <div class="col-span-2 flex flex-col gap-3">
+                <img src="../images/logo-white.png"
+                    alt="Logo White de Next Chapter" class="w-1/4">
+                <p class="text-white text-sm font-light">Every Journey Starts
+                    with a First Step</p>
+                <span class="text-[#FFE500] text-sm font-light">Take Yours
+                    Now!</span>
+            </div>
+            <div class="text-white flex flex-col gap-5">
+                <h1 class="font-medium text-lg">PAGES</h1>
+                <ul class="text-sm font-light flex flex-col gap-5">
+                    <a href="#"><li>Home</li></a>
+                    <a href="#"><li>About Us</li></a>
+                    <a href="#"><li>Services</li></a>
+                    <a href="#"><li>Blog</li></a>
+                    <a href="#"><li>Contact</li></a>
+                </ul>
+            </div>
+            <div class="text-white flex flex-col gap-5">
+                <h1 class="font-medium text-lg">SUPPORT</h1>
+                <ul class="text-sm font-light flex flex-col gap-5">
+                    <a href="#"><li>Help</li></a>
+                    <a href="#"><li>Feedbacks</li></a>
+                    <a href="#"><li>Licence</li></a>
+                    <a href="#"><li>Terms & Conditions</li></a>
+                    <a href="#"><li>Privacy Policy</li></a>
+                </ul>
+            </div>
+            <div class="text-white flex flex-col gap-5">
+                <h1 class="font-medium text-lg">CONTACT INFOS</h1>
+                <ul class="flex flex-col gap-5">
+                    <li class="flex items-center gap-3">
+                        <svg width="14px" height="14px" viewBox="0 0 15 15"
+                            version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            fill="#ffffff" stroke="#ffffff"><g
+                                id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></g><g
+                                id="SVGRepo_iconCarrier"> <title>call
+                                    [#ffffff]</title> <desc>Created with
+                                    Sketch.</desc> <defs> </defs> <g id="Page-1"
+                                    stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd"> <g
+                                        id="Dribbble-Light-Preview"
+                                        transform="translate(-103.000000, -7321.000000)"
+                                        fill="#ffffff"> <g id="icons"
+                                            transform="translate(56.000000, 160.000000)">
+                                            <path
+                                                d="M61.7302966,7173.99596 C61.2672966,7175.40296 59.4532966,7176.10496 58.1572966,7175.98796 C56.3872966,7175.82796 54.4612966,7174.88896 52.9992966,7173.85496 C50.8502966,7172.33496 48.8372966,7169.98396 47.6642966,7167.48896 C46.8352966,7165.72596 46.6492966,7163.55796 47.8822966,7161.95096 C48.3382966,7161.35696 48.8312966,7161.03996 49.5722966,7161.00296 C50.6002966,7160.95296 50.7442966,7161.54096 51.0972966,7162.45696 C51.3602966,7163.14196 51.7112966,7163.84096 51.9072966,7164.55096 C52.2742966,7165.87596 50.9912966,7165.93096 50.8292966,7167.01396 C50.7282966,7167.69696 51.5562966,7168.61296 51.9302966,7169.09996 C52.6632966,7170.05396 53.5442966,7170.87696 54.5382966,7171.50296 C55.1072966,7171.86196 56.0262966,7172.50896 56.6782966,7172.15196 C57.6822966,7171.60196 57.5872966,7169.90896 58.9912966,7170.48196 C59.7182966,7170.77796 60.4222966,7171.20496 61.1162966,7171.57896 C62.1892966,7172.15596 62.1392966,7172.75396 61.7302966,7173.99596 C61.4242966,7174.92396 62.0362966,7173.06796 61.7302966,7173.99596"
+                                                id="call-[#ffffff]"> </path>
+                                        </g> </g> </g> </g></svg>
+                        <a href="tel:+212 504658800"
+                            class="font-light text-sm">+212 504658800</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg fill="#ffffff" height="14px" width="14px"
+                            version="1.1" id="Filled_Icons"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="0 0 24 24"
+                            enable-background="new 0 0 24 24"
+                            xml:space="preserve" stroke="#ffffff"><g
+                                id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></g><g
+                                id="SVGRepo_iconCarrier"> <g id="mail-filled">
+                                    <path
+                                        d="M24,5.7V21H0V5.7l12,10L24,5.7z M12,13l12-9.9V3H0v0.1L12,13z"></path>
+                                </g> </g></svg>
+                        <a href="tel:+212 504658800"
+                            class="font-light text-sm">next-chapter@contact.com</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg width="14px" height="14px" viewBox="0 0 16 16"
+                            fill="none" xmlns="http://www.w3.org/2000/svg"><g
+                                id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></g><g
+                                id="SVGRepo_iconCarrier"> <path
+                                    fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M3.37892 10.2236L8 16L12.6211 10.2236C13.5137 9.10788 14 7.72154 14 6.29266V6C14 2.68629 11.3137 0 8 0C4.68629 0 2 2.68629 2 6V6.29266C2 7.72154 2.4863 9.10788 3.37892 10.2236ZM8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z"
+                                    fill="#ffffff"></path> </g></svg>
+                        <a href="https://maps.app.goo.gl/fB78cjaLP5da3k526"
+                            class="font-light text-sm">Safi, Morocco</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-span-2 flex items-center gap-10">
+                <svg width="20px" height="20px" viewBox="-5 0 20 20"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"
+                    stroke="#ffffff"><g id="SVGRepo_bgCarrier"
+                        stroke-width="0"></g><g id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round" stroke-linejoin="round"></g><g
+                        id="SVGRepo_iconCarrier"> <title>facebook
+                            [#ffffff]</title> <desc>Created with Sketch.</desc>
+                        <defs> </defs> <g id="Page-1" stroke="none"
+                            stroke-width="1" fill="none" fill-rule="evenodd"> <g
+                                id="Dribbble-Light-Preview"
+                                transform="translate(-385.000000, -7399.000000)"
+                                fill="#ffffff"> <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M335.821282,7259 L335.821282,7250 L338.553693,7250 L339,7246 L335.821282,7246 L335.821282,7244.052 C335.821282,7243.022 335.847593,7242 337.286884,7242 L338.744689,7242 L338.744689,7239.14 C338.744689,7239.097 337.492497,7239 336.225687,7239 C333.580004,7239 331.923407,7240.657 331.923407,7243.7 L331.923407,7246 L329,7246 L329,7250 L331.923407,7250 L331.923407,7259 L335.821282,7259 Z"
+                                        id="facebook-[#ffffff]"> </path> </g>
+                            </g> </g> </g></svg>
+                <svg width="20px" height="20px" viewBox="0 -2 20 20"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"
+                    stroke="#000000"><g id="SVGRepo_bgCarrier"
+                        stroke-width="0"></g><g id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round" stroke-linejoin="round"></g><g
+                        id="SVGRepo_iconCarrier"> <title>twitter
+                            [#ffffff]</title> <desc>Created with Sketch.</desc>
+                        <defs> </defs> <g id="Page-1" stroke="none"
+                            stroke-width="1" fill="none" fill-rule="evenodd"> <g
+                                id="Dribbble-Light-Preview"
+                                transform="translate(-60.000000, -7521.000000)"
+                                fill="#ffffff"> <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705"
+                                        id="twitter-[#ffffff]"> </path> </g>
+                            </g> </g> </g></svg>
+                <svg width="20px" height="20px" viewBox="0 0 20 20"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"
+                    stroke="#000000"><g id="SVGRepo_bgCarrier"
+                        stroke-width="0"></g><g id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round" stroke-linejoin="round"></g><g
+                        id="SVGRepo_iconCarrier"> <title>linkedin
+                            [#ffffff]</title> <desc>Created with Sketch.</desc>
+                        <defs> </defs> <g id="Page-1" stroke="none"
+                            stroke-width="1" fill="none" fill-rule="evenodd"> <g
+                                id="Dribbble-Light-Preview"
+                                transform="translate(-180.000000, -7479.000000)"
+                                fill="#ffffff"> <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M144,7339 L140,7339 L140,7332.001 C140,7330.081 139.153,7329.01 137.634,7329.01 C135.981,7329.01 135,7330.126 135,7332.001 L135,7339 L131,7339 L131,7326 L135,7326 L135,7327.462 C135,7327.462 136.255,7325.26 139.083,7325.26 C141.912,7325.26 144,7326.986 144,7330.558 L144,7339 L144,7339 Z M126.442,7323.921 C125.093,7323.921 124,7322.819 124,7321.46 C124,7320.102 125.093,7319 126.442,7319 C127.79,7319 128.883,7320.102 128.883,7321.46 C128.884,7322.819 127.79,7323.921 126.442,7323.921 L126.442,7323.921 Z M124,7339 L129,7339 L129,7326 L124,7326 L124,7339 Z"
+                                        id="linkedin-[#ffffff]"> </path> </g>
+                            </g> </g> </g></svg>
+                <svg width="20px" height="20px" viewBox="0 0 20 20"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g
+                        id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                        id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                        stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                        <title>instagram [#167]</title> <desc>Created with
+                            Sketch.</desc> <defs> </defs> <g id="Page-1"
+                            stroke="none" stroke-width="1" fill="none"
+                            fill-rule="evenodd"> <g id="Dribbble-Light-Preview"
+                                transform="translate(-340.000000, -7439.000000)"
+                                fill="#ffffff"> <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M289.869652,7279.12273 C288.241769,7279.19618 286.830805,7279.5942 285.691486,7280.72871 C284.548187,7281.86918 284.155147,7283.28558 284.081514,7284.89653 C284.035742,7285.90201 283.768077,7293.49818 284.544207,7295.49028 C285.067597,7296.83422 286.098457,7297.86749 287.454694,7298.39256 C288.087538,7298.63872 288.809936,7298.80547 289.869652,7298.85411 C298.730467,7299.25511 302.015089,7299.03674 303.400182,7295.49028 C303.645956,7294.859 303.815113,7294.1374 303.86188,7293.08031 C304.26686,7284.19677 303.796207,7282.27117 302.251908,7280.72871 C301.027016,7279.50685 299.5862,7278.67508 289.869652,7279.12273 M289.951245,7297.06748 C288.981083,7297.0238 288.454707,7296.86201 288.103459,7296.72603 C287.219865,7296.3826 286.556174,7295.72155 286.214876,7294.84312 C285.623823,7293.32944 285.819846,7286.14023 285.872583,7284.97693 C285.924325,7283.83745 286.155174,7282.79624 286.959165,7281.99226 C287.954203,7280.99968 289.239792,7280.51332 297.993144,7280.90837 C299.135448,7280.95998 300.179243,7281.19026 300.985224,7281.99226 C301.980262,7282.98483 302.473801,7284.28014 302.071806,7292.99991 C302.028024,7293.96767 301.865833,7294.49274 301.729513,7294.84312 C300.829003,7297.15085 298.757333,7297.47145 289.951245,7297.06748 M298.089663,7283.68956 C298.089663,7284.34665 298.623998,7284.88065 299.283709,7284.88065 C299.943419,7284.88065 300.47875,7284.34665 300.47875,7283.68956 C300.47875,7283.03248 299.943419,7282.49847 299.283709,7282.49847 C298.623998,7282.49847 298.089663,7283.03248 298.089663,7283.68956 M288.862673,7288.98792 C288.862673,7291.80286 291.150266,7294.08479 293.972194,7294.08479 C296.794123,7294.08479 299.081716,7291.80286 299.081716,7288.98792 C299.081716,7286.17298 296.794123,7283.89205 293.972194,7283.89205 C291.150266,7283.89205 288.862673,7286.17298 288.862673,7288.98792 M290.655732,7288.98792 C290.655732,7287.16159 292.140329,7285.67967 293.972194,7285.67967 C295.80406,7285.67967 297.288657,7287.16159 297.288657,7288.98792 C297.288657,7290.81525 295.80406,7292.29716 293.972194,7292.29716 C292.140329,7292.29716 290.655732,7290.81525 290.655732,7288.98792"
+                                        id="instagram-[#167]"> </path> </g> </g>
+                        </g> </g></svg>
+            </div>
+            <div class="col-span-2">
+                <p class="text-sm font-extralight text-white">NEXT CHAPTER 2025
+                    © All Rights Reserved</p>
+            </div>
+            <div class="flex justify-end">
+                <svg fill="#FFFFFF" width="16px" height="16px"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g
+                        id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                        id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                        stroke-linejoin="round"></g><g
+                        id="SVGRepo_iconCarrier"><path
+                            d="m24 12c0-.002 0-.004 0-.006 0-3.551-1.546-6.74-4.001-8.933l-.012-.01c-.031-.033-.064-.062-.101-.087l-.002-.001c-2.095-1.84-4.859-2.962-7.886-2.962-3.032 0-5.8 1.126-7.91 2.984l.013-.011c-.026.02-.049.041-.07.065v.001c-2.478 2.205-4.031 5.403-4.031 8.963 0 3.55 1.544 6.739 3.997 8.933l.012.01c0 .003.002.005.005.005.031.035.065.065.101.092l.002.001c2.094 1.837 4.857 2.958 7.881 2.958 3.032 0 5.801-1.126 7.911-2.984l-.013.011c.03-.022.056-.045.08-.07 2.475-2.202 4.026-5.395 4.026-8.951 0-.002 0-.005 0-.007zm-4.462 7.805c-.576-.468-1.223-.897-1.909-1.262l-.065-.032c.613-1.767.982-3.804 1.017-5.923v-.016h4.261c-.156 2.852-1.391 5.388-3.301 7.23zm-6.966-1.505c1.283.069 2.482.351 3.588.81l-.072-.026c-.886 2.02-2.133 3.408-3.516 3.713zm0-1.144v-4.584h4.868c-.043 1.961-.383 3.828-.976 5.578l.039-.131c-1.157-.484-2.498-.795-3.903-.862l-.027-.001zm0-5.728v-4.584c1.431-.069 2.772-.379 4.007-.891l-.079.029c.555 1.619.896 3.485.94 5.425v.021zm0-5.728v-4.495c1.383.305 2.63 1.687 3.516 3.713-1.034.43-2.233.711-3.487.781zm2.854-4c1.238.419 2.312 1.009 3.258 1.752l-.023-.018c-.443.348-.94.676-1.464.961l-.056.028c-.449-1.047-1.025-1.947-1.724-2.737l.009.011zm-4-.492v4.492c-1.283-.069-2.482-.35-3.588-.81l.072.026c.89-2.02 2.135-3.407 3.518-3.712zm-4.568 3.212c-.58-.315-1.077-.642-1.544-1.007l.024.018c.923-.726 1.996-1.315 3.158-1.712l.076-.023c-.689.778-1.265 1.678-1.689 2.658l-.025.065zm4.57 2.423v4.584h-4.868c.044-1.961.385-3.827.979-5.577l-.039.131c1.156.483 2.497.794 3.901.861zm0 5.728v4.584c-1.431.069-2.772.379-4.007.891l.079-.029c-.555-1.618-.896-3.485-.94-5.425v-.021zm0 5.728v4.495c-1.383-.305-2.63-1.687-3.516-3.713 1.034-.43 2.233-.71 3.487-.78l.029-.001zm-2.85 4c-1.238-.418-2.311-1.006-3.258-1.748l.024.018c.443-.348.94-.676 1.464-.961l.056-.028c.445 1.047 1.022 1.947 1.723 2.733l-.009-.01zm8.564-2.72c.58.315 1.077.642 1.544 1.007l-.024-.018c-.923.726-1.996 1.315-3.158 1.712l-.076.023c.689-.778 1.265-1.677 1.689-2.657l.025-.065zm5.7-8.151h-4.261c-.035-2.135-.404-4.172-1.058-6.078l.041.138c.751-.399 1.397-.828 1.997-1.312l-.024.018c1.913 1.845 3.148 4.381 3.303 7.205l.001.028zm-18.38-7.233c.576.468 1.223.897 1.909 1.262l.065.032c-.613 1.767-.982 3.804-1.017 5.923v.016h-4.262c.156-2.852 1.391-5.388 3.301-7.23l.003-.003zm-3.304 8.377h4.261c.035 2.135.404 4.172 1.058 6.078l-.041-.138c-.751.399-1.397.828-1.997 1.312l.024-.018c-1.913-1.845-3.148-4.381-3.303-7.205l-.001-.028z"></path></g></svg>
+            </div>
+            <div
+                class="absolute h-14 w-20 bg-[#D6FF40] bottom-36 right-0"></div>
+        </footer>
+
+        <script src="../js/app.js"></script>
+    </body>
+</html>

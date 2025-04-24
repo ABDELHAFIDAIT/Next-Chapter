@@ -8,3 +8,10 @@ faqArrow.forEach((arrow, index) => {
         arrow.classList.toggle('rotate-180');
     });
 });
+
+const toggleMenu = document.getElementById('toggle-menu');
+const menu = document.querySelector('#menu');
+
+toggleMenu.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+});

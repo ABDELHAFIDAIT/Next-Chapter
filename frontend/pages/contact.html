@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="../images/logo-white.png">
+        <title>Next Chapter</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+
+        <header class="px-20">
+            <!-- Navigation links -->
+            <nav class="flex items-center justify-between py-10">
+                <img src="../images/logo-black.png" class="w-16">
+                <ul class="flex items-center gap-10">
+                    <a href="explore.html"><li>Home</li></a>
+                    <a href="courses.html"><li>Courses</li></a>
+                    <a href="#"><li>Jobs</li></a>
+                </ul>
+                <div id="toggle-menu" class="flex items-center gap-5 p-1 border border-gray-400 rounded-full cursor-pointer">
+                    <img src="../images/profile.jpg" class="w-10 rounded-full">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-chevron-down"><polyline
+                            points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <div id="menu"
+                    class="absolute hidden bg-[#222] text-sm flex flex-col w-42 text-white rounded-sm top-[90px] right-[80px]">
+                    <a href="dashboard.html"
+                        class="px-5 flex items-center gap-2 hover:bg-[#D6FF40] hover:text-[#222222] rounded-t-sm py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
+                        <svg width="16px" height="16px" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-grid"><rect x="3" y="3"
+                                width="7" height="7"></rect><rect x="14" y="3"
+                                width="7" height="7"></rect><rect x="14" y="14"
+                                width="7" height="7"></rect><rect x="3" y="14"
+                                width="7" height="7"></rect></svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="profile.html"
+                        class="px-5 flex items-center gap-2 hover:bg-[#D6FF40] hover:text-[#222222] py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
+                        <svg width="16px" height="16px" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-user"><path
+                                d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle
+                                cx="12" cy="7" r="4"></circle></svg>
+                        <span>Profile</span>
+                    </a>
+                    <form action
+                        class="px-5 hover:bg-[#D6FF40] hover:text-[#222222] py-3 transition-all ease-in-out duration-300 rounded-b-sm cursor-pointer">
+                        <button class="cursor-pointer flex items-center gap-2">
+                            <svg width="16px" height="16px" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-log-out"><path
+                                    d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline
+                                    points="16 17 21 12 16 7"></polyline><line
+                                    x1="21" y1="12" x2="9" y2="12"></line></svg>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+
+        <main class="p-20 grid grid-cols-2 gap-10">
+            
+            <section class="flex flex-col gap-10">
+                <!-- Map Card -->
+                <div  class="flex flex-col gap-5">
+                    <h1 class="col-span-2 text-2xl font-medium">Contact Informations</h1>
+                    <iframe class="w-full h-[300px] rounded-md" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26461.924737328645!2d-6.8669894050104405!3d33.99919626263372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76c8f7837968b%3A0x6eb7a868063bb38b!2sAgdal-Ryad%2C%20Rabat!5e0!3m2!1sen!2sma!4v1745425544885!5m2!1sen!2sma" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <!-- Contact Informations -->
+                <div class="grid grid-cols-7 gap-2">
+                    <div class="col-span-6 flex flex-col gap-5">
+                        <div class="flex items-center gap-3">
+                            <svg fill="#222" height="35px" width="45px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                                <path d="M256,0C149.3,0,64,85.3,64,192c0,36.9,11,65.4,30.1,94.3l141.7,215v0c4.3,6.5,11.7,10.7,20.2,10.7c8.5,0,16-4.3,20.2-10.7
+                                    l141.7-215C437,257.4,448,228.9,448,192C448,85.3,362.7,0,256,0z M256,298.6c-58.9,0-106.7-47.8-106.7-106.8
+                                    c0-59,47.8-106.8,106.7-106.8c58.9,0,106.7,47.8,106.7,106.8C362.7,250.8,314.9,298.6,256,298.6z"/>
+                            </svg>
+                            <div class="flex flex-col gap-2">
+                                <span class="font-medium text-lg">Email</span>
+                                <span class="text-sm font-light">123 Business Avenue, Suite 100 New York, NY 10001</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg fill="#222" width="45px" height="45px" viewBox="-4 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <title>mail</title>
+                                <path d="M24 8.375l-12 10.281-12-10.281v-0.594h24v0.594zM24 22.875l-7.938-5.719 7.938-6.875v12.594zM0 10.281l7.938 6.875-7.938 5.719v-12.594zM12 20.688l3.281-2.875 8.719 6.281v0.125h-24v-0.125l8.719-6.281z"></path>
+                            </svg>
+                            <div class="flex flex-col gap-2">
+                                <span class="font-medium text-lg">Address</span>
+                                <span class="text-sm font-light">next-chapter@contact.com</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg version="1.1"id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="phone.svg" inkscape:version="0.48.4 r9939"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="45px" height="30px"viewBox="0 0 1200 1200" enable-background="new 0 0 1200 1200" xml:space="preserve">
+                                <path id="path16102" inkscape:connector-curvature="0" d="M1183.326,997.842l-169.187,167.83
+                                c-24.974,25.612-58.077,34.289-90.316,34.328c-142.571-4.271-277.333-74.304-387.981-146.215
+                                C354.22,921.655,187.574,757.82,82.984,559.832C42.87,476.809-4.198,370.878,0.299,278.209c0.401-34.86,9.795-69.073,34.346-91.543
+                                L203.831,17.565c35.132-29.883,69.107-19.551,91.589,15.257l136.111,258.102c14.326,30.577,6.108,63.339-15.266,85.188l-62.332,62.3
+                                c-3.848,5.271-6.298,11.271-6.36,17.801c23.902,92.522,96.313,177.799,160.281,236.486
+                                c63.967,58.688,132.725,138.198,221.977,157.021c11.032,3.077,24.545,4.158,32.438-3.179l72.51-73.743
+                                c24.996-18.945,61.086-28.205,87.771-12.714h1.272l245.51,144.943C1205.373,927.619,1209.131,971.279,1183.326,997.842
+                                L1183.326,997.842z"/>
+                            </svg>
+                            <div class="flex flex-col gap-2">
+                                <span class="font-medium text-lg">Phone</span>
+                                <span class="text-sm font-light">+1 (555) 123-4567</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-5">
+                        <a href="#">
+                            <svg width="25px" height="25px" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="20" fill="#222"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.7747 14.2839C18.7747 15.529 17.8267 16.5366 16.3442 16.5366C14.9194 16.5366 13.9713 15.529 14.0007 14.2839C13.9713 12.9783 14.9193 12 16.3726 12C17.8267 12 18.7463 12.9783 18.7747 14.2839ZM14.1199 32.8191V18.3162H18.6271V32.8181H14.1199V32.8191Z" fill="white"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M22.2393 22.9446C22.2393 21.1357 22.1797 19.5935 22.1201 18.3182H26.0351L26.2432 20.305H26.3322C26.9254 19.3854 28.4079 17.9927 30.8101 17.9927C33.7752 17.9927 35.9995 19.9502 35.9995 24.219V32.821H31.4922V24.7838C31.4922 22.9144 30.8404 21.6399 29.2093 21.6399C27.9633 21.6399 27.2224 22.4999 26.9263 23.3297C26.8071 23.6268 26.7484 24.0412 26.7484 24.4574V32.821H22.2411V22.9446H22.2393Z" fill="white"/>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg width="20px" height="20px" viewBox="0 0 2500 2500" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <defs>
+                                        <radialGradient id="0" cx="332.14" cy="2511.81" r="3263.54" gradientUnits="userSpaceOnUse"><stop offset=".09" stop-color="#222"></stop><stop offset=".78" stop-color="#222"></stop></radialGradient><radialGradient id="1" cx="1516.14" cy="2623.81" r="2572.12" gradientUnits="userSpaceOnUse"><stop offset=".64" stop-color="#222" stop-opacity="0"></stop><stop offset="1" stop-color="#222"></stop></radialGradient></defs>
+                                        <path d="M833.4,1250c0-230.11,186.49-416.7,416.6-416.7s416.7,186.59,416.7,416.7-186.59,416.7-416.7,416.7S833.4,1480.11,833.4,1250m-225.26,0c0,354.5,287.36,641.86,641.86,641.86S1891.86,1604.5,1891.86,1250,1604.5,608.14,1250,608.14,608.14,895.5,608.14,1250M1767.27,582.69a150,150,0,1,0,150.06-149.94h-0.06a150.07,150.07,0,0,0-150,149.94M745,2267.47c-121.87-5.55-188.11-25.85-232.13-43-58.36-22.72-100-49.78-143.78-93.5s-70.88-85.32-93.5-143.68c-17.16-44-37.46-110.26-43-232.13-6.06-131.76-7.27-171.34-7.27-505.15s1.31-373.28,7.27-505.15c5.55-121.87,26-188,43-232.13,22.72-58.36,49.78-100,93.5-143.78s85.32-70.88,143.78-93.5c44-17.16,110.26-37.46,232.13-43,131.76-6.06,171.34-7.27,505-7.27s373.28,1.31,505.15,7.27c121.87,5.55,188,26,232.13,43,58.36,22.62,100,49.78,143.78,93.5s70.78,85.42,93.5,143.78c17.16,44,37.46,110.26,43,232.13,6.06,131.87,7.27,171.34,7.27,505.15s-1.21,373.28-7.27,505.15c-5.55,121.87-25.95,188.11-43,232.13-22.72,58.36-49.78,100-93.5,143.68s-85.42,70.78-143.78,93.5c-44,17.16-110.26,37.46-232.13,43-131.76,6.06-171.34,7.27-505.15,7.27s-373.28-1.21-505-7.27M734.65,7.57c-133.07,6.06-224,27.16-303.41,58.06C349,97.54,279.38,140.35,209.81,209.81S97.54,349,65.63,431.24c-30.9,79.46-52,170.34-58.06,303.41C1.41,867.93,0,910.54,0,1250s1.41,382.07,7.57,515.35c6.06,133.08,27.16,223.95,58.06,303.41,31.91,82.19,74.62,152,144.18,221.43S349,2402.37,431.24,2434.37c79.56,30.9,170.34,52,303.41,58.06C868,2498.49,910.54,2500,1250,2500s382.07-1.41,515.35-7.57c133.08-6.06,223.95-27.16,303.41-58.06,82.19-32,151.86-74.72,221.43-144.18s112.18-139.24,144.18-221.43c30.9-79.46,52.1-170.34,58.06-303.41,6.06-133.38,7.47-175.89,7.47-515.35s-1.41-382.07-7.47-515.35c-6.06-133.08-27.16-224-58.06-303.41-32-82.19-74.72-151.86-144.18-221.43S2150.95,97.54,2068.86,65.63c-79.56-30.9-170.44-52.1-303.41-58.06C1632.17,1.51,1589.56,0,1250.1,0S868,1.41,734.65,7.57" fill="url(#0)"></path>
+                                        <path d="M833.4,1250c0-230.11,186.49-416.7,416.6-416.7s416.7,186.59,416.7,416.7-186.59,416.7-416.7,416.7S833.4,1480.11,833.4,1250m-225.26,0c0,354.5,287.36,641.86,641.86,641.86S1891.86,1604.5,1891.86,1250,1604.5,608.14,1250,608.14,608.14,895.5,608.14,1250M1767.27,582.69a150,150,0,1,0,150.06-149.94h-0.06a150.07,150.07,0,0,0-150,149.94M745,2267.47c-121.87-5.55-188.11-25.85-232.13-43-58.36-22.72-100-49.78-143.78-93.5s-70.88-85.32-93.5-143.68c-17.16-44-37.46-110.26-43-232.13-6.06-131.76-7.27-171.34-7.27-505.15s1.31-373.28,7.27-505.15c5.55-121.87,26-188,43-232.13,22.72-58.36,49.78-100,93.5-143.78s85.32-70.88,143.78-93.5c44-17.16,110.26-37.46,232.13-43,131.76-6.06,171.34-7.27,505-7.27s373.28,1.31,505.15,7.27c121.87,5.55,188,26,232.13,43,58.36,22.62,100,49.78,143.78,93.5s70.78,85.42,93.5,143.78c17.16,44,37.46,110.26,43,232.13,6.06,131.87,7.27,171.34,7.27,505.15s-1.21,373.28-7.27,505.15c-5.55,121.87-25.95,188.11-43,232.13-22.72,58.36-49.78,100-93.5,143.68s-85.42,70.78-143.78,93.5c-44,17.16-110.26,37.46-232.13,43-131.76,6.06-171.34,7.27-505.15,7.27s-373.28-1.21-505-7.27M734.65,7.57c-133.07,6.06-224,27.16-303.41,58.06C349,97.54,279.38,140.35,209.81,209.81S97.54,349,65.63,431.24c-30.9,79.46-52,170.34-58.06,303.41C1.41,867.93,0,910.54,0,1250s1.41,382.07,7.57,515.35c6.06,133.08,27.16,223.95,58.06,303.41,31.91,82.19,74.62,152,144.18,221.43S349,2402.37,431.24,2434.37c79.56,30.9,170.34,52,303.41,58.06C868,2498.49,910.54,2500,1250,2500s382.07-1.41,515.35-7.57c133.08-6.06,223.95-27.16,303.41-58.06,82.19-32,151.86-74.72,221.43-144.18s112.18-139.24,144.18-221.43c30.9-79.46,52.1-170.34,58.06-303.41,6.06-133.38,7.47-175.89,7.47-515.35s-1.41-382.07-7.47-515.35c-6.06-133.08-27.16-224-58.06-303.41-32-82.19-74.72-151.86-144.18-221.43S2150.95,97.54,2068.86,65.63c-79.56-30.9-170.44-52.1-303.41-58.06C1632.17,1.51,1589.56,0,1250.1,0S868,1.41,734.65,7.57" fill="url(#1)">
+                                    </path>
+                                </g>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg width="25px" height="25px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                <path fill="#222" d="M15 8a7 7 0 00-7-7 7 7 0 00-1.094 13.915v-4.892H5.13V8h1.777V6.458c0-1.754 1.045-2.724 2.644-2.724.766 0 1.567.137 1.567.137v1.723h-.883c-.87 0-1.14.54-1.14 1.093V8h1.941l-.31 2.023H9.094v4.892A7.001 7.001 0 0015 8z"/><path fill="#ffffff" d="M10.725 10.023L11.035 8H9.094V6.687c0-.553.27-1.093 1.14-1.093h.883V3.87s-.801-.137-1.567-.137c-1.6 0-2.644.97-2.644 2.724V8H5.13v2.023h1.777v4.892a7.037 7.037 0 002.188 0v-4.892h1.63z"/>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg width="25px" height="25px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.032 14.286c6.037 0 9.34-4.837 9.34-9.032 0-.137 0-.274-.01-.41A6.56 6.56 0 0016 3.2c-.6.256-1.235.425-1.885.5a3.207 3.207 0 001.443-1.757c-.645.37-1.35.63-2.085.77a3.322 3.322 0 00-1.862-.958 3.384 3.384 0 00-2.082.334 3.223 3.223 0 00-1.442 1.49 3.08 3.08 0 00-.208 2.03 9.57 9.57 0 01-3.747-.963 9.269 9.269 0 01-3.018-2.354 3.086 3.086 0 00-.36 2.314c.189.787.68 1.475 1.376 1.924a3.344 3.344 0 01-1.49-.398v.04c0 .734.263 1.444.743 2.01a3.3 3.3 0 001.89 1.102c-.483.128-.99.146-1.482.055a3.19 3.19 0 001.168 1.577 3.36 3.36 0 001.9.627A6.732 6.732 0 010 12.86a9.527 9.527 0 005.032 1.423" fill="#222"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <section class="flex flex-col gap-5">
+                <h1 class="text-2xl font-medium">Get in Touch</h1>
+                <form action="" class="flex flex-col gap-3">
+                    <div class="flex items-center gap-5">
+                        <div class="flex flex-col gap-1 flex-1">
+                            <label class="pl-3 text-sm" for="f_name">First Name</label>
+                            <input class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black" type="text" id="f_name" name="f_name" placeholder="Enter Your First Name">
+                        </div>
+                        <div class="flex flex-col gap-1 flex-1">
+                            <label class="pl-3 text-sm" for="l_name">Last Name</label>
+                            <input class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black" type="text" id="l_name" name="l_name" placeholder="Enter Your Last Name">
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="pl-3 text-sm" for="email">Email Adress</label>
+                        <input class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black" type="text" id="email" name="email" placeholder="Enter Your Email Adress">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="pl-3 text-sm" for="phone">Phone Number</label>
+                        <input class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black" type="text" id="phone" name="phone" placeholder="Enter Your Phone Number">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="pl-3 text-sm" for="profession">Profession</label>
+                        <select class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black" type="text" id="profession" name="profession">
+                            <option>Ex-Détenu</option>
+                            <option>Teacher</option>
+                            <option>Recruteur</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="pl-3 text-sm" for="message">Message</label>
+                        <textarea  class="h-40 text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black" type="text" id="message" name="message" placeholder="Enter Your Message Here"></textarea>
+                    </div>
+                    <div class="mt-3">
+                        <button class="cursor-pointer bg-[#D6FF40] py-2 text-sm w-full font-medium rounded-md transition-all ease-in-out duration-300 hover:bg-[#222] hover:text-white">Send Message</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="relative bg-[#222222] px-20 py-14 grid grid-cols-5 gap-y-24">
+            <div class="col-span-2 flex flex-col gap-3">
+                <img src="../images/logo-white.png"
+                    alt="Logo White de Next Chapter" class="w-1/4">
+                <p class="text-white text-sm font-light">Every Journey Starts
+                    with a First Step</p>
+                <span class="text-[#FFE500] text-sm font-light">Take Yours
+                    Now!</span>
+            </div>
+            <div class="text-white flex flex-col gap-5">
+                <h1 class="font-medium text-lg">PAGES</h1>
+                <ul class="text-sm font-light flex flex-col gap-5">
+                    <a href="#"><li>Home</li></a>
+                    <a href="#"><li>About Us</li></a>
+                    <a href="#"><li>Services</li></a>
+                    <a href="#"><li>Blog</li></a>
+                    <a href="#"><li>Contact</li></a>
+                </ul>
+            </div>
+            <div class="text-white flex flex-col gap-5">
+                <h1 class="font-medium text-lg">SUPPORT</h1>
+                <ul class="text-sm font-light flex flex-col gap-5">
+                    <a href="#"><li>Help</li></a>
+                    <a href="#"><li>Feedbacks</li></a>
+                    <a href="#"><li>Licence</li></a>
+                    <a href="#"><li>Terms & Conditions</li></a>
+                    <a href="#"><li>Privacy Policy</li></a>
+                </ul>
+            </div>
+            <div class="text-white flex flex-col gap-5">
+                <h1 class="font-medium text-lg">CONTACT INFOS</h1>
+                <ul class="flex flex-col gap-5">
+                    <li class="flex items-center gap-3">
+                        <svg width="14px" height="14px" viewBox="0 0 15 15"
+                            version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            fill="#ffffff" stroke="#ffffff"><g
+                                id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></g><g
+                                id="SVGRepo_iconCarrier"> <title>call
+                                    [#ffffff]</title> <desc>Created with
+                                    Sketch.</desc> <defs> </defs> <g id="Page-1"
+                                    stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd"> <g
+                                        id="Dribbble-Light-Preview"
+                                        transform="translate(-103.000000, -7321.000000)"
+                                        fill="#ffffff"> <g id="icons"
+                                            transform="translate(56.000000, 160.000000)">
+                                            <path
+                                                d="M61.7302966,7173.99596 C61.2672966,7175.40296 59.4532966,7176.10496 58.1572966,7175.98796 C56.3872966,7175.82796 54.4612966,7174.88896 52.9992966,7173.85496 C50.8502966,7172.33496 48.8372966,7169.98396 47.6642966,7167.48896 C46.8352966,7165.72596 46.6492966,7163.55796 47.8822966,7161.95096 C48.3382966,7161.35696 48.8312966,7161.03996 49.5722966,7161.00296 C50.6002966,7160.95296 50.7442966,7161.54096 51.0972966,7162.45696 C51.3602966,7163.14196 51.7112966,7163.84096 51.9072966,7164.55096 C52.2742966,7165.87596 50.9912966,7165.93096 50.8292966,7167.01396 C50.7282966,7167.69696 51.5562966,7168.61296 51.9302966,7169.09996 C52.6632966,7170.05396 53.5442966,7170.87696 54.5382966,7171.50296 C55.1072966,7171.86196 56.0262966,7172.50896 56.6782966,7172.15196 C57.6822966,7171.60196 57.5872966,7169.90896 58.9912966,7170.48196 C59.7182966,7170.77796 60.4222966,7171.20496 61.1162966,7171.57896 C62.1892966,7172.15596 62.1392966,7172.75396 61.7302966,7173.99596 C61.4242966,7174.92396 62.0362966,7173.06796 61.7302966,7173.99596"
+                                                id="call-[#ffffff]"> </path>
+                                        </g> </g> </g> </g></svg>
+                        <a href="tel:+212 504658800"
+                            class="font-light text-sm">+212 504658800</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg fill="#ffffff" height="14px" width="14px"
+                            version="1.1" id="Filled_Icons"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="0 0 24 24"
+                            enable-background="new 0 0 24 24"
+                            xml:space="preserve" stroke="#ffffff"><g
+                                id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></g><g
+                                id="SVGRepo_iconCarrier"> <g id="mail-filled">
+                                    <path
+                                        d="M24,5.7V21H0V5.7l12,10L24,5.7z M12,13l12-9.9V3H0v0.1L12,13z"></path>
+                                </g> </g></svg>
+                        <a href="tel:+212 504658800"
+                            class="font-light text-sm">next-chapter@contact.com</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg width="14px" height="14px" viewBox="0 0 16 16"
+                            fill="none" xmlns="http://www.w3.org/2000/svg"><g
+                                id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></g><g
+                                id="SVGRepo_iconCarrier"> <path
+                                    fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M3.37892 10.2236L8 16L12.6211 10.2236C13.5137 9.10788 14 7.72154 14 6.29266V6C14 2.68629 11.3137 0 8 0C4.68629 0 2 2.68629 2 6V6.29266C2 7.72154 2.4863 9.10788 3.37892 10.2236ZM8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z"
+                                    fill="#ffffff"></path> </g></svg>
+                        <a href="https://maps.app.goo.gl/fB78cjaLP5da3k526"
+                            class="font-light text-sm">Safi, Morocco</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-span-2 flex items-center gap-10">
+                <svg width="20px" height="20px" viewBox="-5 0 20 20"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"
+                    stroke="#ffffff"><g id="SVGRepo_bgCarrier"
+                        stroke-width="0"></g><g id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round" stroke-linejoin="round"></g><g
+                        id="SVGRepo_iconCarrier"> <title>facebook
+                            [#ffffff]</title> <desc>Created with Sketch.</desc>
+                        <defs> </defs> <g id="Page-1" stroke="none"
+                            stroke-width="1" fill="none" fill-rule="evenodd"> <g
+                                id="Dribbble-Light-Preview"
+                                transform="translate(-385.000000, -7399.000000)"
+                                fill="#ffffff"> <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M335.821282,7259 L335.821282,7250 L338.553693,7250 L339,7246 L335.821282,7246 L335.821282,7244.052 C335.821282,7243.022 335.847593,7242 337.286884,7242 L338.744689,7242 L338.744689,7239.14 C338.744689,7239.097 337.492497,7239 336.225687,7239 C333.580004,7239 331.923407,7240.657 331.923407,7243.7 L331.923407,7246 L329,7246 L329,7250 L331.923407,7250 L331.923407,7259 L335.821282,7259 Z"
+                                        id="facebook-[#ffffff]"> </path> </g>
+                            </g> </g> </g></svg>
+                <svg width="20px" height="20px" viewBox="0 -2 20 20"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"
+                    stroke="#000000"><g id="SVGRepo_bgCarrier"
+                        stroke-width="0"></g><g id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round" stroke-linejoin="round"></g><g
+                        id="SVGRepo_iconCarrier"> <title>twitter
+                            [#ffffff]</title> <desc>Created with Sketch.</desc>
+                        <defs> </defs> <g id="Page-1" stroke="none"
+                            stroke-width="1" fill="none" fill-rule="evenodd"> <g
+                                id="Dribbble-Light-Preview"
+                                transform="translate(-60.000000, -7521.000000)"
+                                fill="#ffffff"> <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705"
+                                        id="twitter-[#ffffff]"> </path> </g>
+                            </g> </g> </g></svg>
+                <svg width="20px" height="20px" viewBox="0 0 20 20"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"
+                    stroke="#000000"><g id="SVGRepo_bgCarrier"
+                        stroke-width="0"></g><g id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round" stroke-linejoin="round"></g><g
+                        id="SVGRepo_iconCarrier"> <title>linkedin
+                            [#ffffff]</title> <desc>Created with Sketch.</desc>
+                        <defs> </defs> <g id="Page-1" stroke="none"
+                            stroke-width="1" fill="none" fill-rule="evenodd"> <g
+                                id="Dribbble-Light-Preview"
+                                transform="translate(-180.000000, -7479.000000)"
+                                fill="#ffffff"> <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M144,7339 L140,7339 L140,7332.001 C140,7330.081 139.153,7329.01 137.634,7329.01 C135.981,7329.01 135,7330.126 135,7332.001 L135,7339 L131,7339 L131,7326 L135,7326 L135,7327.462 C135,7327.462 136.255,7325.26 139.083,7325.26 C141.912,7325.26 144,7326.986 144,7330.558 L144,7339 L144,7339 Z M126.442,7323.921 C125.093,7323.921 124,7322.819 124,7321.46 C124,7320.102 125.093,7319 126.442,7319 C127.79,7319 128.883,7320.102 128.883,7321.46 C128.884,7322.819 127.79,7323.921 126.442,7323.921 L126.442,7323.921 Z M124,7339 L129,7339 L129,7326 L124,7326 L124,7339 Z"
+                                        id="linkedin-[#ffffff]"> </path> </g>
+                            </g> </g> </g></svg>
+                <svg width="20px" height="20px" viewBox="0 0 20 20"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g
+                        id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                        id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                        stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                        <title>instagram [#167]</title> <desc>Created with
+                            Sketch.</desc> <defs> </defs> <g id="Page-1"
+                            stroke="none" stroke-width="1" fill="none"
+                            fill-rule="evenodd"> <g id="Dribbble-Light-Preview"
+                                transform="translate(-340.000000, -7439.000000)"
+                                fill="#ffffff"> <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M289.869652,7279.12273 C288.241769,7279.19618 286.830805,7279.5942 285.691486,7280.72871 C284.548187,7281.86918 284.155147,7283.28558 284.081514,7284.89653 C284.035742,7285.90201 283.768077,7293.49818 284.544207,7295.49028 C285.067597,7296.83422 286.098457,7297.86749 287.454694,7298.39256 C288.087538,7298.63872 288.809936,7298.80547 289.869652,7298.85411 C298.730467,7299.25511 302.015089,7299.03674 303.400182,7295.49028 C303.645956,7294.859 303.815113,7294.1374 303.86188,7293.08031 C304.26686,7284.19677 303.796207,7282.27117 302.251908,7280.72871 C301.027016,7279.50685 299.5862,7278.67508 289.869652,7279.12273 M289.951245,7297.06748 C288.981083,7297.0238 288.454707,7296.86201 288.103459,7296.72603 C287.219865,7296.3826 286.556174,7295.72155 286.214876,7294.84312 C285.623823,7293.32944 285.819846,7286.14023 285.872583,7284.97693 C285.924325,7283.83745 286.155174,7282.79624 286.959165,7281.99226 C287.954203,7280.99968 289.239792,7280.51332 297.993144,7280.90837 C299.135448,7280.95998 300.179243,7281.19026 300.985224,7281.99226 C301.980262,7282.98483 302.473801,7284.28014 302.071806,7292.99991 C302.028024,7293.96767 301.865833,7294.49274 301.729513,7294.84312 C300.829003,7297.15085 298.757333,7297.47145 289.951245,7297.06748 M298.089663,7283.68956 C298.089663,7284.34665 298.623998,7284.88065 299.283709,7284.88065 C299.943419,7284.88065 300.47875,7284.34665 300.47875,7283.68956 C300.47875,7283.03248 299.943419,7282.49847 299.283709,7282.49847 C298.623998,7282.49847 298.089663,7283.03248 298.089663,7283.68956 M288.862673,7288.98792 C288.862673,7291.80286 291.150266,7294.08479 293.972194,7294.08479 C296.794123,7294.08479 299.081716,7291.80286 299.081716,7288.98792 C299.081716,7286.17298 296.794123,7283.89205 293.972194,7283.89205 C291.150266,7283.89205 288.862673,7286.17298 288.862673,7288.98792 M290.655732,7288.98792 C290.655732,7287.16159 292.140329,7285.67967 293.972194,7285.67967 C295.80406,7285.67967 297.288657,7287.16159 297.288657,7288.98792 C297.288657,7290.81525 295.80406,7292.29716 293.972194,7292.29716 C292.140329,7292.29716 290.655732,7290.81525 290.655732,7288.98792"
+                                        id="instagram-[#167]"> </path> </g> </g>
+                        </g> </g></svg>
+            </div>
+            <div class="col-span-2">
+                <p class="text-sm font-extralight text-white">NEXT CHAPTER 2025
+                    © All Rights Reserved</p>
+            </div>
+            <div class="flex justify-end">
+                <svg fill="#FFFFFF" width="16px" height="16px"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g
+                        id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                        id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                        stroke-linejoin="round"></g><g
+                        id="SVGRepo_iconCarrier"><path
+                            d="m24 12c0-.002 0-.004 0-.006 0-3.551-1.546-6.74-4.001-8.933l-.012-.01c-.031-.033-.064-.062-.101-.087l-.002-.001c-2.095-1.84-4.859-2.962-7.886-2.962-3.032 0-5.8 1.126-7.91 2.984l.013-.011c-.026.02-.049.041-.07.065v.001c-2.478 2.205-4.031 5.403-4.031 8.963 0 3.55 1.544 6.739 3.997 8.933l.012.01c0 .003.002.005.005.005.031.035.065.065.101.092l.002.001c2.094 1.837 4.857 2.958 7.881 2.958 3.032 0 5.801-1.126 7.911-2.984l-.013.011c.03-.022.056-.045.08-.07 2.475-2.202 4.026-5.395 4.026-8.951 0-.002 0-.005 0-.007zm-4.462 7.805c-.576-.468-1.223-.897-1.909-1.262l-.065-.032c.613-1.767.982-3.804 1.017-5.923v-.016h4.261c-.156 2.852-1.391 5.388-3.301 7.23zm-6.966-1.505c1.283.069 2.482.351 3.588.81l-.072-.026c-.886 2.02-2.133 3.408-3.516 3.713zm0-1.144v-4.584h4.868c-.043 1.961-.383 3.828-.976 5.578l.039-.131c-1.157-.484-2.498-.795-3.903-.862l-.027-.001zm0-5.728v-4.584c1.431-.069 2.772-.379 4.007-.891l-.079.029c.555 1.619.896 3.485.94 5.425v.021zm0-5.728v-4.495c1.383.305 2.63 1.687 3.516 3.713-1.034.43-2.233.711-3.487.781zm2.854-4c1.238.419 2.312 1.009 3.258 1.752l-.023-.018c-.443.348-.94.676-1.464.961l-.056.028c-.449-1.047-1.025-1.947-1.724-2.737l.009.011zm-4-.492v4.492c-1.283-.069-2.482-.35-3.588-.81l.072.026c.89-2.02 2.135-3.407 3.518-3.712zm-4.568 3.212c-.58-.315-1.077-.642-1.544-1.007l.024.018c.923-.726 1.996-1.315 3.158-1.712l.076-.023c-.689.778-1.265 1.678-1.689 2.658l-.025.065zm4.57 2.423v4.584h-4.868c.044-1.961.385-3.827.979-5.577l-.039.131c1.156.483 2.497.794 3.901.861zm0 5.728v4.584c-1.431.069-2.772.379-4.007.891l.079-.029c-.555-1.618-.896-3.485-.94-5.425v-.021zm0 5.728v4.495c-1.383-.305-2.63-1.687-3.516-3.713 1.034-.43 2.233-.71 3.487-.78l.029-.001zm-2.85 4c-1.238-.418-2.311-1.006-3.258-1.748l.024.018c.443-.348.94-.676 1.464-.961l.056-.028c.445 1.047 1.022 1.947 1.723 2.733l-.009-.01zm8.564-2.72c.58.315 1.077.642 1.544 1.007l-.024-.018c-.923.726-1.996 1.315-3.158 1.712l-.076.023c.689-.778 1.265-1.677 1.689-2.657l.025-.065zm5.7-8.151h-4.261c-.035-2.135-.404-4.172-1.058-6.078l.041.138c.751-.399 1.397-.828 1.997-1.312l-.024.018c1.913 1.845 3.148 4.381 3.303 7.205l.001.028zm-18.38-7.233c.576.468 1.223.897 1.909 1.262l.065.032c-.613 1.767-.982 3.804-1.017 5.923v.016h-4.262c.156-2.852 1.391-5.388 3.301-7.23l.003-.003zm-3.304 8.377h4.261c.035 2.135.404 4.172 1.058 6.078l-.041-.138c-.751.399-1.397.828-1.997 1.312l.024-.018c-1.913-1.845-3.148-4.381-3.303-7.205l-.001-.028z"></path></g></svg>
+            </div>
+            <div
+                class="absolute h-14 w-20 bg-[#D6FF40] bottom-36 right-0"></div>
+        </footer>
+
+        <script src="../js/app.js"></script>
+    </body>
+</html>

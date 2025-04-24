@@ -16,13 +16,13 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('pages.home');
-})->name('home');
+})->name('home')->middleware('guest');
 
 Route::get('/login', function () {
     return view('auth.login');
-})->name('show.login');
+})->name('show.login')->middleware('guest');
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('show.login');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('show.login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
