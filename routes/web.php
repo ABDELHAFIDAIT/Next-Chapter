@@ -19,19 +19,37 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home')->middleware('guest');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('show.login')->middleware('guest');
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('show.login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
+    // Logout Route
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Change Password Route
+    Route::get('/password', [AuthController::class, 'showChangePassword'])->name('show.change.password');
+    Route::post('/password/change', [AuthController::class, 'changePassword'])->name('change.password');
+
+    // All Admin Routes
+    Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
+        Route::get('/dashboard', function(){ return view('admin.dashboard'); })->name('admin.dashboard');
+        Route::get('/accounts', function(){ return view('admin.accounts'); })->name('admin.accounts');
+        Route::post('/accounts/create', [AuthController::class, 'createAccount'])->name('admin.accounts.create');
+    });
+
+    // All Prisonner Routes
+    Route::prefix('/prisonner')->middleware(['role:prisonner'])->group(function(){
+        Route::get('/', function(){ return view('prisonner.index'); })->name('prisonner.index');
+    });
+
+
+
+
+
+
+
+
     
-    Route::get('/admin', function(){
-        return view('admin.dashboard');
-    })->name('admin');
+    
 
     Route::get('/recruiter', function(){
         return view('recruiter.index');
@@ -40,15 +58,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/teacher', function(){
         return view('teacher.index');
     })->name('teacher');
-
-    Route::get('/prisonner', function(){
-        return view('prisonner.index');
-    })->name('prisonner');
 });
 
 
 
 Route::middleware(['guest'])->group(function(){
+
+    // Login Routes
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('show.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+    // Contact Routes
     Route::get('/contact',[ContactController::class, 'showContact'])->name('show.contact');
     Route::post('/contact',[ContactController::class, 'sendContactEmail'])->name('contact');
 });

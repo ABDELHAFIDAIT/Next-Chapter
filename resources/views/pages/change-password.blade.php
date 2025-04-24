@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ asset('storage/images/logo-white.png') }}">
+    <title>Next Chapter</title>
+    @vite('resources/css/app.css')
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="">
+    <main class="flex items-center justify-center h-screen">
+        <section class="flex flex-col">
+            <h1 class="font-semibold text-2xl">Update Your Password</h1>
+            @error('password')
+                <div class="text-red-600 font-light text-xs pt-5">{{ $message }}</div>
+            @enderror
+            <form method="POST" action="{{ route('change.password') }}" class="flex flex-col gap-5 mt-5">
+                @csrf
+                <input name="password" type="password" placeholder="New Password" class="outline-none bg-white text-black py-2 px-5 w-96 border border-gray-200 rounded-sm text-sm focus:border-gray-400" required>
+                <input name="password_confirmation" type="password" placeholder="Confirm The New Password" class="outline-none bg-white text-black py-2 px-5 w-96 border border-gray-200 rounded-sm text-sm focus:border-gray-400" required>
+                <div class="flex justify-end">
+                    <button class="cursor-pointer bg-[#222222] text-white py-2 px-5 text-sm rounded-sm w-36">
+                        Done
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <div class="absolute h-64 w-64 rounded-full bg-[#E19219] top-[-100px] left-[-100px]"></div>
+            <div class="absolute h-64 w-64 rounded-full bg-[#D6FF40] bottom-[-100px] right-[-100px]"></div>
+            <div class="absolute h-7 w-7 rounded-full bg-[#D6FF40] top-16 left-56"></div>
+            <div class="absolute h-7 w-7 rounded-full bg-[#E19219] bottom-16 right-56"></div>
+            <img src="{{ asset('storage/images/star.png') }}" class="absolute h-8 w-8 top-48 left-32">
+            <img src="{{ asset('storage/images/star.png') }}" class="absolute h-8 w-8 bottom-48 right-32">
+        </section>
+    </main>
+</body>
+</html>

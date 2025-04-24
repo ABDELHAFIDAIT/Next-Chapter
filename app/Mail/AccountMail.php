@@ -9,31 +9,23 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class AccountMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $f_name;
-    public $l_name;
+
     public $email;
-    public $phone;
-    public $profession;
-    public $content;
+    public $password;
+
 
     /**
      * Create a new message instance.
      */
-    public function __construct($f_name,$l_name,$email,$phone,$profession,$content)
+    public function __construct($email, $password)
     {
-        $this->f_name = $f_name;
-        $this->l_name = $l_name;
         $this->email = $email;
-        $this->phone = $phone;
-        $this->profession = $profession;
-        $this->content = $content;
+        $this->password = $password;
     }
-
-
 
     /**
      * Get the message envelope.
@@ -41,7 +33,7 @@ class ContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Contact Message From NextChapter',
+            subject: 'Next Chapter - Account Creation',
         );
     }
 
@@ -51,7 +43,7 @@ class ContactMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.contact',
+            view: 'mails.account',
         );
     }
 

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Mail\AccountMail;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -22,12 +25,21 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if(auth()->user()->role == 'admin' && auth()->user()->status == 'active'){
-                return redirect()->intended('/admin');
+                return redirect()->intended('/admin/dashboard');
             }else if(auth()->user()->role == 'teacher' && auth()->user()->status == 'active'){
+                if(auth()->user()->first_login === true){
+                    return redirect()->intended('/password');
+                }
                 return redirect()->intended('/teacher');
             }else if(auth()->user()->role == 'recruiter' && auth()->user()->status == 'active'){
+                if(auth()->user()->first_login === true){
+                    return redirect()->intended('/password');
+                }
                 return redirect()->intended('/recruiter');
             }else if(auth()->user()->role == 'prisonner' && auth()->user()->status == 'active'){
+                if(auth()->user()->first_login === true){
+                    return redirect()->intended('/password');
+                }
                 return redirect()->intended('/prisonner');
             }else if(auth()->user()->status == 'suspended'){
                 return redirect()->back()->withErrors([
@@ -50,5 +62,77 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login');
+    }
+
+
+    public function generatePassword(){
+        $caracters = '0987654321AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghklmwxcvbn&-_)(#{[|`\^@]}*+=';
+        $password = '';
+        for($i = 0; $i < 10; $i++){
+            $password .= $caracters[rand(0, strlen($caracters) - 1)];
+        }
+        return $password;
+    }
+
+    public function createAccount(Request $request){
+        $validator = Validator::make($request->all(), [
+            'f_name' => 'required|string|max:255',
+            'l_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'role' => 'required|string|in:teacher,recruiter,prisonner',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $f_name = $request->input('f_name');
+        $l_name = $request->input('l_name');
+        $email = $request->input('email');
+        $role = $request->input('role');
+        
+        $password = $this->generatePassword();
+        $hashedPassword = bcrypt($password);
+
+        $user = User::create([
+            'f_name' => $f_name,
+            'l_name' => $l_name,
+            'email' => $email,
+            'photo' => 'storage/images/user.png',
+            'password' => $hashedPassword,
+            'role' => $role,
+        ]);
+
+        if($user){
+            Mail::to($email)->send(new AccountMail($email, $password));
+            return redirect()->back();
+        }
+    }
+
+    public function showChangePassword(){
+        return view('pages.change-password');
+    }
+
+    public function changePassword(Request $request){
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $user = Auth::user();
+        $user->password = bcrypt($request->input('password'));
+        $user->first_login = false;
+        $user->save();
+
+        if($user->role == 'recruiter'){
+            return redirect()->route('recruiter.dashboard');
+        }else if($user->role == 'teacher'){
+            return redirect()->route('teacher.dashboard');
+        }else if($user->role == 'prisonner'){
+            return redirect()->route('prisonner.index');
+        }
+
     }
 }
