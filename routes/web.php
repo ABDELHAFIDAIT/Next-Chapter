@@ -46,6 +46,9 @@ Route::middleware(['auth'])->group(function () {
     // All Prisonner Routes
     Route::prefix('/prisonner')->middleware(['role:prisonner'])->group(function(){
         Route::get('/', function(){ return view('prisonner.index'); })->name('prisonner.index');
+        Route::get('/profile', function(){ return view('prisonner.profile'); })->name('prisonner.profile');
+        Route::get('/courses', function(){ return view('prisonner.courses'); })->name('prisonner.courses');
+        Route::get('/courses/details', function(){ return view('prisonner.details'); })->name('prisonner.course.details');
     });
 
 

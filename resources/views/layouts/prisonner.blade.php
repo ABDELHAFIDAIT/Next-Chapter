@@ -20,7 +20,7 @@
                 <a href="{{ route('prisonner.index') }}"><img src="{{ asset('storage/images/logo-black.png') }}" class="w-16"></a>
                 <ul class="flex items-center gap-10">
                     <a href="{{ route('prisonner.index') }}"><li>Home</li></a>
-                    <a href="#"><li>Courses</li></a>
+                    <a href="{{ route('prisonner.courses') }}"><li>Courses</li></a>
                     <a href="#"><li>Jobs</li></a>
                 </ul>
                 <div id="toggle-menu" class="flex items-center gap-5 p-1 border border-gray-400 rounded-full cursor-pointer">
@@ -47,7 +47,7 @@
                                 width="7" height="7"></rect></svg>
                         <span>Dashboard</span>
                     </a>
-                    <a href="profile.html"
+                    <a href="{{ route('prisonner.profile') }}"
                         class="px-5 flex items-center gap-2 hover:bg-[#D6FF40] hover:text-[#222222] py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
                         <svg width="16px" height="16px" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" fill="none"
