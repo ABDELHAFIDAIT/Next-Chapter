@@ -87,7 +87,7 @@
             </header>
 
             <!-- Main Content Section -->
-            <section class="p-10 h-[calc(100vh-70px)] overflow-auto flex flex-col gap-10">
+            <section class="p-5 h-[calc(100vh-70px)] overflow-auto flex flex-col gap-5">
                 <div class="flex items-center justify-between">
                     <h1 class="text-xl font-medium text-[#222]">Welcome to Accounts Managment Space</h1>
                     <button id="open-account-popup" class="py-1 px-10 bg-[#D6FF40] flex items-center gap-3 rounded-md font-medium cursor-pointer transition-all ease-in-out duration-300 hover:bg-[#222] hover:text-white">
@@ -96,75 +96,131 @@
                     </button>
                 </div>
                 
-                {{-- <div class=" mt-5">grid grid-cols-3 gap-5 --}}
-                    <h1 class="col-span-3 text-black text-sm text-gray-600">There is the list of New Users that haven't Accessed Their Account Yet </h1>
-                    @if(count($users) == 0)
-                        <h1 class="col-span-3 text-2xl font-semibold text-red-600">No New Users Found !</h1>
-                    @else
-                        @foreach ($users as $user)
-                            <div class="overflow-x-auto bg-white rounded-lg border border-gray-100">
-                                <table class="min-w-full divide-y divide-gray-200">
-                                    <thead class="bg-[#222] text-gray-200">
-                                        <tr>
-                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Photo</th>
-                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Full Name</th>
-                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Email</th>
-                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Role</th>
-                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
-                                            <th class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
-                                        @foreach($users as $user)
-                                            <tr class="hover:bg-gray-50 transition">
-                                                <td class="px-6 py-4">
-                                                    <img src="{{ asset($user->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="photo">
-                                                </td>
-                                                <td class="px-6 py-4 font-medium">
-                                                    {{ $user->f_name }} {{ $user->l_name }}
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    <a href="mailto:{{ $user->email }}" class="text-blue-600 hover:underline">{{ $user->email }}</a>
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    <span class="inline-block px-2 py-1 text-xs font-semibold bg-gray-800 text-white rounded">
-                                                        {{ ucfirst($user->role) }}
-                                                    </span>
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    @if($user->status === 'active')
-                                                        <span class="inline-block px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">Active</span>
-                                                    @else
-                                                        <span class="inline-block px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">Suspended</span>
-                                                    @endif
-                                                </td>
-                                                <td class="px-6 py-4 text-center">
-                                                    <div class="flex justify-center gap-2">
-                                                        @if($user->status === 'suspended')
-                                                            <form method="POST" action="{{ route('change.user.status', $user->id) }}">
-                                                                @csrf
-                                                                <button class="px-3 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 transition-all ease-in-out duration-300 cursor-pointer">
-                                                                    Activate
-                                                                </button>
-                                                            </form>
-                                                        @else
-                                                            <form method="POST" action="{{ route('change.user.status', $user->id) }}">
-                                                                @csrf
-                                                                <button class="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-all ease-in-out duration-300 cursor-pointer">
-                                                                    Suspend
-                                                                </button>
-                                                            </form>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        @endforeach
+                <h1 class="col-span-3 text-black text-sm text-gray-600">There is the list of New Users that haven't Accessed Their Account Yet </h1>
+                @if(count($users) == 0)
+                    <h1 class="col-span-3 text-2xl font-semibold text-red-600">No New Users Found !</h1>
+                @else
+                    <div class="overflow-x-auto bg-white rounded-lg border border-gray-100">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-[#222] text-gray-200">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Photo</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Full Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Role</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
+                                @foreach($users as $user)
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-6 py-4">
+                                            <img src="{{ asset($user->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="photo">
+                                        </td>
+                                        <td class="px-6 py-4 font-medium">
+                                            {{ $user->f_name }} {{ $user->l_name }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <a href="mailto:{{ $user->email }}" class="text-blue-600 hover:underline">{{ $user->email }}</a>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-block px-2 py-1 text-xs font-semibold bg-gray-800 text-white rounded">
+                                                {{ ucfirst($user->role) }}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            @if($user->status === 'active')
+                                                <span class="inline-block px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">Active</span>
+                                            @else
+                                                <span class="inline-block px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">Suspended</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            <div class="flex justify-center gap-2">
+                                                @if($user->status === 'suspended')
+                                                    <form method="POST" action="{{ route('change.user.status', $user->id) }}">
+                                                        @csrf
+                                                        <button class="px-3 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 transition-all ease-in-out duration-300 cursor-pointer">
+                                                            Activate
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <form method="POST" action="{{ route('change.user.status', $user->id) }}">
+                                                        @csrf
+                                                        <button class="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-all ease-in-out duration-300 cursor-pointer">
+                                                            Suspend
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @if ($users->hasPages())
+                        <nav>
+                            <ul class="flex items-center justify-center gap-5">
+                                {{-- Previous Page Link --}}
+                                @if ($users->onFirstPage())
+                                    <li class="">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> <path d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" fill="#0F0F0F"></path> 
+                                            </g>
+                                        </svg>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ $users->previousPageUrl() }}" class="">
+                                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier"> <path d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" fill="#0F0F0F"></path> 
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                {{-- Pagination Elements --}}
+                                @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                                    @if ($page == $users->currentPage())
+                                        <li class="text-blue-500 font-semibold">{{ $page }}</li>
+                                    @else
+                                        <li><a href="{{ $url }}" class="hover:text-gray-600 font-semibold">{{ $page }}</a></li>
+                                    @endif
+                                @endforeach
+
+                                {{-- Next Page Link --}}
+                                @if ($users->hasMorePages())
+                                    <li>
+                                        <a href="{{ $users->nextPageUrl() }}" class="">
+                                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier"> 
+                                                    <path d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" fill="#0F0F0F"></path> 
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> 
+                                                <path d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" fill="#0F0F0F"></path> 
+                                            </g>
+                                        </svg>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     @endif
-                </div>
+                @endif
             </section>
 
             <!-- Account Creation Popup -->

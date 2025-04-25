@@ -57,17 +57,16 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/recruiter', function(){
         return view('recruiter.index');
-    })->name('recruiter');
+    })->name('recruiter')->middleware(['role:recruiter']);
 
     Route::get('/teacher', function(){
         return view('teacher.index');
-    })->name('teacher');
+    })->name('teacher')->middleware(['role:teacher']);
 });
 
 
 
 Route::middleware(['guest'])->group(function(){
-
     // Login Routes
     Route::get('/login', [AuthController::class, 'showLogin'])->name('show.login');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
