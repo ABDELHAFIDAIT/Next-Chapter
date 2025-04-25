@@ -21,17 +21,23 @@ class UserController extends Controller
     }
 
     public function prisonners(){
-        $users = User::where('role', 'prisonner')->get();
-        return view('admin.prisonners', compact('users'));
+        $prisonners = User::where('role', 'prisonner')->where('first_login',false)->paginate(5);
+        return view('admin.prisonners', compact('prisonners'));
     }
 
     public function recruiters(){
-        $users = User::where('role', 'recruiter')->get();
-        return view('admin.recruiters', compact('users'));
+        $recruiters = User::where('role', 'recruiter')->where('first_login',false)->paginate(5);
+        return view('admin.recruiters', compact('recruiters'));
     }
 
     public function teachers(){
-        $users = User::where('role', 'teacher')->get();
-        return view('admin.teachers', compact('users'));
+        $teachers = User::where('role', 'teacher')->where('first_login',false)->paginate(5);
+        return view('admin.teachers', compact('teachers'));
+    }
+
+    public function delete($id){
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully.');
     }
 }

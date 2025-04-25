@@ -38,6 +38,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/accounts', [AdminController::class, 'accounts'])->name('admin.accounts');
         Route::post('/accounts/create', [AuthController::class, 'createAccount'])->name('admin.accounts.create');
         Route::post('/status/{id}',[UserController::class, 'changeStatus'])->name('change.user.status');
+        Route::get('/prisonners',[UserController::class, 'prisonners'])->name('admin.prisonners');
+        Route::post('/delete/{id}',[UserController::class, 'delete'])->name('admin.delete');
+        Route::get('/teachers',[UserController::class, 'teachers'])->name('admin.teachers');
     });
 
     // All Prisonner Routes

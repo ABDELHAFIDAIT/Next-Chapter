@@ -28,8 +28,8 @@
                     </svg>
                     <span>Statistics</span>
                 </a>
-                <a href="{{ route('admin.accounts') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300 rounded-lg bg-[#D6FF40] text-black">
-                    <svg fill="#222" width="15px" height="15px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M25 12h-1v-3.816c0-4.589-3.32-8.184-8.037-8.184-4.736 0-7.963 3.671-7.963 8.184v3.816h-1c-2.206 0-4 1.794-4 4v12c0 2.206 1.794 4 4 4h18c2.206 0 4-1.794 4-4v-12c0-2.206-1.794-4-4-4zM10 8.184c0-3.409 2.33-6.184 5.963-6.184 3.596 0 6.037 2.716 6.037 6.184v3.816h-12v-3.816zM27 28c0 1.102-0.898 2-2 2h-18c-1.103 0-2-0.898-2-2v-12c0-1.102 0.897-2 2-2h18c1.102 0 2 0.898 2 2v12zM16 18c-1.104 0-2 0.895-2 2 0 0.738 0.405 1.376 1 1.723v3.277c0 0.552 0.448 1 1 1s1-0.448 1-1v-3.277c0.595-0.346 1-0.985 1-1.723 0-1.105-0.895-2-2-2z"></path> </g></svg>
+                <a href="{{ route('admin.accounts') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300">
+                    <svg fill="#FFF" width="15px" height="15px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M25 12h-1v-3.816c0-4.589-3.32-8.184-8.037-8.184-4.736 0-7.963 3.671-7.963 8.184v3.816h-1c-2.206 0-4 1.794-4 4v12c0 2.206 1.794 4 4 4h18c2.206 0 4-1.794 4-4v-12c0-2.206-1.794-4-4-4zM10 8.184c0-3.409 2.33-6.184 5.963-6.184 3.596 0 6.037 2.716 6.037 6.184v3.816h-12v-3.816zM27 28c0 1.102-0.898 2-2 2h-18c-1.103 0-2-0.898-2-2v-12c0-1.102 0.897-2 2-2h18c1.102 0 2 0.898 2 2v12zM16 18c-1.104 0-2 0.895-2 2 0 0.738 0.405 1.376 1 1.723v3.277c0 0.552 0.448 1 1 1s1-0.448 1-1v-3.277c0.595-0.346 1-0.985 1-1.723 0-1.105-0.895-2-2-2z"></path> </g></svg>
                     <span>Accounts</span>
                 </a>
                 <a href="{{ route('admin.prisonners') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300">
@@ -39,7 +39,7 @@
                     </svg>
                     <span>Prisonners</span>
                 </a>
-                <a href="{{ route('admin.teachers') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300">
+                <a href="{{ route('admin.teachers') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300 rounded-lg bg-[#D6FF40] text-black">
                     <svg width="15px" height="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
                     <span>Teachers</span>
                 </a>
@@ -88,17 +88,8 @@
 
             <!-- Main Content Section -->
             <section class="p-5 h-[calc(100vh-70px)] overflow-auto flex flex-col gap-5">
-                <div class="flex items-center justify-between">
-                    <h1 class="text-xl font-medium text-[#222]">Welcome to Accounts Managment Space</h1>
-                    <button id="open-account-popup" class="py-1 px-10 bg-[#D6FF40] flex items-center gap-3 rounded-md font-medium cursor-pointer transition-all ease-in-out duration-300 hover:bg-[#222] hover:text-white">
-                        <span>+</span>
-                        <span>Create Account</span>
-                    </button>
-                </div>
-                
-                <h1 class="col-span-3 text-black text-sm text-gray-600">There is the list of New Users that haven't Accessed Their Account Yet </h1>
-                @if(count($users) == 0)
-                    <h1 class="col-span-3 text-2xl font-semibold text-red-600">No New Users Found !</h1>
+                @if(count($teachers) == 0)
+                    <h1 class="col-span-3 text-2xl font-semibold text-red-600">No Teachers are Registred Yet !</h1>
                 @else
                     <div class="overflow-x-auto bg-white rounded-lg border border-gray-100">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -109,12 +100,11 @@
                                     <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Email</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Role</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Created_at</th>
                                     <th class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
-                                @foreach($users as $user)
+                                @foreach($teachers as $user)
                                     <tr class="hover:bg-gray-50 transition">
                                         <td class="px-6 py-4">
                                             <img src="{{ asset($user->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="photo">
@@ -137,26 +127,36 @@
                                                 <span class="inline-block px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">Suspended</span>
                                             @endif
                                         </td>
-                                        <td class="px-6 py-4 font-medium">
-                                            {{ $user->created_at->diffForHumans() }}
-                                        </td>
                                         <td class="px-6 py-4 text-center">
-                                            <div class="flex justify-center gap-2">
+                                            <div class="flex items-center justify-center gap-2">
                                                 @if($user->status === 'suspended')
                                                     <form method="POST" action="{{ route('change.user.status', $user->id) }}">
                                                         @csrf
-                                                        <button class="px-3 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 transition-all ease-in-out duration-300 cursor-pointer">
-                                                            Activate
+                                                        <button class="cursor-pointer">
+                                                            <svg fill="#02ba17" width="25px" height="25px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M208.00146,32h-160a16.01582,16.01582,0,0,0-16,16V208a16.01583,16.01583,0,0,0,16,16h160a16.01582,16.01582,0,0,0,16-16V48A16.01581,16.01581,0,0,0,208.00146,32ZM177.5249,109.78125l-58.67187,56a7.98451,7.98451,0,0,1-11.04688,0l-29.32812-28a7.99571,7.99571,0,1,1,11.04687-11.5625l23.80469,22.71875L166.478,98.21875a7.99571,7.99571,0,1,1,11.04687,11.5625Z"/>
+                                                            </svg>
                                                         </button>
                                                     </form>
                                                 @else
                                                     <form method="POST" action="{{ route('change.user.status', $user->id) }}">
                                                         @csrf
-                                                        <button class="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-all ease-in-out duration-300 cursor-pointer">
-                                                            Suspend
+                                                        <button class="cursor-pointer">
+                                                            <svg fill="#fc8e08" xmlns="http://www.w3.org/2000/svg" 
+                                                                width="22px" height="22px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                                            <path d="M26,2C12.8,2,2,12.8,2,26s10.8,24,24,24s24-10.8,24-24S39.2,2,26,2z M37.9,27.7c-0.1,0.7-0.7,1.3-1.5,1.3
+                                                                H15.6c-0.8,0-1.4-0.5-1.5-1.3c-0.1-1.2-0.1-2.3,0-3.4c0.1-0.7,0.7-1.3,1.5-1.3h20.8c0.8,0,1.4,0.6,1.5,1.3
+                                                                C38,25.5,38,26.6,37.9,27.7z"/>
+                                                            </svg>
                                                         </button>
                                                     </form>
                                                 @endif
+                                                <form method="post" action="{{ route('admin.delete', $user->id) }}">
+                                                    @csrf
+                                                    <button class="cursor-pointer">
+                                                        <svg fill="#fc0505" width="22px" height="22px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -164,11 +164,11 @@
                             </tbody>
                         </table>
                     </div>
-                    @if ($users->hasPages())
+                    @if ($teachers->hasPages())
                         <nav>
                             <ul class="flex items-center justify-center gap-5">
                                 {{-- Previous Page Link --}}
-                                @if ($users->onFirstPage())
+                                @if ($teachers->onFirstPage())
                                     <li class="">
                                         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -179,7 +179,7 @@
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ $users->previousPageUrl() }}" class="">
+                                        <a href="{{ $teachers->previousPageUrl() }}" class="">
                                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -191,8 +191,8 @@
                                 @endif
 
                                 {{-- Pagination Elements --}}
-                                @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
-                                    @if ($page == $users->currentPage())
+                                @foreach ($teachers->getUrlRange(1, $teachers->lastPage()) as $page => $url)
+                                    @if ($page == $teachers->currentPage())
                                         <li class="text-blue-500 font-semibold">{{ $page }}</li>
                                     @else
                                         <li><a href="{{ $url }}" class="hover:text-gray-600 font-semibold">{{ $page }}</a></li>
@@ -200,9 +200,9 @@
                                 @endforeach
 
                                 {{-- Next Page Link --}}
-                                @if ($users->hasMorePages())
+                                @if ($teachers->hasMorePages())
                                     <li>
-                                        <a href="{{ $users->nextPageUrl() }}" class="">
+                                        <a href="{{ $teachers->nextPageUrl() }}" class="">
                                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                                 <g id="SVGRepo_iconCarrier"> 
@@ -225,70 +225,6 @@
                         </nav>
                     @endif
                 @endif
-            </section>
-
-            <!-- Account Creation Popup -->
-            <section id="account-popup" class="hidden flex items-center justify-center fixed inset-0 bg-[rgba(0,0,0,0.7)] z-50">
-                <div class="bg-[#222] flex flex-col gap-5 p-5 rounded-md w-1/2 text-white">
-                    <div class="flex items-center justify-between pb-5 border-b border-b-gray-400">
-                        <h1 class="text-xl font-medium ">Create Account</h1>
-                        <button id="close-account-popup" class="text-2xl cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
-                    <form id="form-account" method="POST" action="{{ route('admin.accounts.create') }}" class="flex flex-col gap-5">
-                        @csrf
-                        <div class="flex items-center gap-5">
-                            <div class="flex flex-col gap-1 flex-1">
-                                <label class="pl-3 text-sm" for="f_name">First Name</label>
-                                @error('f_name')
-                                    <span class="text-xs text-red-500 pl-3">
-                                        {{$message}}
-                                    </span>
-                                @enderror
-                                <input required
-                                    class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black"
-                                    type="text" id="f_name" name="f_name" placeholder="Enter Your First Name">
-                            </div>
-                            <div class="flex flex-col gap-1 flex-1">
-                                <label class="pl-3 text-sm" for="l_name">Last Name</label>
-                                @error('l_name')
-                                    <span class="text-xs text-red-500 pl-3">
-                                        {{$message}}
-                                    </span>
-                                @enderror
-                                <input required
-                                    class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black"
-                                    type="text" id="l_name" name="l_name" placeholder="Enter Your Last Name">
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <label class="pl-3 text-sm" for="email">Email Adress</label>
-                            @error('email')
-                                <span class="text-xs text-red-500 pl-3">
-                                    {{$message}}
-                                </span>
-                            @enderror
-                            <input required
-                                class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black"
-                                type="text" id="email" name="email" placeholder="Enter Your Email Adress">
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <label class="pl-3 text-sm" for="role">Role</label>
-                            <select
-                                class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none focus:border-black"
-                                type="text" id="role" name="role">
-                                <option value="prisonner">Prisonner</option>
-                                <option value="teacher">Teacher</option>
-                                <option value="recruiter">Recruiter</option>
-                            </select>
-                        </div>
-                        <div class="mt-3">
-                            <button
-                                class="text-[#222] cursor-pointer bg-[#D6FF40] py-2 text-sm w-full font-medium rounded-md">Create Account</button>
-                        </div>
-                    </form>
-                </div>
             </section>
         </section>
     </main>
