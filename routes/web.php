@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +35,9 @@ Route::middleware(['auth'])->group(function () {
     // All Admin Routes
     Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
         Route::get('/dashboard', function(){ return view('admin.dashboard'); })->name('admin.dashboard');
-        Route::get('/accounts', function(){ return view('admin.accounts'); })->name('admin.accounts');
+        Route::get('/accounts', [AdminController::class, 'accounts'])->name('admin.accounts');
         Route::post('/accounts/create', [AuthController::class, 'createAccount'])->name('admin.accounts.create');
+        Route::post('/status/{id}',[UserController::class, 'changeStatus'])->name('change.user.status');
     });
 
     // All Prisonner Routes

@@ -95,8 +95,79 @@
                         <span>Create Account</span>
                     </button>
                 </div>
+                
+                {{-- <div class=" mt-5">grid grid-cols-3 gap-5 --}}
+                    <h1 class="col-span-3 text-black text-sm text-gray-600">There is the list of New Users that haven't Accessed Their Account Yet </h1>
+                    @if(count($users) == 0)
+                        <h1 class="col-span-3 text-2xl font-semibold text-red-600">No New Users Found !</h1>
+                    @else
+                        @foreach ($users as $user)
+                            <div class="overflow-x-auto bg-white rounded-lg border border-gray-100">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-[#222] text-gray-200">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Photo</th>
+                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Full Name</th>
+                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Email</th>
+                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Role</th>
+                                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
+                                            <th class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
+                                        @foreach($users as $user)
+                                            <tr class="hover:bg-gray-50 transition">
+                                                <td class="px-6 py-4">
+                                                    <img src="{{ asset($user->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="photo">
+                                                </td>
+                                                <td class="px-6 py-4 font-medium">
+                                                    {{ $user->f_name }} {{ $user->l_name }}
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <a href="mailto:{{ $user->email }}" class="text-blue-600 hover:underline">{{ $user->email }}</a>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <span class="inline-block px-2 py-1 text-xs font-semibold bg-gray-800 text-white rounded">
+                                                        {{ ucfirst($user->role) }}
+                                                    </span>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    @if($user->status === 'active')
+                                                        <span class="inline-block px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">Active</span>
+                                                    @else
+                                                        <span class="inline-block px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">Suspended</span>
+                                                    @endif
+                                                </td>
+                                                <td class="px-6 py-4 text-center">
+                                                    <div class="flex justify-center gap-2">
+                                                        @if($user->status === 'suspended')
+                                                            <form method="POST" action="{{ route('change.user.status', $user->id) }}">
+                                                                @csrf
+                                                                <button class="px-3 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 transition-all ease-in-out duration-300 cursor-pointer">
+                                                                    Activate
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <form method="POST" action="{{ route('change.user.status', $user->id) }}">
+                                                                @csrf
+                                                                <button class="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-all ease-in-out duration-300 cursor-pointer">
+                                                                    Suspend
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </section>
 
+            <!-- Account Creation Popup -->
             <section id="account-popup" class="hidden flex items-center justify-center fixed inset-0 bg-[rgba(0,0,0,0.7)] z-50">
                 <div class="bg-[#222] flex flex-col gap-5 p-5 rounded-md w-1/2 text-white">
                     <div class="flex items-center justify-between pb-5 border-b border-b-gray-400">
