@@ -56,7 +56,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', function(){ return view('teacher.dashboard'); })->name('teacher.dashboard');
         Route::get('/', function(){ return view('teacher.index');} )->name('teacher');
         Route::get('/profile', function(){ return view('teacher.profile');} )->name('teacher.profile');
-        Route::get('/courses', function(){ return view('teacher.courses');} )->name('teacher.courses');
+        
+
+        Route::prefix('/courses')->group(function(){
+            Route::get('/', function(){ return view('teacher.courses');} )->name('teacher.courses');
+            Route::get('/new', function(){ return view('teacher.courses.new');} )->name('teacher.courses.new');
+        });
+
         Route::get('/students', function(){ return view('teacher.students');} )->name('teacher.students');
     });
 

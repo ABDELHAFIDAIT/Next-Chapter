@@ -13,7 +13,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body class="grid grid-cols-20">
-        <nav class="flex flex-col justify-between items-center bg-[#222] w-full h-screen py-5 shadow-sm ">
+        <nav class="flex flex-col justify-between items-center bg-[#222] h-screen py-5 shadow-sm ">
             <div class="flex flex-col gap-2 w-full items-center justify-center">
                 <div class="mb-8">
                     <img src="{{ asset('storage/images/logo-white.png') }}" class="h-10">
@@ -82,8 +82,56 @@
                 </button>
             </form>
         </nav>
-        <section class="col-span-19 h-screen overflow-auto px-10">
-            
+        <section class="col-span-19 flex flex-col gap-5 h-screen px-5 pt-5">
+            <div class="flex items-center justify-between">
+                <h1 class="font-semibold text-2xl">My Courses</h1>
+                <form class="flex items-center gap-2 py-2 px-5 bg-white border border-gray-200 text-sm rounded-md outline-none">
+                    <input type="text" class="outline-none w-81" placeholder="Search (Course, Training Program, Keywords, ...)">
+                    <button class="cursor-pointer"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-8 6a8 8 0 1 1 14.32 4.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 0 1 2 10z" fill="#0D0D0D"/></svg></button>
+                </form>
+                <div>
+                    @php
+                        $photo = Auth::user()->photo ;
+                    @endphp
+                    <img src="{{ asset($photo) }}" class="w-10">
+                </div>
+            </div>
+            <div class="flex items-center justify-between py-2">
+                <p class="text-sm text-gray-500">Welcome to Courses Managment Space</p>
+                <a href="{{ route('teacher.courses.new') }}">
+                    <button type="button" class="cursor-pointer py-1 px-10 text-sm font-medium bg-[#D6FF40] rounded-md transition-all ease-in-out duration-300 hover:bg-[#222] hover:text-white"><span class="pr-3">+</span>New Course</button>
+                </a>
+            </div>
+            <div class="grid grid-cols-4 gap-5 h-[calc(100vh-40px)] overflow-auto pb-5">
+                <div class="relative rounded-xl shadow-lg h-min">
+                    <img src="{{ asset('storage/images/finance.jpg') }}" class="rounded-t-xl">
+                    <div class="px-5 py-2">
+                        <div class="flex flex-col gap-5">
+                            <a href="#" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
+                                <h1 class="font-medium text-sm">Finance: Budget Management & Saving</h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-white text-xs" >
+                        <a href="#" class="flex-1 bg-blue-500 rounded-bl-md flex items-center justify-center gap-3 py-2 transition-all ease-in-out duration-300 hover:bg-blue-700">
+                            <svg fill="none" stroke="#FFF" width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                            </svg>
+                            <span>Edit</span>
+                        </a>
+                        <form action="" class="flex-1 flex">
+                            <button class="flex-1 bg-red-500 rounded-br-md flex items-center justify-center gap-3 py-2 cursor-pointer transition-all ease-in-out duration-300 hover:bg-red-700">
+                                <svg fill="#FFF" width="15px" height="15px" viewBox="-2 -5 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-delete">
+                                    <path d='M7.828 0H18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7.828a2 2 0 0 1-1.414-.586L.707 7.707a1 1 0 0 1 0-1.414L6.414.586A2 2 0 0 1 7.828 0zm0 12H18V2H7.828l-5 5 5 5zm6.586-5l1.414 1.414a1 1 0 0 1-1.414 1.414L13 8.414l-1.414 1.414a1 1 0 1 1-1.414-1.414L11.586 7l-1.414-1.414a1 1 0 1 1 1.414-1.414L13 5.586l1.414-1.414a1 1 0 1 1 1.414 1.414L14.414 7z' />
+                                </svg>
+                                <span>Delete</span>
+                            </button>
+                        </form>
+                    </div>
+                    <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">Finance</p>
+                </div>
+            </div>
         </section>
     </body>
 </html>
