@@ -26,7 +26,7 @@
                     <p class="text-sm font-light px-10">Welcome to <span class="font-normal">NEXT CHAPTER</span>, please enter your login credentials below to access the workspace</p>
                 </div>
                 <div class="flex flex-col gap-5">
-                    @error('Status')
+                    @error('status')
                         <div class="text-red-600 bg-red-100 border border-red-200 rounded-sm font-light text-xs mx-10 px-5 py-2">{{ $message }}</div>
                     @enderror
                     <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-2 px-10">

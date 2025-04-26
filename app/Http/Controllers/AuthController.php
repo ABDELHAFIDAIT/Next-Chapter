@@ -43,7 +43,7 @@ class AuthController extends Controller
                 return redirect()->intended('/prisonner');
             }else if(auth()->user()->status == 'suspended'){
                 return redirect()->back()->withErrors([
-                    'Status' => 'Vous êtes Suspendu pour le Moment !'
+                    'status' => 'Vous êtes Suspendu pour le Moment !'
                 ]);
             }
         }

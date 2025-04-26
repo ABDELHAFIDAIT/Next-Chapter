@@ -8,6 +8,8 @@
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body >
     <!-- Header -->
@@ -93,5 +95,9 @@
         </div>
         <div class="absolute h-14 w-20 bg-[#D6FF40] bottom-36 right-0"></div>
     </footer>
+
+    <script>
+        AOS.init();
+      </script>
 </body>
 </html>

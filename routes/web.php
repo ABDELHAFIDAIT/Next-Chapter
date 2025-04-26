@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Change Password Route
-    Route::get('/password', [AuthController::class, 'showChangePassword'])->name('show.change.password');
+    Route::get('/password', [AuthController::class, 'showChangePassword'])->name('show.change.password')->middleware(['first_login']);
     Route::post('/password/change', [AuthController::class, 'changePassword'])->name('change.password');
 
     // All Admin Routes
@@ -51,6 +51,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/courses/details', function(){ return view('prisonner.details'); })->name('prisonner.course.details');
     });
 
+    // All Teacher Routes
+    Route::prefix('/teacher')->middleware(['role:teacher'])->group(function(){
+        Route::get('/dashboard', function(){ return view('teacher.dashboard'); })->name('teacher.dashboard');
+        Route::get('/', function(){ return view('teacher.index');} )->name('teacher');
+        Route::get('/profile', function(){ return view('teacher.profile');} )->name('teacher.profile');
+        Route::get('/courses', function(){ return view('teacher.courses');} )->name('teacher.courses');
+        Route::get('/students', function(){ return view('teacher.students');} )->name('teacher.students');
+    });
+
 
 
 
@@ -64,10 +73,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/recruiter', function(){
         return view('recruiter.index');
     })->name('recruiter')->middleware(['role:recruiter']);
-
-    Route::get('/teacher', function(){
-        return view('teacher.index');
-    })->name('teacher')->middleware(['role:teacher']);
 });
 
 
