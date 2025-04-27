@@ -63,4 +63,22 @@ class CourseController extends Controller
         $courses = Course::with(['category', 'teacher'])->paginate(6);
         return view('prisonner.courses', compact('courses'));
     }
+
+    public function showForPrisonner($id){
+        $course = Course::with(['category', 'teacher'])->findOrFail($id);
+        
+        $suggestedCourses = Course::where('id_category', $course->id_category)
+            ->where('id', '!=', $course->id)
+            ->with(['category', 'teacher'])
+            ->take(2)
+            ->get();
+        
+        $others = Course::where('id_category', '!=', $course->id_category)
+            ->where('id', '!=', $course->id)
+            ->with(['category', 'teacher'])
+            ->take(2)
+            ->get();
+        
+        return view('prisonner.details', compact('course', 'suggestedCourses', 'others'));
+    }
 }
