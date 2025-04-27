@@ -17,4 +17,12 @@ class Course extends Model
         'objectifs',
         'id_teacher'
     ];
+
+    public function teacher(){
+        return $this->belongsTo(User::class, 'id_teacher');
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class, 'id_category');
+    }
 }

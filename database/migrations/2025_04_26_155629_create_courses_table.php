@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('overview');
             $table->unsignedBigInteger('id_teacher');
             $table->foreign('id_teacher')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_category')->nullable();
+            $table->foreign('id_category')->references('id')->on('categories')->onDelete('set null');
             $table->timestamps();
         });
     }

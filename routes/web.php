@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,8 +43,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/prisonners',[UserController::class, 'prisonners'])->name('admin.prisonners');
         Route::post('/delete/{id}',[UserController::class, 'delete'])->name('admin.delete');
         Route::get('/teachers',[UserController::class, 'teachers'])->name('admin.teachers');
+
+        // Category Routes
+        Route::prefix('/categories')->group(function(){
+            Route::get('/', [CategoryController::class, 'index'])->name('admin.categories');
+            Route::post('/create', [CategoryController::class, 'create'])->name('admin.categories.create');
+            Route::post('/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+            Route::post('/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.categories.delete');
+        });
     });
 
+    
+    
     // All Prisonner Routes
     Route::prefix('/prisonner')->middleware(['role:prisonner'])->group(function(){
         Route::get('/', function(){ return view('prisonner.index'); })->name('prisonner.index');
@@ -52,6 +63,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/courses/details', function(){ return view('prisonner.details'); })->name('prisonner.course.details');
     });
 
+    
+    
     // All Teacher Routes
     Route::prefix('/teacher')->middleware(['role:teacher'])->group(function(){
         Route::get('/dashboard', function(){ return view('teacher.dashboard'); })->name('teacher.dashboard');

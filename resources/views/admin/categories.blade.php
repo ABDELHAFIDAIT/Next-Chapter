@@ -39,7 +39,7 @@
                     </svg>
                     <span>Prisonners</span>
                 </a>
-                <a href="{{ route('admin.teachers') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300 rounded-lg bg-[#D6FF40] text-black">
+                <a href="{{ route('admin.teachers') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300">
                     <svg width="15px" height="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
                     <span>Teachers</span>
                 </a>
@@ -47,8 +47,8 @@
                     <svg width="15px" height="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                     <span>Recruiters</span>
                 </a>
-                <a href="{{ route('admin.categories') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300">
-                    <svg fill="#fff" width="15px" height="15px" viewBox="0 0 35 35" data-name="Layer 2" id="e73e2821-510d-456e-b3bd-9363037e93e3" xmlns="http://www.w3.org/2000/svg"><path d="M11.933,15.055H3.479A3.232,3.232,0,0,1,.25,11.827V3.478A3.232,3.232,0,0,1,3.479.25h8.454a3.232,3.232,0,0,1,3.228,3.228v8.349A3.232,3.232,0,0,1,11.933,15.055ZM3.479,2.75a.73.73,0,0,0-.729.728v8.349a.73.73,0,0,0,.729.728h8.454a.729.729,0,0,0,.728-.728V3.478a.729.729,0,0,0-.728-.728Z"/><path d="M11.974,34.75H3.52A3.233,3.233,0,0,1,.291,31.521V23.173A3.232,3.232,0,0,1,3.52,19.945h8.454A3.232,3.232,0,0,1,15.2,23.173v8.348A3.232,3.232,0,0,1,11.974,34.75ZM3.52,22.445a.73.73,0,0,0-.729.728v8.348a.73.73,0,0,0,.729.729h8.454a.73.73,0,0,0,.728-.729V23.173a.729.729,0,0,0-.728-.728Z"/><path d="M31.522,34.75H23.068a3.233,3.233,0,0,1-3.229-3.229V23.173a3.232,3.232,0,0,1,3.229-3.228h8.454a3.232,3.232,0,0,1,3.228,3.228v8.348A3.232,3.232,0,0,1,31.522,34.75Zm-8.454-12.3a.73.73,0,0,0-.729.728v8.348a.73.73,0,0,0,.729.729h8.454a.73.73,0,0,0,.728-.729V23.173a.729.729,0,0,0-.728-.728Z"/><path d="M27.3,15.055a7.4,7.4,0,1,1,7.455-7.4A7.437,7.437,0,0,1,27.3,15.055Zm0-12.3a4.9,4.9,0,1,0,4.955,4.9A4.935,4.935,0,0,0,27.3,2.75Z"/></svg>
+                <a href="{{ route('admin.categories') }}" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300 rounded-lg bg-[#D6FF40] text-black">
+                    <svg fill="#222" width="15px" height="15px" viewBox="0 0 35 35" data-name="Layer 2" id="e73e2821-510d-456e-b3bd-9363037e93e3" xmlns="http://www.w3.org/2000/svg"><path d="M11.933,15.055H3.479A3.232,3.232,0,0,1,.25,11.827V3.478A3.232,3.232,0,0,1,3.479.25h8.454a3.232,3.232,0,0,1,3.228,3.228v8.349A3.232,3.232,0,0,1,11.933,15.055ZM3.479,2.75a.73.73,0,0,0-.729.728v8.349a.73.73,0,0,0,.729.728h8.454a.729.729,0,0,0,.728-.728V3.478a.729.729,0,0,0-.728-.728Z"/><path d="M11.974,34.75H3.52A3.233,3.233,0,0,1,.291,31.521V23.173A3.232,3.232,0,0,1,3.52,19.945h8.454A3.232,3.232,0,0,1,15.2,23.173v8.348A3.232,3.232,0,0,1,11.974,34.75ZM3.52,22.445a.73.73,0,0,0-.729.728v8.348a.73.73,0,0,0,.729.729h8.454a.73.73,0,0,0,.728-.729V23.173a.729.729,0,0,0-.728-.728Z"/><path d="M31.522,34.75H23.068a3.233,3.233,0,0,1-3.229-3.229V23.173a3.232,3.232,0,0,1,3.229-3.228h8.454a3.232,3.232,0,0,1,3.228,3.228v8.348A3.232,3.232,0,0,1,31.522,34.75Zm-8.454-12.3a.73.73,0,0,0-.729.728v8.348a.73.73,0,0,0,.729.729h8.454a.73.73,0,0,0,.728-.729V23.173a.729.729,0,0,0-.728-.728Z"/><path d="M27.3,15.055a7.4,7.4,0,1,1,7.455-7.4A7.437,7.437,0,0,1,27.3,15.055Zm0-12.3a4.9,4.9,0,1,0,4.955,4.9A4.935,4.935,0,0,0,27.3,2.75Z"/></svg>
                     <span>Categories</span>
                 </a>
                 <a href="#" class="flex items-center gap-3 p-3 hover:bg-[#D6FF40] hover:text-black rounded-lg transition-all ease-in-out duration-300">
@@ -73,7 +73,7 @@
                 <form action="">
                     <input type="text" placeholder="Search..." class="outline-none text-sm py-[6px] px-3 rounded-lg bg-[#EDF7F1] text-black w-64" />
                 </form>
-                <!-- Notification and Profile Section -->
+                <!-- Profile Section -->
                 <a href="#" class="flex items-center gap-2">
                     <img src="{{ asset('storage/images/profile.png') }}" class="w-9 h-9 rounded-full" alt="User Profile"/>
                     <div class="flex flex-col justify-around">
@@ -85,87 +85,59 @@
 
             <!-- Main Content Section -->
             <section class="p-5 h-[calc(100vh-70px)] overflow-auto flex flex-col gap-5">
-                @if(count($teachers) == 0)
-                    <h1 class="col-span-3 text-2xl font-semibold text-red-600">No Teachers are Registred Yet !</h1>
+                <div class="flex items-center justify-between">
+                    <h1 class="text-xl font-medium text-[#222]">Welcome to Categories Managment Space</h1>
+                    <button id="open-category-create-popup" class="py-1 px-10 bg-[#D6FF40] flex items-center gap-3 rounded-md font-medium cursor-pointer transition-all ease-in-out duration-300 hover:bg-[#222] hover:text-white">
+                        <span>+</span>
+                        <span>Create Category</span>
+                    </button>
+                </div>
+                
+                <h1 class="col-span-3 text-black text-sm text-gray-600">There is the list of Courses Categories </h1>
+                @if(count($categories) == 0)
+                    <h1 class="col-span-3 text-2xl font-semibold text-red-600">No Category Found !</h1>
                 @else
-                    <div class="overflow-x-auto bg-white rounded-lg border border-gray-100">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-[#222] text-gray-200">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Photo</th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Full Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Email</th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Role</th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
-                                @foreach($teachers as $user)
-                                    <tr class="hover:bg-gray-50 transition">
-                                        <td class="px-6 py-4">
-                                            <img src="{{ asset($user->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="photo">
-                                        </td>
-                                        <td class="px-6 py-4 font-medium">
-                                            {{ $user->f_name }} {{ $user->l_name }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <a href="mailto:{{ $user->email }}" class="text-blue-600 hover:underline">{{ $user->email }}</a>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span class="inline-block px-2 py-1 text-xs font-semibold bg-gray-800 text-white rounded">
-                                                {{ ucfirst($user->role) }}
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            @if($user->status === 'active')
-                                                <span class="inline-block px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">Active</span>
-                                            @else
-                                                <span class="inline-block px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">Suspended</span>
-                                            @endif
-                                        </td>
-                                        <td class="px-6 py-4 text-center">
-                                            <div class="flex items-center justify-center gap-2">
-                                                @if($user->status === 'suspended')
-                                                    <form method="POST" action="{{ route('change.user.status', $user->id) }}">
-                                                        @csrf
-                                                        <button class="cursor-pointer">
-                                                            <svg fill="#02ba17" width="25px" height="25px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M208.00146,32h-160a16.01582,16.01582,0,0,0-16,16V208a16.01583,16.01583,0,0,0,16,16h160a16.01582,16.01582,0,0,0,16-16V48A16.01581,16.01581,0,0,0,208.00146,32ZM177.5249,109.78125l-58.67187,56a7.98451,7.98451,0,0,1-11.04688,0l-29.32812-28a7.99571,7.99571,0,1,1,11.04687-11.5625l23.80469,22.71875L166.478,98.21875a7.99571,7.99571,0,1,1,11.04687,11.5625Z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <form method="POST" action="{{ route('change.user.status', $user->id) }}">
-                                                        @csrf
-                                                        <button class="cursor-pointer">
-                                                            <svg fill="#fc8e08" xmlns="http://www.w3.org/2000/svg" 
-                                                                width="22px" height="22px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
-                                                            <path d="M26,2C12.8,2,2,12.8,2,26s10.8,24,24,24s24-10.8,24-24S39.2,2,26,2z M37.9,27.7c-0.1,0.7-0.7,1.3-1.5,1.3
-                                                                H15.6c-0.8,0-1.4-0.5-1.5-1.3c-0.1-1.2-0.1-2.3,0-3.4c0.1-0.7,0.7-1.3,1.5-1.3h20.8c0.8,0,1.4,0.6,1.5,1.3
-                                                                C38,25.5,38,26.6,37.9,27.7z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                                <form method="post" action="{{ route('admin.delete', $user->id) }}">
-                                                    @csrf
-                                                    <button class="cursor-pointer">
-                                                        <svg fill="#fc0505" width="22px" height="22px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <div class="grid grid-cols-3 gap-5">
+                        @foreach ($categories as $category)
+                            <div class="h-min py-2 px-3 bg-[#222222] text-white flex flex-col gap-3 rounded-md shadow-md">
+                                <h1 class="font-medium">{{ $category->name }}</h1>
+                                <div class="flex items-center justify-between">
+                                    <h1 class="text-xs text-[#D6FF40]">{{ $category->courses_count }} Courses</h1>
+                                    <div class="flex items-center gap-3">
+                                        <button class="open-category-edit-popup cursor-pointer" type="button" data-id="{{ $category->id }}" data-name="{{ $category->name }}" >
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="15px"
+                                                height="15px"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="#7aa4ff"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                >
+                                                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                            </svg>
+                                        </button>
+                                        <form method="POST" action="{{ route('admin.categories.delete', $category->id) }}" class="">
+                                            @csrf
+                                            <button>
+                                                <svg fill="#fc4032" width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>      
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                    @if ($teachers->hasPages())
+                    @if ($categories->hasPages())
                         <nav>
                             <ul class="flex items-center justify-center gap-5">
                                 {{-- Previous Page Link --}}
-                                @if ($teachers->onFirstPage())
+                                @if ($categories->onFirstPage())
                                     <li class="">
                                         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -176,7 +148,7 @@
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ $teachers->previousPageUrl() }}" class="">
+                                        <a href="{{ $categories->previousPageUrl() }}" class="">
                                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -188,8 +160,8 @@
                                 @endif
 
                                 {{-- Pagination Elements --}}
-                                @foreach ($teachers->getUrlRange(1, $teachers->lastPage()) as $page => $url)
-                                    @if ($page == $teachers->currentPage())
+                                @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
+                                    @if ($page == $categories->currentPage())
                                         <li class="text-blue-500 font-semibold">{{ $page }}</li>
                                     @else
                                         <li><a href="{{ $url }}" class="hover:text-gray-600 font-semibold">{{ $page }}</a></li>
@@ -197,9 +169,9 @@
                                 @endforeach
 
                                 {{-- Next Page Link --}}
-                                @if ($teachers->hasMorePages())
+                                @if ($categories->hasMorePages())
                                     <li>
-                                        <a href="{{ $teachers->nextPageUrl() }}" class="">
+                                        <a href="{{ $categories->nextPageUrl() }}" class="">
                                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                                 <g id="SVGRepo_iconCarrier"> 
@@ -222,6 +194,46 @@
                         </nav>
                     @endif
                 @endif
+            </section>
+
+            <!-- Category Creation Popup -->
+            <section id="category-create-popup" class="hidden flex items-center justify-center fixed inset-0 bg-[rgba(0,0,0,0.9)] z-50">
+                <div class="bg-[#222] flex flex-col gap-5 p-5 rounded-md w-1/3 text-white">
+                    <div class="flex items-center justify-between pb-5 border-b border-b-gray-400">
+                        <h1 class="text-xl font-medium ">Create Category</h1>
+                        <button id="close-category-create-popup" class="text-2xl cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <form id="form-category-create" method="POST" action="{{ route('admin.categories.create') }}" class="flex flex-col gap-5">
+                        @csrf
+                        <input type="text" name="name" id="name" placeholder="Category Name" class="outline-none text-sm font-medium py-2 px-5 rounded-md bg-white text-black w-full" required/>
+                        <button class="text-[#222] cursor-pointer py-1 text-sm rounded-md bg-[#D6FF40] font-medium w-full">
+                            Create Category
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+
+            <!-- Category Edit Popup -->
+            <section id="category-edit-popup" class="hidden flex items-center justify-center fixed inset-0 bg-[rgba(0,0,0,0.7)] z-50">
+                <div class="bg-[#222] flex flex-col gap-5 p-5 rounded-md w-1/3 text-white">
+                    <div class="flex items-center justify-between pb-5 border-b border-b-gray-400">
+                        <h1 class="text-xl font-medium ">Edit Category</h1>
+                        <button id="close-category-edit-popup" class="text-2xl cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <form id="form-category-edit" method="POST" action="{{ route('admin.categories.edit') }}" class="flex flex-col gap-5">
+                        @csrf
+                        <input type="hidden" name="id" value="">
+                        <input type="text" name="name" id="name" placeholder="Category Name" class="outline-none text-sm font-medium py-2 px-5 rounded-md bg-white text-black w-full" required/>
+                        <button class="text-[#222] cursor-pointer py-1 text-sm rounded-md bg-[#D6FF40] font-medium w-full">
+                            Edit Category
+                        </button>
+                    </form>
+                </div>
             </section>
         </section>
     </main>
