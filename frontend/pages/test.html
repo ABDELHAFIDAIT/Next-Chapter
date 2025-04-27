@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Créer une nouvelle formation</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+            rel="stylesheet">
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+        <style>
+    :root {
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --secondary: #06B6D4;
+      --accent: #8B5CF6;
+      --success: #10B981;
+      --light-bg: #F9FAFB;
+      --light-border: #E5E7EB;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    
+    .animate-slide-up {
+      animation: slideUp 0.5s ease-out;
+    }
+    
+    .animate-pulse-once {
+      animation: pulse 0.4s ease-in-out;
+    }
+    
+    .animate-shake {
+      animation: shake 0.5s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+    }
+    
+    .custom-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .custom-input {
+      transition: all 0.3s ease;
+    }
+    
+    .custom-input:focus {
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+      transform: translateY(-1px);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.25);
+    }
+    
+    .btn-success {
+      background-color: var(--success);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-success:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    }
+    
+    .course-item, .chapter-item {
+      transition: all 0.3s ease;
+    }
+    
+    .course-item:hover, .chapter-item:hover {
+      transform: translateY(-2px);
+    }
+    
+    .remove-btn {
+      transition: all 0.2s ease;
+    }
+    
+    .remove-btn:hover {
+      color: #EF4444;
+      transform: scale(1.2);
+    }
+    
+    .preview-panel {
+      transition: all 0.5s ease;
+      max-height: 0;
+      overflow: hidden;
+    }
+    
+    .preview-panel.open {
+      max-height: 2000px;
+    }
+    
+    /* Progress Steps */
+    .step-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #E5E7EB;
+      color: #6B7280;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.5rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .step.active .step-number {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .step.completed .step-number {
+      background-color: var(--success);
+      color: white;
+    }
+    
+    .step-title {
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .step.active .step-title {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .step.completed .step-title {
+      color: var(--success);
+    }
+    
+    .step-line {
+      position: absolute;
+      top: 20px;
+      height: 2px;
+      background-color: #E5E7EB;
+      width: 100%;
+      z-index: 0;
+    }
+    
+    .step-progress {
+      position: absolute;
+      top: 20px;
+      height: 2px;
+      background-color: var(--success);
+      width: 0%;
+      z-index: 0;
+      transition: width 0.3s ease;
+    }
+
+    /* Rich Text Editor */
+    .editor-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0.5rem;
+      background-color: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-bottom: none;
+      border-top-left-radius: 0.75rem;
+      border-top-right-radius: 0.75rem;
+    }
+    
+    .editor-toolbar button {
+      margin: 0.25rem;
+      padding: 0.375rem 0.75rem;
+      background-color: white;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      color: #4b5563;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .editor-toolbar button:hover {
+      background-color: #f9fafb;
+      color: #111827;
+    }
+    
+    .editor-toolbar button.active {
+      background-color: #e0e7ff;
+      color: #4338ca;
+      border-color: #c7d2fe;
+    }
+    
+    .editor-content {
+      min-height: 200px;
+      border: 1px solid #e5e7eb;
+      border-bottom-left-radius: 0.75rem;
+      border-bottom-right-radius: 0.75rem;
+      padding: 1rem;
+      background-color: white;
+      overflow-y: auto;
+    }
+    
+    .editor-content:focus {
+      outline: none;
+      border-color: #a5b4fc;
+      box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.2);
+    }
+    
+    /* Cover image styles */
+    .cover-image-container {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background-color: #f3f4f6;
+      border: 2px dashed #d1d5db;
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .cover-image-container:hover {
+      border-color: #a5b4fc;
+      background-color: #f5f7ff;
+    }
+    
+    .cover-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .cover-image-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+    }
+    
+    .cover-image-container input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+  </style>
+    </head>
+    <body class="min-h-screen">
+        <header class="bg-white shadow-sm">
+            <div
+                class="container mx-auto px-4 py-6 flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-gray-800 flex items-center">
+                    <span class="text-indigo-600 mr-2"><i
+                            class="fas fa-graduation-cap"></i></span>
+                    FormationPro
+                </h1>
+                <div>
+                    <button id="previewBtn"
+                        class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-xl font-medium transition duration-300 flex items-center">
+                        <i class="far fa-eye mr-2"></i> Prévisualiser
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-10">
+            <section class="animate-fade-in mb-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-3">Créer une
+                        nouvelle formation</h2>
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto">Concevez
+                        une expérience d'apprentissage complète en suivant les
+                        étapes ci-dessous.</p>
+                </div>
+
+                <!-- Indicateur de progression -->
+                <div class="max-w-3xl mx-auto">
+                    <div class="step-container">
+                        <div class="step-line"></div>
+                        <div class="step-progress" id="stepProgress"></div>
+
+                        <div class="step active" id="step1">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Informations générales</div>
+                        </div>
+
+                        <div class="step" id="step2">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Structure des cours</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Étape 1 : Informations générales -->
+            <div id="step1Form" class="animate-slide-up">
+                <div class="bg-white rounded-3xl custom-shadow p-8 mb-12">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Étape
+                        1 : Informations générales</h3>
+
+                    <div class="mb-8">
+                        <label for="formationName"
+                            class="block text-gray-700 text-lg font-semibold mb-3">Nom
+                            de la formation</label>
+                        <input type="text" id="formationName"
+                            placeholder="Ex: Maîtrise du développement web full-stack"
+                            class="custom-input w-full px-5 py-4 text-xl bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300">
+                    </div>
+
+                    <div class="mb-8">
+                        <label
+                            class="block text-gray-700 text-lg font-semibold mb-3">Image
+                            de couverture</label>
+                        <div class="cover-image-container"
+                            id="coverImageContainer">
+                            <input type="file" id="coverImageUpload"
+                                accept="image/*">
+                            <div class="cover-image-placeholder"
+                                id="coverImagePlaceholder">
+                                <i class="fas fa-image text-3xl mb-2"></i>
+                                <p>Cliquez pour ajouter une image de
+                                    couverture</p>
+                            </div>
+                            <img id="coverImagePreview" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <label for="formationShortDesc"
+                            class="block text-gray-700 text-lg font-semibold mb-3">Brève
+                            description</label>
+                        <textarea id="formationShortDesc" rows="2"
+                            placeholder="Présentez votre formation en quelques mots..."
+                            class="custom-input w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"></textarea>
+                    </div>
+
+                    <div class="mb-8">
+                        <label for="formationOverview"
+                            class="block text-gray-700 text-lg font-semibold mb-3">Présentation
+                            détaillée</label>
+                        <textarea id="formationOverview" rows="5"
+                            placeholder="Décrivez le contenu et l'approche de votre formation..."
+                            class="custom-input w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"></textarea>
+                    </div>
+
+                    <div class="mb-6">
+                        <label
+                            class="block text-gray-700 text-lg font-semibold mb-3">Objectifs
+                            de la formation</label>
+                        <div id="objectivesContainer" class="space-y-3">
+                            <div class="flex items-center objective-item">
+                                <input type="text"
+                                    placeholder="Objectif d'apprentissage..."
+                                    class="custom-input flex-1 px-5 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300">
+                                <button type="button"
+                                    class="remove-objective ml-2 text-gray-400 hover:text-red-500 transition-colors duration-300">
+                                    <i class="fas fa-times-circle text-xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" id="addObjectiveBtn"
+                            class="mt-3 flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition duration-300">
+                            <i class="fas fa-plus-circle mr-2"></i> Ajouter un
+                            objectif
+                        </button>
+                    </div>
+
+                    <div class="flex justify-end mt-8">
+                        <button type="button" id="goToStep2Btn"
+                            class="btn-primary text-white px-6 py-3 rounded-xl font-medium flex items-center">
+                            Étape suivante <i
+                                class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Étape 2 : Structure des cours -->
+            <div id="step2Form" class="animate-slide-up" style="display: none;">
+                <div class="bg-white rounded-3xl custom-shadow p-8 mb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-semibold text-gray-800">Étape 2
+                            : Structure des cours</h3>
+                        <button id="addCourseBtn"
+                            class="btn-primary text-white px-5 py-3 rounded-xl font-medium flex items-center">
+                            <i class="fas fa-plus mr-2"></i> Ajouter un cours
+                        </button>
+                    </div>
+
+                    <div id="coursesContainer" class="space-y-6">
+                        <!-- Les cours s'ajouteront ici dynamiquement -->
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button type="button" id="backToStep1Btn"
+                            class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-medium flex items-center transition duration-300">
+                            <i class="fas fa-arrow-left mr-2"></i> Étape
+                            précédente
+                        </button>
+                        <button type="button" id="submitFormation"
+                            class="btn-success text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center">
+                            <i class="fas fa-check-circle mr-2"></i> Créer la
+                            formation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="previewContainer"
+                class="preview-panel bg-white rounded-3xl custom-shadow p-8 mb-12">
+                <h3
+                    class="text-2xl font-bold text-gray-800 mb-6">Prévisualisation
+                    de la formation</h3>
+                <div id="previewContent" class="prose max-w-none">
+                    <!-- Contenu de prévisualisation -->
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-gray-800 text-white py-8">
+            <div class="container mx-auto px-4">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-center md:text-left mb-4 md:mb-0">
+                        <p>© 2025 FormationPro. Tous droits réservés.</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="text-gray-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="text-gray-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#"
+                            class="text-gray-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Template pour un cours -->
+        <template id="courseTemplate">
+            <div
+                class="course-item bg-white rounded-2xl custom-shadow p-6 mb-6 animate-fade-in">
+                <div class="flex justify-between items-center mb-4">
+                    <h4
+                        class="text-xl font-semibold text-gray-800 course-title">Nouveau
+                        cours</h4>
+                    <div class="flex space-x-2">
+                        <button type="button"
+                            class="add-chapter-btn text-cyan-600 hover:text-cyan-800 transition-colors duration-300 flex items-center">
+                            <i class="fas fa-folder-plus mr-1"></i> Ajouter un
+                            chapitre
+                        </button>
+                        <button type="button"
+                            class="remove-course-btn remove-btn text-gray-400">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="course-form mb-6">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-medium mb-2">Nom
+                            du cours</label>
+                        <input type="text"
+                            class="course-name-input custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                            placeholder="Intitulé du cours...">
+                    </div>
+                </div>
+
+                <div class="chapters-container space-y-5">
+                    <!-- Les chapitres s'ajouteront ici dynamiquement -->
+                </div>
+            </div>
+        </template>
+
+        <!-- Template pour un chapitre avec éditeur de texte enrichi -->
+        <template id="chapterTemplate">
+            <div class="chapter-item bg-gray-50 rounded-xl p-5 animate-fade-in">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex-1">
+                        <label
+                            class="block text-gray-700 font-medium mb-2">Titre
+                            du chapitre</label>
+                        <input type="text"
+                            class="chapter-name-input custom-input w-full px-3 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-300"
+                            placeholder="Nom du chapitre...">
+                    </div>
+                    <button type="button"
+                        class="remove-chapter-btn remove-btn ml-2 text-gray-400">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-gray-700 font-medium mb-2">Contenu
+                        du chapitre</label>
+                    <div class="rich-text-editor">
+                        <div class="editor-toolbar">
+                            <button type="button" data-command="bold"
+                                title="Gras"><i
+                                    class="fas fa-bold"></i></button>
+                            <button type="button" data-command="italic"
+                                title="Italique"><i
+                                    class="fas fa-italic"></i></button>
+                            <button type="button" data-command="underline"
+                                title="Souligné"><i
+                                    class="fas fa-underline"></i></button>
+                            <button type="button" data-command="strikeThrough"
+                                title="Barré"><i
+                                    class="fas fa-strikethrough"></i></button>
+                            <button type="button" data-command="justifyLeft"
+                                title="Aligner à gauche"><i
+                                    class="fas fa-align-left"></i></button>
+                            <button type="button" data-command="justifyCenter"
+                                title="Centrer"><i
+                                    class="fas fa-align-center"></i></button>
+                            <button type="button" data-command="justifyRight"
+                                title="Aligner à droite"><i
+                                    class="fas fa-align-right"></i></button>
+                            <button type="button"
+                                data-command="insertUnorderedList"
+                                title="Liste à puces"><i
+                                    class="fas fa-list-ul"></i></button>
+                            <button type="button"
+                                data-command="insertOrderedList"
+                                title="Liste numérotée"><i
+                                    class="fas fa-list-ol"></i></button>
+                            <button type="button" data-command="createLink"
+                                title="Insérer un lien"><i
+                                    class="fas fa-link"></i></button>
+                            <button type="button" data-command="h2"
+                                title="Titre"><i
+                                    class="fas fa-heading"></i></button>
+                            <button type="button" data-command="p"
+                                title="Paragraphe"><i
+                                    class="fas fa-paragraph"></i></button>
+                        </div>
+                        <div class="editor-content"
+                            contenteditable="true"></div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Éléments du DOM pour la navigation entre étapes
+      const step1 = document.getElementById('step1');
+      const step2 = document.getElementById('step2');
+      const step1Form = document.getElementById('step1Form');
+      const step2Form = document.getElementById('step2Form');
+      const goToStep2Btn = document.getElementById('goToStep2Btn');
+      const backToStep1Btn = document.getElementById('backToStep1Btn');
+      const stepProgress = document.getElementById('stepProgress');
+      
+      // Éléments du DOM pour les fonctionnalités
+      const addCourseBtn = document.getElementById('addCourseBtn');
+      const coursesContainer = document.getElementById('coursesContainer');
+      const addObjectiveBtn = document.getElementById('addObjectiveBtn');
+      const objectivesContainer = document.getElementById('objectivesContainer');
+      const previewBtn = document.getElementById('previewBtn');
+      const previewContainer = document.getElementById('previewContainer');
+      const previewContent = document.getElementById('previewContent');
+      const submitBtn = document.getElementById('submitFormation');
+      
+      // Éléments pour l'image de couverture
+      const coverImageUpload = document.getElementById('coverImageUpload');
+      const coverImagePreview = document.getElementById('coverImagePreview');
+      const coverImagePlaceholder = document.getElementById('coverImagePlaceholder');
+      
+      // Compteurs pour les IDs uniques
+      let courseCounter = 0;
+      let chapterCounter = 0;
+      
+      // Navigation entre étapes
+      goToStep2Btn.addEventListener('click', () => {
+        // Validation de l'étape 1
+        const formationName = document.getElementById('formationName');
+        if (!formationName.value.trim()) {
+          formationName.classList.add('border-red-500', 'animate-shake');
+          setTimeout(() => {
+            formationName.classList.remove('border-red-500', 'animate-shake');
+          }, 500);
+          formationName.focus();
+          return;
+        }
+        
+        // Passer à l'étape 2
+        step1Form.style.display = 'none';
+        step2Form.style.display = 'block';
+        step1.classList.remove('active');
+        step1.classList.add('completed');
+        step2.classList.add('active');
+        stepProgress.style.width = '100%';
+        
+        // Si aucun cours n'existe encore, en ajouter un
+        if (document.querySelectorAll('.course-item').length === 0) {
+          addNewCourse();
+        }
+      });
+      
+      backToStep1Btn.addEventListener('click', () => {
+        step2Form.style.display = 'none';
+        step1Form.style.display = 'block';
+        step2.classList.remove('active');
+        step1.classList.remove('completed');
+        step1.classList.add('active');
+        stepProgress.style.width = '0%';
+      });
+      
+      // Animation d'entrée des sections
+      const sections = document.querySelectorAll('section');
+      sections.forEach((section, index) => {
+        section.style.animationDelay = `${index * 0.2}s`;
+      });
+      
+      // Gestion de l'upload de l'image de couverture
+      coverImageUpload.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            coverImagePreview.src = e.target.result;
+            coverImagePreview.style.display = 'block';
+            coverImagePlaceholder.style.display = 'none';
+          }
+          
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+      
+      // Ajouter un objectif
+      addObjectiveBtn.addEventListener('click', () => {
+        const objectiveItem = document.createElement('div');
+        objectiveItem.className = 'flex items-center objective-item animate-fade-in';
+        objectiveItem.innerHTML = `
+          <input type="text" placeholder="Objectif d'apprentissage..." class="custom-input flex-1 px-5 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300">
+          <button type="button" class="remove-objective ml-2 text-gray-400 hover:text-red-500 transition-colors duration-300">
+            <i class="fas fa-times-circle text-xl"></i>
+          </button>
+        `;
+        
+        objectivesContainer.appendChild(objectiveItem);
+        
+        // Focus sur le nouvel input
+        const newInput = objectiveItem.querySelector('input');
+        newInput.focus();
+        
+        // Animation d'entrée
+        objectiveItem.classList.add('animate-pulse-once');
+        setTimeout(() => {
+          objectiveItem.classList.remove('animate-pulse-once');
+        }, 400);
+        
+        // Gestionnaire pour supprimer l'objectif
+        const removeBtn = objectiveItem.querySelector('.remove-objective');
+        removeBtn.addEventListener('click', () => {
+          objectiveItem.classList.add('animate-fade-in');
+          objectiveItem.style.animationDirection = 'reverse';
+          setTimeout(() => {
+            objectivesContainer.removeChild(objectiveItem);
+          }, 500);
+        });
+      });
+      
+      // Supprimer un objectif (pour l'objectif initial)
+      document.querySelectorAll('.remove-objective').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const objectiveItem = this.closest('.objective-item');
+          objectiveItem.classList.add('animate-fade-in');
+          objectiveItem.style.animationDirection = 'reverse';
+          setTimeout(() => {
+            objectivesContainer.removeChild(objectiveItem);
+          }, 500);
+        });
+      });
+      
+      // Ajouter un cours
+      addCourseBtn.addEventListener('click', addNewCourse);
+      
+      function addNewCourse() {
+        const courseTemplate = document.getElementById('courseTemplate');
+        const courseClone = document.importNode(courseTemplate.content, true);
+        
+        // Définir un ID unique pour le cours
+        const courseId = `course-${courseCounter++}`;
+        const courseElement = courseClone.querySelector('.course-item');
+        courseElement.dataset.id = courseId;
+        
+        // Gestionnaires d'événements pour le cours
+        // const addChapterBtn = courseClone.querySelector('.add-chapter-btn');
+        // const removeCourseBtn = courseClone.querySelector('.remove
+        // suite de ton <script>...
+
+        // Gestionnaires d'événements pour le cours
+        const addChapterBtn = courseClone.querySelector('.add-chapter-btn');
+        const removeCourseBtn = courseClone.querySelector('.remove-course-btn');
+        const chaptersContainer = courseClone.querySelector('.chapters-container');
+
+        // Ajouter un chapitre dans ce cours
+        addChapterBtn.addEventListener('click', () => {
+          addNewChapter(chaptersContainer);
+        });
+
+        // Supprimer ce cours
+        removeCourseBtn.addEventListener('click', () => {
+          courseElement.classList.add('animate-fade-in');
+          courseElement.style.animationDirection = 'reverse';
+          setTimeout(() => {
+            coursesContainer.removeChild(courseElement);
+          }, 500);
+        });
+
+        coursesContainer.appendChild(courseElement);
+      }
+
+      function addNewChapter(chaptersContainer) {
+        const chapterTemplate = document.getElementById('chapterTemplate');
+        const chapterClone = document.importNode(chapterTemplate.content, true);
+
+        // Définir un ID unique pour le chapitre
+        const chapterId = `chapter-${chapterCounter++}`;
+        const chapterElement = chapterClone.querySelector('.chapter-item');
+        chapterElement.dataset.id = chapterId;
+
+        // Gestionnaire pour supprimer un chapitre
+        const removeChapterBtn = chapterClone.querySelector('.remove-chapter-btn');
+        removeChapterBtn.addEventListener('click', () => {
+          chapterElement.classList.add('animate-fade-in');
+          chapterElement.style.animationDirection = 'reverse';
+          setTimeout(() => {
+            chaptersContainer.removeChild(chapterElement);
+          }, 500);
+        });
+
+        // Gestion du mini éditeur riche
+        const editorToolbar = chapterClone.querySelector('.editor-toolbar');
+        const editorContent = chapterClone.querySelector('.editor-content');
+
+        editorToolbar.querySelectorAll('button').forEach(button => {
+          button.addEventListener('click', () => {
+            const command = button.dataset.command;
+            if (command === 'h2') {
+              document.execCommand('formatBlock', false, 'h2');
+            } else if (command === 'p') {
+              document.execCommand('formatBlock', false, 'p');
+            } else if (command === 'createLink') {
+              const url = prompt('Entrer l\'URL du lien :');
+              if (url) {
+                document.execCommand('createLink', false, url);
+              }
+            } else {
+              document.execCommand(command, false, null);
+            }
+          });
+        });
+
+        chaptersContainer.appendChild(chapterElement);
+      }
+
+      // Prévisualiser la formation
+      previewBtn.addEventListener('click', () => {
+        // Récupérer les informations
+        const name = document.getElementById('formationName').value;
+        const shortDesc = document.getElementById('formationShortDesc').value;
+        const overview = document.getElementById('formationOverview').value;
+
+        let objectives = [];
+        document.querySelectorAll('#objectivesContainer input').forEach(input => {
+          if (input.value.trim()) {
+            objectives.push(input.value.trim());
+          }
+        });
+
+        let courses = [];
+        document.querySelectorAll('.course-item').forEach(course => {
+          const courseName = course.querySelector('.course-name-input').value;
+          const chapters = [];
+          course.querySelectorAll('.chapter-item').forEach(chapter => {
+            const chapterTitle = chapter.querySelector('.chapter-name-input').value;
+            const chapterContent = chapter.querySelector('.editor-content').innerHTML;
+            chapters.push({ title: chapterTitle, content: chapterContent });
+          });
+          courses.push({ courseName, chapters });
+        });
+
+        // Construire l'aperçu
+        let html = `<h2>${name}</h2>`;
+        html += `<p><strong>Description :</strong> ${shortDesc}</p>`;
+        html += `<p><strong>Présentation :</strong> ${overview}</p>`;
+        if (objectives.length) {
+          html += `<h3>Objectifs :</h3><ul>`;
+          objectives.forEach(obj => {
+            html += `<li>${obj}</li>`;
+          });
+          html += `</ul>`;
+        }
+        if (courses.length) {
+          html += `<h3>Cours :</h3>`;
+          courses.forEach(course => {
+            html += `<h4>${course.courseName}</h4><ul>`;
+            course.chapters.forEach(chap => {
+              html += `<li><strong>${chap.title}</strong><div>${chap.content}</div></li>`;
+            });
+            html += `</ul>`;
+          });
+        }
+
+        previewContent.innerHTML = html;
+        previewContainer.classList.toggle('open');
+        previewContainer.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Simulation de la soumission de la formation
+      submitBtn.addEventListener('click', () => {
+        alert('Formation créée avec succès ! 🎉');
+      });
+
+      }
+    );
+    </script>
+    </body>
+</html>

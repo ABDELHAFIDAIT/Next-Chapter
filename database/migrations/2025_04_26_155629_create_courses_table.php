@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('cover');
             $table->text('description');
-            $table->text('objectif');
+            $table->text('objectifs');
             $table->text('overview');
             $table->unsignedBigInteger('id_teacher');
-            $table->foreign('id_teacher')->references('id')->on('teachers');
+            $table->foreign('id_teacher')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

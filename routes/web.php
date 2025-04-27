@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -61,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('/courses')->group(function(){
             Route::get('/', function(){ return view('teacher.courses');} )->name('teacher.courses');
             Route::get('/new', function(){ return view('teacher.courses.new');} )->name('teacher.courses.new');
+            Route::post('/create',[CourseController::class,'create'])->name('teacher.courses.create');
         });
 
         Route::get('/students', function(){ return view('teacher.students');} )->name('teacher.students');
