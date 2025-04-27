@@ -17,6 +17,7 @@ class CourseController extends Controller
             'description' => 'required|string|max:500',
             'overview' => 'required|string',
             'objectifs' => 'required|string',
+            'id_category' => 'required|exists:categories,id',
         ]);
     
         if ($validator->fails()) {
@@ -28,6 +29,7 @@ class CourseController extends Controller
         $description = $request->input('description');
         $overview = $request->input('overview');
         $objectifs = $request->input('objectifs');
+        $id_category = $request->input('id_category');
     
 
         if ($request->hasFile('cover')) {
@@ -43,6 +45,7 @@ class CourseController extends Controller
             'overview' => $overview,
             'objectifs' => $objectifs,
             'id_teacher' => Auth::user()->id,
+            'id_category' => $id_category,
         ]);
 
        

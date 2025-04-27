@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::prefix('/courses')->group(function(){
             Route::get('/', function(){ return view('teacher.courses');} )->name('teacher.courses');
-            Route::get('/new', function(){ return view('teacher.courses.new');} )->name('teacher.courses.new');
+            Route::get('/new', [CategoryController::class, 'all'])->name('teacher.courses.new');
             Route::post('/create',[CourseController::class,'create'])->name('teacher.courses.create');
         });
 

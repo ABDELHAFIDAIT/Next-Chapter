@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+
+    public function all(){
+        $categories = Category::orderBy('name','asc')->get();
+        return view('teacher.courses.new', compact('categories'));
+    }
+
     public function index()
     {
         $categories = Category::withCount('courses')->orderBy('name','asc')->paginate(12);

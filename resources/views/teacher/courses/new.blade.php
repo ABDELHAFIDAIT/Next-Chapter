@@ -138,6 +138,17 @@
                                     class="h-36 text-black text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none"
                                     type="text" id="description" name="description" placeholder="Enter The Course Description"></textarea>
                             </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="pl-3 font-medium text-white" for="id_category">Category</label>
+                                @error('id_category')
+                                    <p class="text-red-400 text-sm font-light ">{{ $message }}</p>
+                                @enderror
+                                <select name="id_category" id="id_category" class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="flex flex-col gap-3 text-black">
                             <div class="flex flex-col gap-2">
