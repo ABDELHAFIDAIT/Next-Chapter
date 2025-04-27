@@ -18,6 +18,8 @@ class CourseController extends Controller
             'overview' => 'required|string',
             'objectifs' => 'required|string',
             'id_category' => 'required|exists:categories,id',
+            'level' => 'required|in:beginner,intermediate,advanced',
+            'duration' => 'required|integer|min:1',
         ]);
     
         if ($validator->fails()) {
@@ -30,6 +32,8 @@ class CourseController extends Controller
         $overview = $request->input('overview');
         $objectifs = $request->input('objectifs');
         $id_category = $request->input('id_category');
+        $level = $request->input('level');
+        $duration = $request->input('duration');
     
 
         if ($request->hasFile('cover')) {
@@ -46,6 +50,8 @@ class CourseController extends Controller
             'objectifs' => $objectifs,
             'id_teacher' => Auth::user()->id,
             'id_category' => $id_category,
+            'level' => $level,
+            'duration' => $duration,
         ]);
 
        
@@ -54,7 +60,7 @@ class CourseController extends Controller
     }
 
     public function indexForPrisonner(){
-        $courses = Course::all();
-        return view('courses.index', compact('courses'));
+        $courses = Course::with(['category', 'teacher'])->paginate(6);
+        return view('prisonner.courses', compact('courses'));
     }
 }

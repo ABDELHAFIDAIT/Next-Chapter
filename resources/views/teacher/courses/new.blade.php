@@ -149,6 +149,27 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="pl-3 font-medium text-white" for="level">Level</label>
+                                @error('level')
+                                    <p class="text-red-400 text-sm font-light ">{{ $message }}</p>
+                                @enderror
+                                <select name="level" id="level" class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none">
+                                    {{-- beginner,intermediate,advanced --}}
+                                    <option value="beginner">Beginner</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="pl-3 font-medium text-white" for="duration">duration</label>
+                                @error('duration')
+                                    <p class="text-red-400 text-sm font-light ">{{ $message }}</p>
+                                @enderror
+                                <input required
+                                    class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none"
+                                    type="number" min="1" id="duration" name="duration">
+                            </div>
                         </div>
                         <div class="flex flex-col gap-3 text-black">
                             <div class="flex flex-col gap-2">
