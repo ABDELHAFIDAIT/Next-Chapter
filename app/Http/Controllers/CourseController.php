@@ -22,8 +22,8 @@ class CourseController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
-        // dd($validator);
+
+
         $title = $request->input('title');
         $description = $request->input('description');
         $overview = $request->input('overview');
@@ -35,18 +35,6 @@ class CourseController extends Controller
         } else {
             $coverPath = null;
         }
-    
-
-        // $teacher = DB::table('users')
-        //             ->join('teachers','teachers.id_teacher','=','users.id')
-        //             ->select('teachers.id')
-        //             ->where('users.id','=',Auth::user()->id)
-        //             ->first();
-        // dd($teacher);
-        
-        // if (!$teacher) {
-        //     return redirect()->back()->with('error', 'Teacher not found.');
-        // }
  
         Course::create([
             'title' => $title,
@@ -60,5 +48,10 @@ class CourseController extends Controller
        
     
         return redirect()->back()->with('success', 'Cours créé avec succès.');
+    }
+
+    public function indexForPrisonner(){
+        $courses = Course::all();
+        return view('courses.index', compact('courses'));
     }
 }

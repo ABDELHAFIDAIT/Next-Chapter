@@ -7,10 +7,6 @@
         <title>Next Chapter</title>
         @vite(['resources/css/app.css', 'resources/js/teacher.js'])
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body class="grid grid-cols-20">
         <nav class="flex flex-col justify-between items-center bg-[#222] h-screen py-5 shadow-sm ">
@@ -98,7 +94,7 @@
             </div>
             <div class="flex items-center justify-between py-2">
                 <p class="text-sm text-gray-500">Welcome to Courses Managment Space</p>
-                <button id="open-course-popup" type="button" class="cursor-pointer py-1 px-10 text-sm font-medium bg-[#D6FF40] rounded-md transition-all ease-in-out duration-300 hover:bg-[#222] hover:text-white"><span class="pr-3">+</span>New Course</button>
+                <a href="{{ route('teacher.courses.new') }}"><button id="open-course-popup" type="button" class="cursor-pointer py-1 px-10 text-sm font-medium bg-[#D6FF40] rounded-md transition-all ease-in-out duration-300 hover:bg-[#222] hover:text-white"><span class="pr-3">+</span>New Course</button></a>
             </div>
             <div class="grid grid-cols-4 gap-5 h-[calc(100vh-40px)] overflow-auto pb-5">
                 <div class="relative rounded-xl shadow-lg h-min">
@@ -129,54 +125,6 @@
                     </div>
                     <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">Finance</p>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Account Creation Popup -->
-        <section id="course-popup" class="hidden flex items-center justify-center fixed inset-0 bg-[rgba(0,0,0,0.7)] z-50">
-            <div class="bg-[#222] flex flex-col gap-5 p-5 rounded-md w-2/3 text-white">
-                <div class="flex items-center justify-between pb-5 border-b border-b-gray-400">
-                    <h1 class="text-xl font-medium ">Create New Course</h1>
-                    <button id="close-course-popup" class="text-2xl cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-                <form id="form-course" method="POST" action="{{ route('teacher.courses.create') }}" class="flex flex-col gap-3 h-[70vh] overflow-auto">
-                    @csrf
-                    <div class="flex flex-col gap-3">
-                        <div class="flex flex-col gap-2">
-                            <label class="pl-3 font-medium text-white" for="title">Title</label>
-                            <input required
-                                class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none"
-                                type="text" id="title" name="title" placeholder="Enter The Course Title">
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <label class="pl-3 font-medium text-white" for="cover">Cover</label>
-                            <input required
-                                class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none"
-                                type="file" accept="image/*" id="cover" name="cover">
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <label class="pl-3 font-medium text-white" for="description">Description</label>
-                            <textarea required
-                                class="h-36 text-black text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-200 outline-none"
-                                type="text" id="description" name="description" placeholder="Enter The Course Description"></textarea>
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-3 text-black">
-                        <div class="flex flex-col gap-2">
-                            <label class="pl-3 font-medium text-white" for="overview">Overview</label>
-                            <textarea required type="text" id="overview" name="overview"></textarea>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <label class="pl-3 font-medium text-white" for="objectifs">Objectifs</label>
-                            <textarea required id="objectifs" name="objectifs"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-span-2">
-                        <button type="submit" class="cursor-pointer text-black bg-[#D6FF40] py-2 text-sm w-full font-medium rounded-md">Create Course</button>
-                    </div>
-                </form>
             </div>
         </section>
 
