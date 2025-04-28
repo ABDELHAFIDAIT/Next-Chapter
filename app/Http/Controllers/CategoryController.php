@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Course;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
 
     public function all(){
         $categories = Category::orderBy('name','asc')->get();
-        return view('teacher.courses.new', compact('categories'));
+        $courses = Course::with('category')->where('id_teacher',Auth::user()->id)->orderBy('created_at','desc')->take(3)->get();
+        return view('teacher.courses.new', compact('categories', 'courses'));
     }
 
     public function index()

@@ -96,7 +96,7 @@
                     <span>Back to My Courses</span>
                 </a>
             </div>
-            <div class="grid grid-cols-4 py-5">
+            <div class="grid grid-cols-4 gap-5 py-5">
                 <div class="col-span-3 flex flex-col gap-5">
                     <h1 class="font-medium text-lg">New Course</h1>
                     @error('error')
@@ -122,7 +122,7 @@
                                 @enderror
                                 <input 
                                     required
-                                    class="text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none"
+                                    class="file:bg-[#D6FF40] file:text-sm file:py-1 file:px-3 file:rounded-sm file:transition-all file:ease-in-out file:duration-300 hover:file:bg-[#222] hover:file:text-white file:cursor-pointer text-sm bg-white text-black px-5 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none"
                                     type="file" 
                                     accept="image/*" 
                                     id="cover" 
@@ -195,39 +195,19 @@
                 <div class="flex flex-col gap-5">
                     <h1 class="font-medium text-lg">Latest Courses</h1>
                     <div class="flex flex-col gap-3 px-5 ">
-                        <div class="relative rounded-xl shadow-lg h-min">
-                            <img src="{{ asset('storage/images/finance.jpg') }}" class="rounded-t-xl">
-                            <div class="px-5 py-2">
-                                <div class="flex flex-col gap-5">
-                                    <a href="#" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
-                                        <h1 class="font-medium text-sm">Finance: Budget Management & Saving</h1>
-                                    </a>
+                        @foreach ($courses as $course)
+                            <div class="relative rounded-xl shadow-lg h-min">
+                                <img src="{{ asset('storage/'.$course->cover) }}" class="rounded-t-xl">
+                                <div class="px-5 py-2">
+                                    <div class="flex flex-col gap-5">
+                                        <a href="#" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
+                                            <h1 class="font-medium text-sm">{{ $course->title }}</h1>
+                                        </a>
+                                    </div>
                                 </div>
+                                <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">{{ $course->category->name }}</p>
                             </div>
-                            <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">Finance</p>
-                        </div>
-                        <div class="relative rounded-xl shadow-lg h-min">
-                            <img src="{{ asset('storage/images/finance.jpg') }}" class="rounded-t-xl">
-                            <div class="px-5 py-2">
-                                <div class="flex flex-col gap-5">
-                                    <a href="#" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
-                                        <h1 class="font-medium text-sm">Finance: Budget Management & Saving</h1>
-                                    </a>
-                                </div>
-                            </div>
-                            <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">Finance</p>
-                        </div>
-                        <div class="relative rounded-xl shadow-lg h-min">
-                            <img src="{{ asset('storage/images/finance.jpg') }}" class="rounded-t-xl">
-                            <div class="px-5 py-2">
-                                <div class="flex flex-col gap-5">
-                                    <a href="#" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
-                                        <h1 class="font-medium text-sm">Finance: Budget Management & Saving</h1>
-                                    </a>
-                                </div>
-                            </div>
-                            <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">Finance</p>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

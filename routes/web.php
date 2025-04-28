@@ -83,9 +83,10 @@ Route::middleware(['auth'])->group(function () {
         
 
         Route::prefix('/courses')->group(function(){
-            Route::get('/', function(){ return view('teacher.courses');} )->name('teacher.courses');
+            Route::get('/', [CourseController::class, 'indexForTeacher'])->name('teacher.courses');
             Route::get('/new', [CategoryController::class, 'all'])->name('teacher.courses.new');
             Route::post('/create',[CourseController::class,'create'])->name('teacher.courses.create');
+            Route::post('/delete/{id}',[CourseController::class,'delete'])->name('teacher.courses.delete');
         });
 
         Route::get('/students', function(){ return view('teacher.students');} )->name('teacher.students');

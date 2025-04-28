@@ -97,7 +97,42 @@
                 <a href="{{ route('teacher.courses.new') }}"><button id="open-course-popup" type="button" class="cursor-pointer py-1 px-10 text-sm font-medium bg-[#D6FF40] rounded-md transition-all ease-in-out duration-300 hover:bg-[#222] hover:text-white"><span class="pr-3">+</span>New Course</button></a>
             </div>
             <div class="grid grid-cols-4 gap-5 h-[calc(100vh-40px)] overflow-auto pb-5">
-                <div class="relative rounded-xl shadow-lg h-min">
+                @if (count($courses) > 0)
+                    @foreach ($courses as $course)
+                        <div class="relative rounded-xl shadow-lg h-min">
+                            <img src="{{ asset('storage/'.$course->cover) }}" class="rounded-t-xl">
+                            <div class="px-5 py-2">
+                                <div class="flex flex-col gap-5">
+                                    <a href="#" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
+                                        <h1 class="font-medium text-sm">{{ $course->title }}</h1>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-white text-xs" >
+                                <a href="#" class="flex-1 bg-blue-500 rounded-bl-md flex items-center justify-center gap-3 py-2 transition-all ease-in-out duration-300 hover:bg-blue-700">
+                                    <svg fill="none" stroke="#FFF" width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                    </svg>
+                                    <span>Edit</span>
+                                </a>
+                                <form method="post" action="{{ route('teacher.courses.delete', $course->id) }}" class="flex-1 flex">
+                                    @csrf
+                                    <button class="flex-1 bg-red-500 rounded-br-md flex items-center justify-center gap-3 py-2 cursor-pointer transition-all ease-in-out duration-300 hover:bg-red-700">
+                                        <svg fill="#FFF" width="15px" height="15px" viewBox="-2 -5 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-delete">
+                                            <path d='M7.828 0H18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7.828a2 2 0 0 1-1.414-.586L.707 7.707a1 1 0 0 1 0-1.414L6.414.586A2 2 0 0 1 7.828 0zm0 12H18V2H7.828l-5 5 5 5zm6.586-5l1.414 1.414a1 1 0 0 1-1.414 1.414L13 8.414l-1.414 1.414a1 1 0 1 1-1.414-1.414L11.586 7l-1.414-1.414a1 1 0 1 1 1.414-1.414L13 5.586l1.414-1.414a1 1 0 1 1 1.414 1.414L14.414 7z' />
+                                        </svg>
+                                        <span>Delete</span>
+                                    </button>
+                                </form>
+                            </div>
+                            <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">{{ $course->category->name }}</p>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="col-span-4 flex items-center justify-center h-full text-gray-500 text-lg">No courses created for the moment !</div>
+                @endif
+                {{-- <div class="relative rounded-xl shadow-lg h-min">
                     <img src="{{ asset('storage/images/finance.jpg') }}" class="rounded-t-xl">
                     <div class="px-5 py-2">
                         <div class="flex flex-col gap-5">
@@ -124,7 +159,67 @@
                         </form>
                     </div>
                     <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">Finance</p>
-                </div>
+                </div> --}}
+                @if ($courses->hasPages())
+                    <nav class="col-span-4">
+                        <ul class="flex items-center justify-center gap-5">
+                            {{-- Previous Page Link --}}
+                            @if ($courses->onFirstPage())
+                                <li class="">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier"> <path d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" fill="#0F0F0F"></path> 
+                                        </g>
+                                    </svg>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ $courses->previousPageUrl() }}" class="">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> <path d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" fill="#0F0F0F"></path> 
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @endif
+
+                            {{-- Pagination Elements --}}
+                            @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
+                                @if ($page == $courses->currentPage())
+                                    <li class="text-blue-500 font-semibold">{{ $page }}</li>
+                                @else
+                                    <li><a href="{{ $url }}" class="hover:text-gray-600 font-semibold">{{ $page }}</a></li>
+                                @endif
+                            @endforeach
+
+                            {{-- Next Page Link --}}
+                            @if ($courses->hasMorePages())
+                                <li>
+                                    <a href="{{ $courses->nextPageUrl() }}" class="">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> 
+                                                <path d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" fill="#0F0F0F"></path> 
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier"> 
+                                            <path d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" fill="#0F0F0F"></path> 
+                                        </g>
+                                    </svg>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+                @endif
             </div>
         </section>
 

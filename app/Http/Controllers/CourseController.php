@@ -81,4 +81,15 @@ class CourseController extends Controller
         
         return view('prisonner.details', compact('course', 'suggestedCourses', 'others'));
     }
+
+    public function indexForTeacher(){
+        $courses = Course::with(['category', 'teacher'])->where('id_teacher', Auth::user()->id)->paginate(8);
+        return view('teacher.courses', compact('courses'));
+    }
+
+    public function delete($id){
+        $course = Course::findOrFail($id);
+        $course->delete();
+        return redirect()->back()->with('success', 'Cours supprimé avec succès.');
+    }
 }
