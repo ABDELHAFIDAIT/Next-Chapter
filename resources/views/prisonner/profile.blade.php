@@ -9,7 +9,7 @@
         <div class="flex items-center gap-10 py-5 border-b border-b-gray-400">
             <div class="flex items-center gap-10 px-10">
                 <div>
-                    <img src="{{ asset(Auth::user()->photo) }}" class="h-36 w-36 rounded-full ">
+                    <img src="{{ asset('storage/'.Auth::user()->photo) }}" class="h-36 w-36 rounded-full ">
                 </div>
                 <div class="flex flex-col gap-10">
                     <h1 class="text-3xl font-semibold">{{ Auth::user()->f_name.' '.Auth::user()->l_name }}</h1>
@@ -35,7 +35,7 @@
                                 c24.996-18.945,61.086-28.205,87.771-12.714h1.272l245.51,144.943C1205.373,927.619,1209.131,971.279,1183.326,997.842
                                 L1183.326,997.842z"/>
                             </svg>
-                            <a href="tel:+212 504658800">+212 504658800</a>
+                            <a href="tel:+212 504658800">{{ Auth::user()->phone }}</a>
                         </div>
                         <div class="flex items-center gap-2">
                             <svg fill="#000000" height="18px" width="18px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -43,7 +43,7 @@
                                 l141.7-215C437,257.4,448,228.9,448,192C448,85.3,362.7,0,256,0z M256,298.6c-58.9,0-106.7-47.8-106.7-106.8
                                 c0-59,47.8-106.8,106.7-106.8c58.9,0,106.7,47.8,106.7,106.8C362.7,250.8,314.9,298.6,256,298.6z"/>
                             </svg>
-                            <p>Agadir</p>
+                            <p>{{ $prisonner->city->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -51,11 +51,11 @@
         </div>
         <div class="grid grid-cols-3 gap-10 pb-5 px-10 border-b border-b-gray-400">
             <h1 class="font-medium text-lg">About </h1>
-            <p class="col-span-2 font-light text-justify">21 ans, diplômé en informatique de l'école supérieure de technologie d'Agadir. Actuellement, je perfectionne mes compétences en développement informatique à YouCode, Safi, pour devenir un développeur Full-Stack avec une passion pour les plateformes web et mobiles.</p>
+            <p class="col-span-2 font-light text-justify">{{ $prisonner->about }}</p>
         </div>
         <div class="grid grid-cols-3 gap-10 pb-5 px-10 border-b border-b-gray-400">
             <h1 class="font-medium text-lg">CV </h1>
-            <a href="../pdf/cv.pdf" download="CV-Abdelhafid.pdf" class="col-span-2 font-light text-justify">CV-ABDELHAFID.pdf</a>
+            <a href="{{ asset('storage/'.$prisonner->cv) }}" download="{{ 'CV-'.Auth::user()->f_name.'-'.Auth::user()->l_name}}.pdf" class="col-span-2 font-light text-justify">CurriculumVitae.pdf</a>
         </div>
         <div class="grid grid-cols-3 gap-10 pb-5 px-10 border-b border-b-gray-400">
             <h1 class="font-medium text-lg">External Links </h1>

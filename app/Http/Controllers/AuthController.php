@@ -129,9 +129,9 @@ class AuthController extends Controller
         if($user->role == 'recruiter'){
             return redirect()->route('recruiter');
         }else if($user->role == 'teacher'){
-            return redirect()->route('teacher');
+            return redirect()->route('teacher.update.profile');
         }else if($user->role == 'prisonner'){
-            return redirect()->route('prisonner.index');
+            return redirect()->route('prisonner.update.profile');
         }
 
     }

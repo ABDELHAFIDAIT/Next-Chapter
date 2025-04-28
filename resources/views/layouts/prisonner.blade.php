@@ -24,7 +24,7 @@
                     <a href="#"><li>Jobs</li></a>
                 </ul>
                 <div id="toggle-menu" class="flex items-center gap-5 p-1 border border-gray-400 rounded-full cursor-pointer">
-                    <img src="{{ asset(Auth::user()->photo) }}" class="w-10">
+                    <img src="{{ asset('storage/'.Auth::user()->photo) }}" class="w-10 rounded-full">
                     <svg width="24px" height="24px" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg" fill="none"
                         stroke="currentColor" stroke-width="2"

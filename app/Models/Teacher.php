@@ -13,4 +13,19 @@ class Teacher extends Model
         'id_teacher',
         'bio',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_teacher', 'id');
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'id_teacher', 'id_teacher');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'id_city', 'id');
+    }
 }

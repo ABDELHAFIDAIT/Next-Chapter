@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\City;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -39,5 +41,16 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->back()->with('success', 'User deleted successfully.');
+    }
+
+    public function showUpdateInformations(Request $request){
+        $cities = City::orderBy('name', 'asc')->get();
+        if(Auth::user()->role == 'prisonner'){
+            return view('pages.prisonner.update-profile', compact('cities'));
+        }else if(Auth::user()->role == 'teacher'){
+            return view('pages.teacher.update-profile', compact('cities'));
+        }else if(Auth::user()->role == 'recruiter'){
+            return view('pages.recruiter.update-profile', compact('cities'));
+        }
     }
 }

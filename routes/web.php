@@ -3,11 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
+use App\Models\Prisonner;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PrisonnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,8 +59,12 @@ Route::middleware(['auth'])->group(function () {
     
     // All Prisonner Routes
     Route::prefix('/prisonner')->middleware(['role:prisonner'])->group(function(){
+        // Update Profile
+        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('prisonner.update.profile');
+        Route::post('/update-profile', [PrisonnerController::class, 'updateInformations'])->name('prisonner.profile.update');
+
         Route::get('/', function(){ return view('prisonner.index'); })->name('prisonner.index');
-        Route::get('/profile', function(){ return view('prisonner.profile'); })->name('prisonner.profile');
+        Route::get('/profile', [PrisonnerController::class, 'showProfile'])->name('prisonner.profile');
         Route::get('/courses', [CourseController::class,'indexForPrisonner'])->name('prisonner.courses');
         Route::get('/courses/details/{id}', [CourseController::class, 'showForPrisonner'])->name('prisonner.course.details');
     });
@@ -67,8 +73,11 @@ Route::middleware(['auth'])->group(function () {
     
     // All Teacher Routes
     Route::prefix('/teacher')->middleware(['role:teacher'])->group(function(){
+        // Update Profile
+        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('teacher.update.profile');
+        // Route::post('/update-profile', [UserController::class, 'showUpdateInformations'])->name('teacher.update.profile');
+
         Route::get('/dashboard', function(){ return view('teacher.dashboard'); })->name('teacher.dashboard');
-        Route::get('/', function(){ return view('teacher.index');} )->name('teacher');
         Route::get('/profile', function(){ return view('teacher.profile');} )->name('teacher.profile');
         
 

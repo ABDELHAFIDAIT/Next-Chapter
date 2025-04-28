@@ -29,4 +29,8 @@ class Course extends Model
     public function category(){
         return $this->belongsTo(Category::class, 'id_category');
     }
+
+    public function prisonners(){
+        return $this->belongsToMany(Prisonner::class, 'course_prisonner', 'id_course', 'id_prisonner');
+    }
 }

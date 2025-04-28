@@ -12,4 +12,16 @@ class City extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class, 'id_city', 'id');
+    }
+
+    public function prisonners()
+    {
+        return $this->hasMany(Prisonner::class, 'id_city', 'id');
+    }
+
+    
 }

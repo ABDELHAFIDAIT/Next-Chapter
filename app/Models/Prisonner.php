@@ -15,4 +15,19 @@ class Prisonner extends Model
         'about',
         'id_city',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_prisonner', 'id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'id_city', 'id');
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'id_prisonner', 'id_prisonner');
+    }
 }
