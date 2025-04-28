@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PrisonnerController;
+use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/teacher')->middleware(['role:teacher'])->group(function(){
         // Update Profile
         Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('teacher.update.profile');
-        // Route::post('/update-profile', [UserController::class, 'showUpdateInformations'])->name('teacher.update.profile');
+        Route::post('/update-profile', [TeacherController::class, 'updateInformations'])->name('teacher.profile.update');
 
         Route::get('/dashboard', function(){ return view('teacher.dashboard'); })->name('teacher.dashboard');
         Route::get('/profile', function(){ return view('teacher.profile');} )->name('teacher.profile');

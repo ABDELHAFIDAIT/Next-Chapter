@@ -23,7 +23,7 @@ class UserController extends Controller
     }
 
     public function prisonners(){
-        $prisonners = User::where('role', 'prisonner')->where('first_login',false)->paginate(5);
+        $prisonners = User::with(['prisonner','prisonner.city'])->where('role', 'prisonner')->where('first_login',false)->paginate(5);
         return view('admin.prisonners', compact('prisonners'));
     }
 
@@ -33,7 +33,7 @@ class UserController extends Controller
     }
 
     public function teachers(){
-        $teachers = User::where('role', 'teacher')->where('first_login',false)->paginate(5);
+        $teachers = User::with('teacher')->where('role', 'teacher')->where('first_login',false)->paginate(5);
         return view('admin.teachers', compact('teachers'));
     }
 

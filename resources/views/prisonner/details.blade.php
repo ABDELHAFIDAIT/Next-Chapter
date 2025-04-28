@@ -169,7 +169,7 @@
         <div class="flex flex-col gap-8">
             <h1 class="font-medium text-[#D6FF40] text-2xl">Contributers</h1>
             <div class="flex items-center gap-3">
-                <img src="{{ asset($course->teacher->photo) }}" class="w-14 h-14 rounded-full border-2 border-[#E19219]">
+                <img src="{{ asset('storage/'.$course->teacher->photo) }}" class="w-14 h-14 rounded-full border-2 border-[#E19219]">
                 <div class="flex flex-col gap-1">
                     <h1 class="font-medium text-white">{{ $course->teacher->f_name }} {{ $course->teacher->l_name }}</h1>
                     <div class="flex items-center gap-2">
@@ -257,7 +257,7 @@
                     </div>
                 </div>
             @endforeach
-        @else
+        @elseif($others->count() > 0)
             @foreach ($others as $other)
                 <div class="grid grid-cols-3 gap-x-5 border border-gray-200 shadow-lg">
                     <div class="py-3 pl-5 pr-3">
@@ -314,6 +314,10 @@
                     </div>
                 </div>
             @endforeach
+        @else
+            <div class="flex items-center justify-center py-10 h-64">
+                <h1 class="text-xl font-light text-gray-500">No other courses available at the moment.</h1>
+            </div>
         @endif
     </section>
     

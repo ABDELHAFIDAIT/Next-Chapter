@@ -85,7 +85,7 @@
                     @php
                         $photo = Auth::user()->photo ;
                     @endphp
-                    <img src="{{ asset($photo) }}" class="w-10">
+                    <img src="{{ asset('storage/'.$photo) }}" class="w-10 rounded-full">
                 </div>
             </div>
             <div class="flex items-center py-2">

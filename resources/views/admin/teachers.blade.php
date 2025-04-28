@@ -104,7 +104,7 @@
                                 @foreach($teachers as $user)
                                     <tr class="hover:bg-gray-50 transition">
                                         <td class="px-6 py-4">
-                                            <img src="{{ asset($user->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="photo">
+                                            <img src="{{ asset('storage/'.$user->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="photo">
                                         </td>
                                         <td class="px-6 py-4 font-medium">
                                             {{ $user->f_name }} {{ $user->l_name }}
@@ -154,6 +154,14 @@
                                                         <svg fill="#fc0505" width="22px" height="22px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
                                                     </button>
                                                 </form>
+                                                <button class="open-user-infos-popup cursor-pointer" data-id-user="{{ $user}}">
+                                                    <svg fill="#2196F3" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                                            viewBox="0 0 42 42" enable-background="new 0 0 42 42" xml:space="preserve">
+                                                        <path d="M15.3,20.1c0,3.1,2.6,5.7,5.7,5.7s5.7-2.6,5.7-5.7s-2.6-5.7-5.7-5.7S15.3,17,15.3,20.1z M23.4,32.4
+                                                            C30.1,30.9,40.5,22,40.5,22s-7.7-12-18-13.3c-0.6-0.1-2.6-0.1-3-0.1c-10,1-18,13.7-18,13.7s8.7,8.6,17,9.9
+                                                            C19.4,32.6,22.4,32.6,23.4,32.4z M11.1,20.7c0-5.2,4.4-9.4,9.9-9.4s9.9,4.2,9.9,9.4S26.5,30,21,30S11.1,25.8,11.1,20.7z"/>
+                                                    </svg>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -224,6 +232,89 @@
                 @endif
             </section>
         </section>
+
+        <!-- User Infos Popup -->
+        <section id="user-infos-popup" class="hidden flex items-center justify-center fixed inset-0 bg-[rgba(0,0,0,0.7)] z-50">
+            <div class="bg-[#EDF7F1] flex flex-col gap-5 p-5 rounded-md w-2/3 text-black">
+                <div class="flex items-center justify-between pb-5 border-b border-b-gray-400">
+                    <h1 class="text-xl font-medium ">Prisonner Informations</h1>
+                    <button id="close-user-infos-popup" class="text-2xl cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col gap-5 max-h-[70vh] overflow-auto">
+                    <div class="flex items-center gap-10 pb-5 border-b border-b-gray-400">
+                        <div class="flex items-center gap-10 px-10">
+                            <div>
+                                {{-- photo --}}
+                                <img id="photo" src="" class="h-36 w-36 rounded-full ">
+                            </div>
+                            <div class="flex flex-col gap-10">
+                                {{-- full name --}}
+                                <h1 id="name" class="text-3xl font-semibold"></h1>
+                                <div class="flex items-center gap-5">
+                                    <div class="flex items-center gap-2">
+                                        <svg fill="#000000" width="25px" height="25px" viewBox="-4 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <title>mail</title>
+                                            <path d="M24 8.375l-12 10.281-12-10.281v-0.594h24v0.594zM24 22.875l-7.938-5.719 7.938-6.875v12.594zM0 10.281l7.938 6.875-7.938 5.719v-12.594zM12 20.688l3.281-2.875 8.719 6.281v0.125h-24v-0.125l8.719-6.281z"></path>
+                                            </svg>
+                                        {{-- Email --}}
+                                        <a id="email" href=""></a>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg version="1.1"
+                                            id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="phone.svg" inkscape:version="0.48.4 r9939"
+                                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="18px" height="18px"
+                                            viewBox="0 0 1200 1200" enable-background="new 0 0 1200 1200" xml:space="preserve">
+                                            <path id="path16102" inkscape:connector-curvature="0" d="M1183.326,997.842l-169.187,167.83
+                                            c-24.974,25.612-58.077,34.289-90.316,34.328c-142.571-4.271-277.333-74.304-387.981-146.215
+                                            C354.22,921.655,187.574,757.82,82.984,559.832C42.87,476.809-4.198,370.878,0.299,278.209c0.401-34.86,9.795-69.073,34.346-91.543
+                                            L203.831,17.565c35.132-29.883,69.107-19.551,91.589,15.257l136.111,258.102c14.326,30.577,6.108,63.339-15.266,85.188l-62.332,62.3
+                                            c-3.848,5.271-6.298,11.271-6.36,17.801c23.902,92.522,96.313,177.799,160.281,236.486
+                                            c63.967,58.688,132.725,138.198,221.977,157.021c11.032,3.077,24.545,4.158,32.438-3.179l72.51-73.743
+                                            c24.996-18.945,61.086-28.205,87.771-12.714h1.272l245.51,144.943C1205.373,927.619,1209.131,971.279,1183.326,997.842
+                                            L1183.326,997.842z"/>
+                                        </svg>
+                                        {{-- Phone --}}
+                                        <a id="phone" href=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-10 px-10">
+                        <h1 class="font-medium text-lg">Biography </h1>
+                        <p class="col-span-2 font-light text-sm" id="about"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+
+    <script>
+        const userInfosPopup = document.getElementById('user-infos-popup');
+        const closeUserInfosPopup = document.getElementById('close-user-infos-popup');
+        const openUserInfosPopupButtons = document.querySelectorAll('.open-user-infos-popup');
+
+        openUserInfosPopupButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const user = JSON.parse(btn.getAttribute('data-id-user'));
+                console.log(user);
+                document.querySelector('#photo').src = `{{ asset('storage') }}/${user.photo}`;
+                document.querySelector('#name').innerText = `${user.f_name} ${user.l_name}`;
+                document.querySelector('#email').href = `mailto:${user.email}`;	
+                document.querySelector('#email').innerText = `${user.email}`;	
+                document.querySelector('#phone').innerText = user.phone;
+                document.querySelector('#about').innerText = user.teacher.bio;
+                userInfosPopup.classList.remove('hidden');
+            });
+        });
+
+        closeUserInfosPopup.addEventListener('click', () => {
+            userInfosPopup.classList.add('hidden');
+        });
+
+    </script>
 </body>
 </html>
