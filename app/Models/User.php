@@ -69,4 +69,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(Teacher::class, 'id_teacher', 'id');
     }
+
+    public function links()
+    {
+        return $this->hasMany(Media::class, 'id_user');
+    }
 }

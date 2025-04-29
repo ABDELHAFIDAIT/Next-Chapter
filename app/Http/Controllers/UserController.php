@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\City;
+use App\Models\Media;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -23,7 +24,7 @@ class UserController extends Controller
     }
 
     public function prisonners(){
-        $prisonners = User::with(['prisonner','prisonner.city'])->where('role', 'prisonner')->where('first_login',false)->paginate(5);
+        $prisonners = User::with(['prisonner','prisonner.city','links'])->where('role', 'prisonner')->where('first_login',false)->paginate(5);
         return view('admin.prisonners', compact('prisonners'));
     }
 
