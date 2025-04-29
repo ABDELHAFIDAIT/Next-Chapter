@@ -77,7 +77,7 @@
         </div>
         <div class="flex items-center justify-between pb-5">
             <h1 class="font-medium">Would you like to change your informations?</h1>
-            <a href="#" class="font-semibold text-[#1275B1]">Upadte</a>
+            <a href="{{ route('prisonner.update') }}" class="font-semibold text-[#1275B1]">Upadte</a>
         </div>
     </section>
 @endsection

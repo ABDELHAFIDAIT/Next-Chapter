@@ -64,6 +64,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('prisonner.update.profile');
         Route::post('/update-profile', [PrisonnerController::class, 'updateInformations'])->name('prisonner.profile.update');
 
+        Route::get('/profil-update', function(){ return view('prisonner.update'); })->name('prisonner.update');
+
         Route::get('/', function(){ return view('prisonner.index'); })->name('prisonner.index');
         Route::get('/profile', [PrisonnerController::class, 'showProfile'])->name('prisonner.profile');
         Route::get('/courses', [CourseController::class,'indexForPrisonner'])->name('prisonner.courses');

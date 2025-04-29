@@ -11,15 +11,6 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>
-            ul{
-                list-style-type: disc;
-            }
-
-            ol{
-                list-style-type: decimal;
-            }
-        </style>
     </head>
     <body>
 
@@ -42,7 +33,7 @@
                             points="6 9 12 15 18 9"></polyline></svg>
                 </div>
                 <div id="menu"
-                    class="absolute hidden bg-[#222] text-sm flex flex-col w-42 text-white rounded-sm top-[90px] right-[80px]">
+                    class="absolute z-50 hidden bg-[#222] text-sm flex flex-col w-42 text-white rounded-sm top-[90px] right-[80px]">
                     <a href="dashboard.html"
                         class="px-5 flex items-center gap-2 hover:bg-[#D6FF40] hover:text-[#222222] rounded-t-sm py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
                         <svg width="16px" height="16px" viewBox="0 0 24 24"
@@ -150,5 +141,7 @@
             </div>
             <div class="absolute h-14 w-20 bg-[#D6FF40] bottom-36 right-0"></div>
         </footer>
+
+        @yield('script')
     </body>
 </html>
