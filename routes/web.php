@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/new', [CategoryController::class, 'all'])->name('teacher.courses.new');
             Route::post('/create',[CourseController::class,'create'])->name('teacher.courses.create');
             Route::post('/delete/{id}',[CourseController::class,'delete'])->name('teacher.courses.delete');
+            Route::get('/create/{course}', [CourseController::class, 'complete'])->name('teacher.course.create');
         });
 
         Route::get('/students', function(){ return view('teacher.students');} )->name('teacher.students');

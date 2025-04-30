@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créateur de Chapitres de Cours</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Intégration de CKEditor 5 via CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <style>
+        .transition-height {
+            transition: max-height 0.3s ease-in-out;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+    <!-- Container principal -->
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-blue-800">Créateur de Chapitres de Cours</h1>
+        
+        <!-- Formulaire principal -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="mb-6">
+                <label for="course-title" class="block text-lg font-semibold mb-2 text-gray-700">Titre du cours</label>
+                <input type="text" id="course-title" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Entrez le titre du cours">
+            </div>
+            
+            <!-- Container pour les chapitres -->
+            <div id="chapters-container">
+                <!-- Le premier chapitre -->
+                <div class="chapter-block bg-gray-50 rounded-lg p-4 mb-6 border border-gray-200">
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-2 text-gray-700">Titre du chapitre</label>
+                        <input type="text" class="chapter-title w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Entrez le titre du chapitre">
+                    </div>
+                    
+                    <!-- Container pour les parties de ce chapitre -->
+                    <div class="parts-container">
+                        <!-- La première partie -->
+                        <div class="part-block bg-white rounded-lg p-4 mb-4 border border-gray-200">
+                            <div class="mb-3">
+                                <label class="block font-medium mb-1 text-gray-700">Titre de la partie</label>
+                                <input type="text" class="part-title w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Entrez le titre de la partie">
+                            </div>
+                            <div class="mb-3">
+                                <label class="block font-medium mb-1 text-gray-700">Contenu de la partie</label>
+                                <textarea class="part-content w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]" placeholder="Entrez le contenu de la partie"></textarea>
+                            </div>
+                            <div class="flex justify-end">
+                                <button class="remove-part-btn text-red-500 hover:text-red-700 focus:outline-none text-sm flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    Supprimer cette partie
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Boutons d'action pour ce chapitre -->
+                    <div class="flex flex-wrap gap-3 mt-4">
+                        <button class="add-part-btn bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Ajouter une partie
+                        </button>
+                        <button class="remove-chapter-btn bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            Supprimer ce chapitre
+                        </button>
+                        <button class="preview-chapter-btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Prévisualiser
+                        </button>
+                    </div>
+                    
+                    <!-- Section de prévisualisation (cachée par défaut) -->
+                    <div class="chapter-preview mt-4 transition-height max-h-0">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <h3 class="font-bold text-xl mb-2 text-blue-800 preview-chapter-title"></h3>
+                            <div class="preview-parts-container space-y-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Boutons d'action globaux -->
+            <div class="flex flex-wrap gap-3 mt-6">
+                <button id="add-chapter-btn" class="bg-purple-500 hover:bg-purple-600 text-white py-3 px-6 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    Ajouter un nouveau chapitre
+                </button>
+                <button id="save-course-btn" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                    </svg>
+                    Enregistrer le cours
+                </button>
+            </div>
+        </div>
+        
+        <!-- Aperçu du cours complet -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-blue-800">Aperçu du cours</h2>
+            <div id="course-preview">
+                <p class="text-gray-500 italic">L'aperçu du cours apparaîtra ici après l'enregistrement.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chaptersContainer = document.getElementById('chapters-container');
+            const addChapterBtn = document.getElementById('add-chapter-btn');
+            const saveCourseBtn = document.getElementById('save-course-btn');
+            const coursePreview = document.getElementById('course-preview');
+            
+            // Attacher les écouteurs d'événements pour le premier chapitre
+            attachChapterEventListeners(chaptersContainer.querySelector('.chapter-block'));
+
+            // Ajouter un nouveau chapitre
+            addChapterBtn.addEventListener('click', function() {
+                const newChapter = createChapterBlock();
+                chaptersContainer.appendChild(newChapter);
+                attachChapterEventListeners(newChapter);
+            });
+
+            // Enregistrer le cours
+            saveCourseBtn.addEventListener('click', function() {
+                generateCoursePreview();
+            });
+
+            // Fonctions utilitaires
+            function createChapterBlock() {
+                const chapterBlock = document.createElement('div');
+                chapterBlock.className = 'chapter-block bg-gray-50 rounded-lg p-4 mb-6 border border-gray-200';
+                chapterBlock.innerHTML = `
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-2 text-gray-700">Titre du chapitre</label>
+                        <input type="text" class="chapter-title w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Entrez le titre du chapitre">
+                    </div>
+                    
+                    <div class="parts-container">
+                        <div class="part-block bg-white rounded-lg p-4 mb-4 border border-gray-200">
+                            <div class="mb-3">
+                                <label class="block font-medium mb-1 text-gray-700">Titre de la partie</label>
+                                <input type="text" class="part-title w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Entrez le titre de la partie">
+                            </div>
+                            <div class="mb-3">
+                                <label class="block font-medium mb-1 text-gray-700">Contenu de la partie</label>
+                                <textarea class="part-content w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]" placeholder="Entrez le contenu de la partie"></textarea>
+                            </div>
+                            <div class="flex justify-end">
+                                <button class="remove-part-btn text-red-500 hover:text-red-700 focus:outline-none text-sm flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    Supprimer cette partie
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-3 mt-4">
+                        <button class="add-part-btn bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Ajouter une partie
+                        </button>
+                        <button class="remove-chapter-btn bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            Supprimer ce chapitre
+                        </button>
+                        <button class="preview-chapter-btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Prévisualiser
+                        </button>
+                    </div>
+                    
+                    <div class="chapter-preview mt-4 transition-height max-h-0">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <h3 class="font-bold text-xl mb-2 text-blue-800 preview-chapter-title"></h3>
+                            <div class="preview-parts-container space-y-3"></div>
+                        </div>
+                    </div>
+                `;
+                return chapterBlock;
+            }
+
+            function createPartBlock() {
+                const partBlock = document.createElement('div');
+                partBlock.className = 'part-block bg-white rounded-lg p-4 mb-4 border border-gray-200';
+                partBlock.innerHTML = `
+                    <div class="mb-3">
+                        <label class="block font-medium mb-1 text-gray-700">Titre de la partie</label>
+                        <input type="text" class="part-title w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Entrez le titre de la partie">
+                    </div>
+                    <div class="mb-3">
+                        <label class="block font-medium mb-1 text-gray-700">Contenu de la partie</label>
+                        <textarea class="part-content w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]" placeholder="Entrez le contenu de la partie"></textarea>
+                    </div>
+                    <div class="flex justify-end">
+                        <button class="remove-part-btn text-red-500 hover:text-red-700 focus:outline-none text-sm flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            Supprimer cette partie
+                        </button>
+                    </div>
+                `;
+                return partBlock;
+            }
+
+            function attachChapterEventListeners(chapterBlock) {
+                // Ajouter une partie
+                const addPartBtn = chapterBlock.querySelector('.add-part-btn');
+                addPartBtn.addEventListener('click', function() {
+                    const partsContainer = chapterBlock.querySelector('.parts-container');
+                    const newPart = createPartBlock();
+                    partsContainer.appendChild(newPart);
+                    
+                    // Attacher l'écouteur d'événement pour le bouton de suppression de partie
+                    const removePartBtn = newPart.querySelector('.remove-part-btn');
+                    removePartBtn.addEventListener('click', function() {
+                        if (partsContainer.querySelectorAll('.part-block').length > 1) {
+                            newPart.remove();
+                        } else {
+                            alert('Chaque chapitre doit avoir au moins une partie.');
+                        }
+                    });
+                });
+                
+                // Supprimer le chapitre
+                const removeChapterBtn = chapterBlock.querySelector('.remove-chapter-btn');
+                removeChapterBtn.addEventListener('click', function() {
+                    if (document.querySelectorAll('.chapter-block').length > 1) {
+                        chapterBlock.remove();
+                    } else {
+                        alert('Vous devez avoir au moins un chapitre.');
+                    }
+                });
+                
+                // Prévisualiser le chapitre
+                const previewChapterBtn = chapterBlock.querySelector('.preview-chapter-btn');
+                previewChapterBtn.addEventListener('click', function() {
+                    const chapterPreview = chapterBlock.querySelector('.chapter-preview');
+                    const previewChapterTitle = chapterBlock.querySelector('.preview-chapter-title');
+                    const previewPartsContainer = chapterBlock.querySelector('.preview-parts-container');
+                    
+                    // Toggle visibility
+                    if (chapterPreview.style.maxHeight === "1000px") {
+                        chapterPreview.style.maxHeight = "0";
+                        previewChapterBtn.textContent = "Prévisualiser";
+                        previewChapterBtn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Prévisualiser
+                        `;
+                        return;
+                    }
+                    
+                    // Update preview content
+                    const chapterTitle = chapterBlock.querySelector('.chapter-title').value || "Sans titre";
+                    previewChapterTitle.textContent = chapterTitle;
+                    
+                    // Clear previous preview
+                    previewPartsContainer.innerHTML = '';
+                    
+                    // Add parts to preview
+                    const partBlocks = chapterBlock.querySelectorAll('.part-block');
+                    partBlocks.forEach((partBlock, index) => {
+                        const partTitle = partBlock.querySelector('.part-title').value || "Sans titre";
+                        const partContent = partBlock.querySelector('.part-content').value || "Aucun contenu";
+                        
+                        const partPreview = document.createElement('div');
+                        partPreview.className = 'part-preview';
+                        partPreview.innerHTML = `
+                            <h4 class="font-semibold text-lg mb-1 text-blue-700">${index + 1}. ${partTitle}</h4>
+                            <p class="text-gray-700 whitespace-pre-line">${partContent}</p>
+                        `;
+                        
+                        previewPartsContainer.appendChild(partPreview);
+                    });
+                    
+                    // Show preview
+                    chapterPreview.style.maxHeight = "1000px";
+                    previewChapterBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        Fermer la prévisualisation
+                    `;
+                });
+                
+                // Attacher les écouteurs d'événements pour les boutons de suppression de partie existants
+                const partBlocks = chapterBlock.querySelectorAll('.part-block');
+                partBlocks.forEach(partBlock => {
+                    const removePartBtn = partBlock.querySelector('.remove-part-btn');
+                    removePartBtn.addEventListener('click', function() {
+                        const partsContainer = chapterBlock.querySelector('.parts-container');
+                        if (partsContainer.querySelectorAll('.part-block').length > 1) {
+                            partBlock.remove();
+                        } else {
+                            alert('Chaque chapitre doit avoir au moins une partie.');
+                        }
+                    });
+                });
+            }
+
+            function generateCoursePreview() {
+                const courseTitle = document.getElementById('course-title').value || "Cours sans titre";
+                const chapterBlocks = document.querySelectorAll('.chapter-block');
+                let courseData = {
+                    title: courseTitle,
+                    chapters: []
+                };
+                
+                // Collecter les données
+                chapterBlocks.forEach((chapterBlock, chapterIndex) => {
+                    const chapterTitle = chapterBlock.querySelector('.chapter-title').value || `Chapitre ${chapterIndex + 1}`;
+                    const partBlocks = chapterBlock.querySelectorAll('.part-block');
+                    
+                    let chapter = {
+                        title: chapterTitle,
+                        parts: []
+                    };
+                    
+                    partBlocks.forEach((partBlock, partIndex) => {
+                        const partTitle = partBlock.querySelector('.part-title').value || `Partie ${partIndex + 1}`;
+                        const partContent = partBlock.querySelector('.part-content').value || "Aucun contenu";
+                        
+                        chapter.parts.push({
+                            title: partTitle,
+                            content: partContent
+                        });
+                    });
+                    
+                    courseData.chapters.push(chapter);
+                });
+                
+                // Générer l'aperçu HTML
+                let previewHTML = `
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900">${courseData.title}</h2>
+                `;
+                
+                courseData.chapters.forEach((chapter, chapterIndex) => {
+                    previewHTML += `
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold mb-4 text-blue-800">Chapitre ${chapterIndex + 1}: ${chapter.title}</h3>
+                            <div class="pl-4 border-l-4 border-blue-200">
+                    `;
+                    
+                    chapter.parts.forEach((part, partIndex) => {
+                        previewHTML += `
+                            <div class="mb-4">
+                                <h4 class="text-lg font-semibold mb-2 text-blue-700">${chapterIndex + 1}.${partIndex + 1} ${part.title}</h4>
+                                <div class="text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200 whitespace-pre-line">${part.content}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    previewHTML += `
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // Ajouter des contrôles d'exportation
+                previewHTML += `
+                    <div class="mt-6 flex gap-3">
+                        <button id="export-json-btn" class="bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Exporter (JSON)
+                        </button>
+                        <button id="print-course-btn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                            </svg>
+                            Imprimer
+                        </button>
+                    </div>
+                `;
+                
+                // Afficher l'aperçu
+                coursePreview.innerHTML = previewHTML;
+                
+                // Attacher les fonctionnalités d'export et d'impression
+                const exportJsonBtn = document.getElementById('export-json-btn');
+                exportJsonBtn.addEventListener('click', function() {
+                    const jsonStr = JSON.stringify(courseData, null, 2);
+                    const blob = new Blob([jsonStr], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${courseData.title.replace(/\s+/g, '_')}_cours.json`;
+                    a.click();
+                    
+                    setTimeout(() => {
+                        URL.revokeObjectURL(url);
+                    }, 100);
+                });
+                
+                const printCourseBtn = document.getElementById('print-course-btn');
+                
+            }
+        });
+    </script>
+</body>
+</html>

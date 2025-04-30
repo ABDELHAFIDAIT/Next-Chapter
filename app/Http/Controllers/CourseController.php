@@ -54,9 +54,15 @@ class CourseController extends Controller
             'duration' => $duration,
         ]);
 
+        $course = Course::orderBy('id', 'desc')->first();
        
     
-        return redirect()->back()->with('success', 'Cours créé avec succès.');
+        return redirect()->route('teacher.course.create', $course);
+    }
+
+    public function complete(){
+        $course = Course::orderBy('id', 'desc')->first();
+        return view('teacher.courses.create', compact('course'));
     }
 
     public function indexForPrisonner(){

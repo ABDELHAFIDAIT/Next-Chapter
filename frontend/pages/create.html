@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Création de Chapitres avec CKEditor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Intégration de CKEditor 5 via CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <style>
+        /* Styles pour CKEditor */
+        .ck-editor__editable {
+            min-height: 200px;
+            max-height: 400px;
+        }
+        .ck-content {
+            font-size: 1rem;
+        }
+        /* Assurer que l'éditeur s'adapte à la largeur du conteneur */
+        .ck.ck-editor {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Création de Chapitres de Cours</h1>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <form id="course-form" method="POST" action="/api/submit-course">
+                <div id="chapters-container">
+                    <!-- Premier chapitre -->
+                    <div class="chapter-form mb-8 border-b pb-6">
+                        <div class="mb-4">
+                            <label for="chapter-title-0" class="block text-sm font-medium text-gray-700 mb-1">Titre du Chapitre</label>
+                            <input type="text" name="chapters[0][title]" id="chapter-title-0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <div class="parts-container">
+                            <!-- Première partie -->
+                            <div class="part-form bg-gray-50 p-4 rounded-md mb-4">
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Titre de la Partie</label>
+                                    <input type="text" name="chapters[0][parts][0][title]" class="part-title w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contenu de la Partie</label>
+                                    <!-- Div qui sera transformé en CKEditor -->
+                                    <div class="ckeditor-container">
+                                        <div class="editor" id="editor-0-0"></div>
+                                        <input type="hidden" name="chapters[0][parts][0][content]" class="editor-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="add-part-btn mt-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                            </svg>
+                            Ajouter une partie
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between">
+                    <button type="button" id="add-chapter-btn" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                        </svg>
+                        Ajouter un chapitre
+                    </button>
+                    
+                    <button type="submit" id="submit-form-btn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        Envoyer au serveur
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Aperçu des données -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Aperçu des données à envoyer</h2>
+            <pre id="data-preview" class="bg-gray-100 p-4 rounded-md overflow-auto max-h-96 text-sm">
+                Les données du formulaire s'afficheront ici...
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let chapterCount = 1;
+            // Stockage des instances CKEditor
+            const editorInstances = {};
+            
+            // Initialiser le premier éditeur
+            initCKEditor('editor-0-0');
+            
+            // Fonction pour initialiser CKEditor
+            function initCKEditor(editorId) {
+                const editorElement = document.getElementById(editorId);
+                if (!editorElement) return;
+                
+                ClassicEditor
+                    .create(editorElement, {
+                        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'outdent', 'indent', '|', 'blockQuote', 'insertTable', 'undo', 'redo'],
+                        placeholder: 'Saisissez le contenu de cette partie...'
+                    })
+                    .then(editor => {
+                        editorInstances[editorId] = editor;
+                        
+                        // Mettre à jour le champ caché lorsque le contenu change
+                        editor.model.document.on('change:data', () => {
+                            const hiddenInput = editorElement.closest('.ckeditor-container').querySelector('.editor-content');
+                            hiddenInput.value = editor.getData();
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+            
+            // Fonction pour mettre à jour les noms des champs
+            function updateFieldNames() {
+                const chapters = document.querySelectorAll('.chapter-form');
+                
+                chapters.forEach((chapter, chapterIndex) => {
+                    // Mettre à jour le nom du champ de titre du chapitre
+                    const chapterTitleInput = chapter.querySelector('input[id^="chapter-title"]');
+                    chapterTitleInput.name = `chapters[${chapterIndex}][title]`;
+                    chapterTitleInput.id = `chapter-title-${chapterIndex}`;
+                    
+                    // Mettre à jour les noms des champs des parties
+                    const parts = chapter.querySelectorAll('.part-form');
+                    parts.forEach((part, partIndex) => {
+                        const titleInput = part.querySelector('.part-title');
+                        const contentInput = part.querySelector('.editor-content');
+                        const editorDiv = part.querySelector('.editor');
+                        
+                        titleInput.name = `chapters[${chapterIndex}][parts][${partIndex}][title]`;
+                        contentInput.name = `chapters[${chapterIndex}][parts][${partIndex}][content]`;
+                        
+                        // Mettre à jour l'ID de l'éditeur si nécessaire
+                        const newEditorId = `editor-${chapterIndex}-${partIndex}`;
+                        if (editorDiv && editorDiv.id !== newEditorId) {
+                            // Si l'instance d'éditeur existe, la détruire
+                            if (editorInstances[editorDiv.id]) {
+                                editorInstances[editorDiv.id].destroy()
+                                    .then(() => {
+                                        delete editorInstances[editorDiv.id];
+                                    })
+                                    .catch(error => {
+                                        console.error('Erreur lors de la destruction de l\'éditeur:', error);
+                                    });
+                            }
+                            
+                            editorDiv.id = newEditorId;
+                            // Initialiser le nouvel éditeur
+                            initCKEditor(newEditorId);
+                        }
+                    });
+                });
+            }
+            
+            // Ajouter une partie
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.add-part-btn')) {
+                    const chapterForm = e.target.closest('.chapter-form');
+                    const partsContainer = chapterForm.querySelector('.parts-container');
+                    const chapterIndex = Array.from(document.querySelectorAll('.chapter-form')).indexOf(chapterForm);
+                    const partIndex = partsContainer.querySelectorAll('.part-form').length;
+                    const newEditorId = `editor-${chapterIndex}-${partIndex}`;
+                    
+                    const newPartForm = document.createElement('div');
+                    newPartForm.className = 'part-form bg-gray-50 p-4 rounded-md mb-4';
+                    newPartForm.innerHTML = `
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-sm font-medium text-gray-700">Nouvelle Partie</h4>
+                            <button type="button" class="remove-part-btn text-red-500 hover:text-red-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mb-3">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Titre de la Partie</label>
+                            <input type="text" name="chapters[${chapterIndex}][parts][${partIndex}][title]" class="part-title w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-3">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Contenu de la Partie</label>
+                            <div class="ckeditor-container">
+                                <div class="editor" id="${newEditorId}"></div>
+                                <input type="hidden" name="chapters[${chapterIndex}][parts][${partIndex}][content]" class="editor-content">
+                            </div>
+                        </div>
+                    `;
+                    
+                    partsContainer.appendChild(newPartForm);
+                    initCKEditor(newEditorId);
+                    updateFieldNames();
+                }
+            });
+            
+            // Supprimer une partie
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.remove-part-btn')) {
+                    const partForm = e.target.closest('.part-form');
+                    const editorDiv = partForm.querySelector('.editor');
+                    
+                    // Détruire l'instance CKEditor avant de supprimer le DOM
+                    if (editorDiv && editorInstances[editorDiv.id]) {
+                        editorInstances[editorDiv.id].destroy()
+                            .then(() => {
+                                delete editorInstances[editorDiv.id];
+                                partForm.remove();
+                                updateFieldNames();
+                            })
+                            .catch(error => {
+                                console.error('Erreur lors de la destruction de l\'éditeur:', error);
+                                partForm.remove();
+                                updateFieldNames();
+                            });
+                    } else {
+                        partForm.remove();
+                        updateFieldNames();
+                    }
+                }
+            });
+            
+            // Ajouter un nouveau chapitre
+            document.getElementById('add-chapter-btn').addEventListener('click', function() {
+                const chaptersContainer = document.getElementById('chapters-container');
+                const newEditorId = `editor-${chapterCount}-0`;
+                
+                const newChapterForm = document.createElement('div');
+                newChapterForm.className = 'chapter-form mb-8 border-b pb-6';
+                newChapterForm.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <label for="chapter-title-${chapterCount}" class="block text-sm font-medium text-gray-700">Titre du Chapitre</label>
+                        <button type="button" class="remove-chapter-btn text-red-500 hover:text-red-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mb-4">
+                        <input type="text" name="chapters[${chapterCount}][title]" id="chapter-title-${chapterCount}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div class="parts-container">
+                        <div class="part-form bg-gray-50 p-4 rounded-md mb-4">
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Titre de la Partie</label>
+                                <input type="text" name="chapters[${chapterCount}][parts][0][title]" class="part-title w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Contenu de la Partie</label>
+                                <div class="ckeditor-container">
+                                    <div class="editor" id="${newEditorId}"></div>
+                                    <input type="hidden" name="chapters[${chapterCount}][parts][0][content]" class="editor-content">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="add-part-btn mt-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                        </svg>
+                        Ajouter une partie
+                    </button>
+                `;
+                
+                chaptersContainer.appendChild(newChapterForm);
+                initCKEditor(newEditorId);
+                chapterCount++;
+                updateFieldNames();
+            });
+            
+            // Supprimer un chapitre
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.remove-chapter-btn')) {
+                    const chapterForm = e.target.closest('.chapter-form');
+                    const editorDivs = chapterForm.querySelectorAll('.editor');
+                    
+                    // Détruire toutes les instances CKEditor dans ce chapitre
+                    const destroyPromises = [];
+                    editorDivs.forEach(editorDiv => {
+                        if (editorInstances[editorDiv.id]) {
+                            destroyPromises.push(
+                                editorInstances[editorDiv.id].destroy()
+                                    .then(() => {
+                                        delete editorInstances[editorDiv.id];
+                                    })
+                            );
+                        }
+                    });
+                    
+                    Promise.all(destroyPromises)
+                        .then(() => {
+                            chapterForm.remove();
+                            updateFieldNames();
+                        })
+                        .catch(error => {
+                            console.error('Erreur lors de la destruction des éditeurs:', error);
+                            chapterForm.remove();
+                            updateFieldNames();
+                        });
+                }
+            });
+            
+            // Gérer la soumission du formulaire
+            document.getElementById('course-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Mettre à jour tous les champs cachés avec le contenu des éditeurs
+                Object.keys(editorInstances).forEach(editorId => {
+                    const editor = editorInstances[editorId];
+                    const container = document.getElementById(editorId).closest('.ckeditor-container');
+                    const hiddenInput = container.querySelector('.editor-content');
+                    hiddenInput.value = editor.getData();
+                });
+                
+                // Collecter les données du formulaire
+                const formData = new FormData(this);
+                const formDataObject = {};
+                
+                // Convertir FormData en objet structuré
+                for (const [key, value] of formData.entries()) {
+                    // Utiliser une expression régulière pour extraire les indices et les noms de propriétés
+                    const matches = key.match(/chapters\[(\d+)\]\[([^\]]+)\](?:\[(\d+)\]\[([^\]]+)\])?/);
+                    
+                    if (matches) {
+                        const chapterIndex = matches[1];
+                        const chapterProp = matches[2];
+                        
+                        // Initialiser la structure si nécessaire
+                        if (!formDataObject.chapters) {
+                            formDataObject.chapters = [];
+                        }
+                        
+                        if (!formDataObject.chapters[chapterIndex]) {
+                            formDataObject.chapters[chapterIndex] = {};
+                        }
+                        
+                        if (chapterProp === 'parts') {
+                            const partIndex = matches[3];
+                            const partProp = matches[4];
+                            
+                            if (!formDataObject.chapters[chapterIndex].parts) {
+                                formDataObject.chapters[chapterIndex].parts = [];
+                            }
+                            
+                            if (!formDataObject.chapters[chapterIndex].parts[partIndex]) {
+                                formDataObject.chapters[chapterIndex].parts[partIndex] = {};
+                            }
+                            
+                            formDataObject.chapters[chapterIndex].parts[partIndex][partProp] = value;
+                        } else {
+                            formDataObject.chapters[chapterIndex][chapterProp] = value;
+                        }
+                    }
+                }
+                
+                // Nettoyer les tableaux (supprimer les trous)
+                formDataObject.chapters = formDataObject.chapters.filter(Boolean);
+                formDataObject.chapters.forEach(chapter => {
+                    if (chapter.parts) {
+                        chapter.parts = chapter.parts.filter(Boolean);
+                    }
+                });
+                
+                // Afficher les données dans l'aperçu
+                document.getElementById('data-preview').textContent = JSON.stringify(formDataObject, null, 2);
+                
+                // Envoyer les données au serveur (décommentez pour activer)
+                /*
+                fetch('/api/submit-course', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formDataObject),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Succès:', data);
+                    alert('Cours enregistré avec succès!');
+                })
+                .catch((error) => {
+                    console.error('Erreur:', error);
+                    alert('Erreur lors de l\'enregistrement du cours.');
+                });
+                */
+                
+                // Pour démonstration, afficher les données dans la console
+                console.log('Données à envoyer au backend:', formDataObject);
+            });
+        });
+    </script>
+</body>
+</html>
