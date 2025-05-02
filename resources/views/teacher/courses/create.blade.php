@@ -141,7 +141,7 @@
                     </div>
                 </div>
                 <div class="p-10 bg-white rounded-md shadow-sm my-5">
-                    <form action="" class="col-span-3">
+                    <form id="course-form" class="col-span-3">
                         <div id="chapters-container">
                             <!-- Premier chapitre -->
                             <div class="chapter-form mb-8 border-b pb-6">
@@ -198,13 +198,10 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 let chapterCount = 1;
-                // Stockage des instances CKEditor
                 const editorInstances = {};
                 
-                // Initialiser le premier éditeur
                 initCKEditor('editor-0-0');
                 
-                // Fonction pour initialiser CKEditor
                 function initCKEditor(editorId) {
                     const editorElement = document.getElementById(editorId);
                     if (!editorElement) return;
@@ -228,17 +225,15 @@
                         });
                 }
                 
-                // Fonction pour mettre à jour les noms des champs
                 function updateFieldNames() {
                     const chapters = document.querySelectorAll('.chapter-form');
                     
                     chapters.forEach((chapter, chapterIndex) => {
-                        // Mettre à jour le nom du champ de titre du chapitre
                         const chapterTitleInput = chapter.querySelector('input[id^="chapter-title"]');
                         chapterTitleInput.name = `chapters[${chapterIndex}][title]`;
                         chapterTitleInput.id = `chapter-title-${chapterIndex}`;
                         
-                        // Mettre à jour les noms des champs des parties
+                        
                         const parts = chapter.querySelectorAll('.part-form');
                         parts.forEach((part, partIndex) => {
                             const titleInput = part.querySelector('.part-title');
@@ -248,10 +243,10 @@
                             titleInput.name = `chapters[${chapterIndex}][parts][${partIndex}][title]`;
                             contentInput.name = `chapters[${chapterIndex}][parts][${partIndex}][content]`;
                             
-                            // Mettre à jour l'ID de l'éditeur si nécessaire
+                            
                             const newEditorId = `editor-${chapterIndex}-${partIndex}`;
                             if (editorDiv && editorDiv.id !== newEditorId) {
-                                // Si l'instance d'éditeur existe, la détruire
+                                
                                 if (editorInstances[editorDiv.id]) {
                                     editorInstances[editorDiv.id].destroy()
                                         .then(() => {
@@ -263,14 +258,14 @@
                                 }
                                 
                                 editorDiv.id = newEditorId;
-                                // Initialiser le nouvel éditeur
+                                
                                 initCKEditor(newEditorId);
                             }
                         });
                     });
                 }
                 
-                // Ajouter une partie
+                
                 document.addEventListener('click', function(e) {
                     if (e.target.closest('.add-part-btn')) {
                         const chapterForm = e.target.closest('.chapter-form');
@@ -309,13 +304,13 @@
                     }
                 });
                 
-                // Supprimer une partie
+                
                 document.addEventListener('click', function(e) {
                     if (e.target.closest('.remove-part-btn')) {
                         const partForm = e.target.closest('.part-form');
                         const editorDiv = partForm.querySelector('.editor');
                         
-                        // Détruire l'instance CKEditor avant de supprimer le DOM
+                        
                         if (editorDiv && editorInstances[editorDiv.id]) {
                             editorInstances[editorDiv.id].destroy()
                                 .then(() => {
@@ -335,7 +330,7 @@
                     }
                 });
                 
-                // Ajouter un nouveau chapitre
+                
                 document.getElementById('add-chapter-btn').addEventListener('click', function() {
                     const chaptersContainer = document.getElementById('chapters-container');
                     const newEditorId = `editor-${chapterCount}-0`;
@@ -385,13 +380,13 @@
                     updateFieldNames();
                 });
                 
-                // Supprimer un chapitre
+                
                 document.addEventListener('click', function(e) {
                     if (e.target.closest('.remove-chapter-btn')) {
                         const chapterForm = e.target.closest('.chapter-form');
                         const editorDivs = chapterForm.querySelectorAll('.editor');
                         
-                        // Détruire toutes les instances CKEditor dans ce chapitre
+                        
                         const destroyPromises = [];
                         editorDivs.forEach(editorDiv => {
                             if (editorInstances[editorDiv.id]) {
@@ -417,11 +412,11 @@
                     }
                 });
                 
-                // Gérer la soumission du formulaire
+                
                 document.getElementById('course-form').addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Mettre à jour tous les champs cachés avec le contenu des éditeurs
+                    
                     Object.keys(editorInstances).forEach(editorId => {
                         const editor = editorInstances[editorId];
                         const container = document.getElementById(editorId).closest('.ckeditor-container');
@@ -429,20 +424,20 @@
                         hiddenInput.value = editor.getData();
                     });
                     
-                    // Collecter les données du formulaire
+                    
                     const formData = new FormData(this);
                     const formDataObject = {};
                     
-                    // Convertir FormData en objet structuré
+                    
                     for (const [key, value] of formData.entries()) {
-                        // Utiliser une expression régulière pour extraire les indices et les noms de propriétés
+                        
                         const matches = key.match(/chapters\[(\d+)\]\[([^\]]+)\](?:\[(\d+)\]\[([^\]]+)\])?/);
                         
                         if (matches) {
                             const chapterIndex = matches[1];
                             const chapterProp = matches[2];
                             
-                            // Initialiser la structure si nécessaire
+                            
                             if (!formDataObject.chapters) {
                                 formDataObject.chapters = [];
                             }
@@ -470,7 +465,7 @@
                         }
                     }
                     
-                    // Nettoyer les tableaux (supprimer les trous)
+                    
                     formDataObject.chapters = formDataObject.chapters.filter(Boolean);
                     formDataObject.chapters.forEach(chapter => {
                         if (chapter.parts) {
@@ -478,8 +473,8 @@
                         }
                     });
                     
-                    // Afficher les données dans l'aperçu
-                    document.getElementById('data-preview').textContent = JSON.stringify(formDataObject, null, 2);
+                    
+                    // document.getElementById('data-preview').textContent = JSON.stringify(formDataObject, null, 2);
                     
                     const courseId = {{ $course->id }};
 
@@ -492,14 +487,16 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        alert(data.message);
+                        // alert(data.message);
+                        // header('location: /teacher/courses');
+                        window.location.href = "/teacher/courses";
                     })
                     .catch((error) => {
                         console.error('Erreur:', error);
                         alert("Erreur lors de l'enregistrement du cours");
                     });
                     
-                    // Pour démonstration, afficher les données dans la console
+                    
                     console.log('Données à envoyer au backend:', formDataObject);
                 });
             });
