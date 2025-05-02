@@ -63,7 +63,51 @@
         </div>
         <div>
             <h1 class="mb-8 font-semibold text-3xl text-[#003877]">Resume</h1>
+            @foreach ($course->chapters as $chapter)
             <div>
+                <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Chapter {{ $chapter->order}} : {{  $chapter->title }}</h1>
+                <div class="ml-10 border-l border-l-gray-400 py-5 flex flex-col gap-5">
+                    @foreach ($chapter->parts as $part)
+                        <div class="text-sm flex items-center gap-3">
+                            <div class="bg-gray-400 h-[1px] w-10"></div>
+                            <h1 class="font-light">
+                                <span class="font-medium">Part {{ $part->order }} : </span>
+                                {{ $part->title }}
+                            </h1>
+                        </div>
+                    @endforeach
+                    {{-- <div class="text-sm flex items-center gap-3">
+                        <div class="bg-gray-400 h-[1px] w-10"></div>
+                        <h1 class="font-light">
+                            <span class="font-medium">Chapter I : </span>
+                            Set up your Python Environment
+                        </h1>
+                    </div>
+                    <div class="text-sm flex items-center gap-3">
+                        <div class="bg-gray-400 h-[1px] w-10"></div>
+                        <h1 class="font-light">
+                            <span class="font-medium">Chapter II : </span>
+                            Set up your Python Environment
+                        </h1>
+                    </div>
+                    <div class="text-sm flex items-center gap-3">
+                        <div class="bg-gray-400 h-[1px] w-10"></div>
+                        <h1 class="font-light">
+                            <span class="font-medium">Chapter III : </span>
+                            Set up your Python Environment
+                        </h1>
+                    </div>
+                    <div class="text-sm flex items-center gap-3">
+                        <div class="bg-gray-400 h-[1px] w-10"></div>
+                        <h1 class="font-light">
+                            <span class="font-medium">Chapter VI : </span>
+                            Set up your Python Environment
+                        </h1>
+                    </div> --}}
+                </div>
+            </div>
+            @endforeach
+            {{-- <div>
                 <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Course 1 : Introduction to Python</h1>
                 <div class="ml-10 border-l border-l-gray-400 py-5 flex flex-col gap-5">
                     <div class="text-sm flex items-center gap-3">
@@ -147,7 +191,7 @@
                         </h1>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
     

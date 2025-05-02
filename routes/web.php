@@ -72,7 +72,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', function(){ return view('prisonner.index'); })->name('prisonner.index');
         Route::get('/profile', [PrisonnerController::class, 'showProfile'])->name('prisonner.profile');
         Route::get('/courses', [CourseController::class,'indexForPrisonner'])->name('prisonner.courses');
-        Route::get('/courses/details/{id}', [CourseController::class, 'showForPrisonner'])->name('prisonner.course.details');
+        Route::get('/courses/details/{id}', [CourseController::class, 'showDetails'])->name('prisonner.course.details');
+        Route::post('/courses/search', [CourseController::class, 'search'])->name('prisonner.courses.search');
+        Route::post('/courses/filter', [CourseController::class, 'filterByCategory'])->name('prisonner.courses.filter');
     });
 
     

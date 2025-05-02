@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -67,11 +68,22 @@ class CourseController extends Controller
 
     public function indexForPrisonner(){
         $courses = Course::with(['category', 'teacher'])->paginate(6);
-        return view('prisonner.courses', compact('courses'));
+        $categories = Category::orderBy('name','asc')->get();
+        return view('prisonner.courses', compact('courses','categories'));
     }
 
-    public function showForPrisonner($id){
-        $course = Course::with(['category', 'teacher'])->findOrFail($id);
+    public function showDetails($id){
+        // $course = Course::with(['category', 'teacher','chapters', 'chapters.parts'])->orderBy('chapters.order','asc')->orderBy('parts.order','asc')->findOrFail($id);
+        $course = Course::with([
+            'category',
+            'teacher',
+            'chapters' => function ($query) {
+                $query->orderBy('order', 'asc');
+            },
+            'chapters.parts' => function ($query) {
+                $query->orderBy('order', 'asc');
+            }
+        ])->findOrFail($id);
         
         $suggestedCourses = Course::where('id_category', $course->id_category)
             ->where('id', '!=', $course->id)
@@ -97,5 +109,42 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         $course->delete();
         return redirect()->back()->with('success', 'Cours supprimé avec succès.');
+    }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+
+        $courses = Course::with(['category', 'teacher'])
+            ->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")
+                    ->orWhere('description', 'LIKE', "%$search%")
+                    ->orWhereHas('teacher', function ($q) use ($search) {
+                        $q->where('f_name', 'LIKE', "%$search%")
+                            ->orWhere('l_name', 'LIKE', "%$search%");
+                    });
+            })
+            ->paginate(6);
+        
+        $categories = Category::orderBy('name','asc')->get();
+
+        return view('prisonner.search', compact('courses','categories'));
+
+    }
+
+
+    public function filterByCategory(Request $request){
+        $id_category = $request->input('category');
+        
+        if($id_category == 0){
+            return redirect()->route('prisonner.courses');
+        }
+        
+        $courses = Course::with(['category', 'teacher'])
+            ->where('id_category', $id_category)
+            ->paginate(6);
+        
+        $categories = Category::orderBy('name','asc')->get();
+    
+        return view('prisonner.filter', compact('courses','categories'));
     }
 }
