@@ -147,4 +147,19 @@ class CourseController extends Controller
     
         return view('prisonner.filter', compact('courses','categories'));
     }
+
+    public function showForPrisonner($id){
+        $course = Course::with([
+            'category',
+            'teacher',
+            'chapters' => function ($query) {
+                $query->orderBy('order', 'asc');
+            },
+            'chapters.parts' => function ($query) {
+                $query->orderBy('order', 'asc');
+            }
+        ])->findOrFail($id);
+
+        return view('prisonner.course', compact('course'));
+    }
 }

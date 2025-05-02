@@ -75,6 +75,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/courses/details/{id}', [CourseController::class, 'showDetails'])->name('prisonner.course.details');
         Route::post('/courses/search', [CourseController::class, 'search'])->name('prisonner.courses.search');
         Route::post('/courses/filter', [CourseController::class, 'filterByCategory'])->name('prisonner.courses.filter');
+        Route::get('/course/{id}', [CourseController::class, 'showForPrisonner'])->name('prisonner.course');
     });
 
     
