@@ -33,4 +33,8 @@ class Course extends Model
     public function prisonners(){
         return $this->belongsToMany(Prisonner::class, 'course_prisonner', 'id_course', 'id_prisonner');
     }
+
+    public function chapters(){
+        return $this->hasMany(Chapter::class, 'id_course');
+    }
 }

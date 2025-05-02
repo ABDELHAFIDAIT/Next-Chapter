@@ -109,9 +109,9 @@
                 </div>
                 <div class="flex gap-5 my-5 p-4 bg-[#222] shadow-sm rounded-md w-max">
                     <img src="{{ asset('storage/'. $course->cover) }}" class="w-40 rounded-md">
-                    <div class="flex flex-col justify-between gap-5">
+                    <div class="flex flex-col gap-5">
                         <h1 class="text-lg font-semibold text-[#D6FF40]">{{ $course->title }}</h1>
-                        <p class="text-white font-light text-xs">{{ $course->description }}</p>
+                        <p class="text-white font-light text-xs">{{ substr($course->description,0,100).'...' }}</p>
                         <div class="flex gap-5">
                             <div class="flex items-center gap-2">
                                 <svg height="15px" width="15px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 305 305" xml:space="preserve" fill="#FFF">
@@ -481,9 +481,9 @@
                     // Afficher les données dans l'aperçu
                     document.getElementById('data-preview').textContent = JSON.stringify(formDataObject, null, 2);
                     
-                    // Envoyer les données au serveur (décommentez pour activer)
-                    /*
-                    fetch('/api/submit-course', {
+                    const courseId = {{ $course->id }};
+
+                    fetch(`/api/teacher/create-course/${courseId}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -492,14 +492,12 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Succès:', data);
-                        alert('Cours enregistré avec succès!');
+                        alert(data.message);
                     })
                     .catch((error) => {
                         console.error('Erreur:', error);
-                        alert('Erreur lors de l\'enregistrement du cours.');
+                        alert("Erreur lors de l'enregistrement du cours");
                     });
-                    */
                     
                     // Pour démonstration, afficher les données dans la console
                     console.log('Données à envoyer au backend:', formDataObject);
