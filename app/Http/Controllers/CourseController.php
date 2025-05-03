@@ -224,4 +224,20 @@ class CourseController extends Controller
         $courses = Course::with(['category', 'teacher'])->withCount('enrollments')->withCount('chapters')->paginate(8);
         return view('admin.courses', compact('courses'));
     }
+
+    public function refuse($id){
+        $course = Course::findOrFail($id);
+        $course->status = 'refused';
+        $course->save();
+
+        return redirect()->back()->with('success', 'Course Status updated successfully.');
+    }
+
+    public function publish($id){
+        $course = Course::findOrFail($id);
+        $course->status = 'published';
+        $course->save();
+
+        return redirect()->back()->with('success', 'Course Status updated successfully.');
+    }
 }

@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/course/{id}', [CourseController::class, 'showForAdmin'])->name('admin.course');
         Route::get('/courses',[CourseController::class, 'index'])->name('admin.courses');
+        Route::post('/course/refuse/{id}',[CourseController::class, 'refuse'])->name('admin.course.refuse');
+        Route::post('/course/publish/{id}',[CourseController::class, 'publish'])->name('admin.course.publish');
     });
 
     

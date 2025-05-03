@@ -91,8 +91,184 @@
             </header>
 
             <!-- Main Content Section -->
-            <section class="p-10 h-[calc(100vh-70px)] overflow-auto">
+            <section class="p-5 h-[calc(100vh-70px)] overflow-auto">
+                @if (session('success'))
+                    <div id="success-message" class="absolute top-6 right-3 z-50 font-light text-sm bg-green-100 text-green-800 py-2 px-5 border border-green-200 border-r-4 border-r-green-500 
+                    opacity-0 translate-x-10 transition-all duration-500 ease-in-out">
+                        {{ session('success') }}
+                    </div>
+
+                    <script>
+                        const message = document.getElementById('success-message');
                 
+                        setTimeout(() => {
+                            message.classList.remove('opacity-0', 'translate-x-10');
+                            message.classList.add('opacity-100', 'translate-x-0');
+                        }, 100); 
+
+                        
+                        setTimeout(() => {
+                            message.classList.remove('opacity-100', 'translate-x-0');
+                            message.classList.add('opacity-0', 'translate-x-10');
+                            
+                            setTimeout(() => message.remove(), 500);
+                        }, 5000);
+                    </script>
+                @endif
+
+
+                @if(count($courses) == 0)
+                    <h1 class="col-span-3 text-2xl font-semibold text-red-600">No Courses are Created Yet !</h1>
+                @else
+                    <div class="overflow-x-auto bg-white rounded-lg border border-gray-100">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-[#222] text-gray-200">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Cover</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Title</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Category</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Duration</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Level</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Chapters</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Enrollments</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
+                                @foreach($courses as $course)
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-4 py-4">
+                                            <img src="{{ asset('storage/'.$course->cover) }}" class="w-20 rounded-sm object-cover" alt="photo">
+                                        </td>
+                                        <td class="px-4 py-4 font-medium">
+                                            {{ substr($course->title,0,50).' ...' }}
+                                        </td>
+                                        <td class="px-4 py-4 font-medium">
+                                            {{ $course->category->name }}
+                                        </td>
+                                        <td class="px-4 py-4">
+                                            <span class="font-medium">{{ $course->duration }}</span> Hours
+                                        </td>
+                                        <td class="px-4 py-4">
+                                            {{ $course->level }}
+                                        </td>
+                                        <td class="px-4 py-4">
+                                            <span class="font-medium">{{ $course->chapters->count() }}</span> Chapters
+                                        </td>
+                                        <td class="px-4 py-4">
+                                            <span class="font-medium">{{ $course->enrollments->count() }}</span> Students
+                                        </td>
+                                        <td class="px-4 py-4">
+                                            @if($course->status === 'published')
+                                                <span class="inline-block px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">{{ ucfirst($course->status) }}</span>
+                                            @elseif($course->status === 'refused')
+                                                <span class="inline-block px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">{{ ucfirst($course->status) }}</span>
+                                            @else
+                                                <span class="inline-block px-2 py-1 text-xs font-semibold bg-yellow-100 text-yellow-800 rounded-full">{{ ucfirst($course->status) }}</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-4 py-4 text-center">
+                                            <div class="flex items-center justify-center gap-2">
+                                                @if($course->status === 'refused' || $course->status === 'pending')
+                                                    <form method="POST" action="{{ route('admin.course.publish', $course->id) }}">
+                                                        @csrf
+                                                        <button class="cursor-pointer">
+                                                            <svg fill="#02ba17" width="25px" height="25px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M208.00146,32h-160a16.01582,16.01582,0,0,0-16,16V208a16.01583,16.01583,0,0,0,16,16h160a16.01582,16.01582,0,0,0,16-16V48A16.01581,16.01581,0,0,0,208.00146,32ZM177.5249,109.78125l-58.67187,56a7.98451,7.98451,0,0,1-11.04688,0l-29.32812-28a7.99571,7.99571,0,1,1,11.04687-11.5625l23.80469,22.71875L166.478,98.21875a7.99571,7.99571,0,1,1,11.04687,11.5625Z"/>
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                                @if($course->status === 'published' || $course->status === 'pending')
+                                                    <form method="POST" action="{{ route('admin.course.refuse', $course->id) }}">
+                                                        @csrf
+                                                        <button class="cursor-pointer text-red-500">
+                                                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" 
+                                                                width="18px" height="18px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                                            <path d="M26,2C12.8,2,2,12.8,2,26s10.8,24,24,24s24-10.8,24-24S39.2,2,26,2z M37.9,27.7c-0.1,0.7-0.7,1.3-1.5,1.3
+                                                                H15.6c-0.8,0-1.4-0.5-1.5-1.3c-0.1-1.2-0.1-2.3,0-3.4c0.1-0.7,0.7-1.3,1.5-1.3h20.8c0.8,0,1.4,0.6,1.5,1.3
+                                                                C38,25.5,38,26.6,37.9,27.7z"/>
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                                <button class="open-user-infos-popup cursor-pointer" data-id-user="{{ $course}}">
+                                                    <svg fill="#2196F3" height="22px" width="22px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                                            viewBox="0 0 42 42" enable-background="new 0 0 42 42" xml:space="preserve">
+                                                        <path d="M15.3,20.1c0,3.1,2.6,5.7,5.7,5.7s5.7-2.6,5.7-5.7s-2.6-5.7-5.7-5.7S15.3,17,15.3,20.1z M23.4,32.4
+                                                            C30.1,30.9,40.5,22,40.5,22s-7.7-12-18-13.3c-0.6-0.1-2.6-0.1-3-0.1c-10,1-18,13.7-18,13.7s8.7,8.6,17,9.9
+                                                            C19.4,32.6,22.4,32.6,23.4,32.4z M11.1,20.7c0-5.2,4.4-9.4,9.9-9.4s9.9,4.2,9.9,9.4S26.5,30,21,30S11.1,25.8,11.1,20.7z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @if ($courses->hasPages())
+                        <nav>
+                            <ul class="flex items-center justify-center gap-5">
+                                {{-- Previous Page Link --}}
+                                @if ($courses->onFirstPage())
+                                    <li class="">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> <path d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" fill="#0F0F0F"></path> 
+                                            </g>
+                                        </svg>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ $courses->previousPageUrl() }}" class="">
+                                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier"> <path d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" fill="#0F0F0F"></path> 
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                {{-- Pagination Elements --}}
+                                @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
+                                    @if ($page == $courses->currentPage())
+                                        <li class="text-blue-500 font-semibold">{{ $page }}</li>
+                                    @else
+                                        <li><a href="{{ $url }}" class="hover:text-gray-600 font-semibold">{{ $page }}</a></li>
+                                    @endif
+                                @endforeach
+
+                                {{-- Next Page Link --}}
+                                @if ($courses->hasMorePages())
+                                    <li>
+                                        <a href="{{ $courses->nextPageUrl() }}" class="">
+                                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier"> 
+                                                    <path d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" fill="#0F0F0F"></path> 
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> 
+                                                <path d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" fill="#0F0F0F"></path> 
+                                            </g>
+                                        </svg>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
+                    @endif
+                @endif
             </section>
         </section>
     </main>

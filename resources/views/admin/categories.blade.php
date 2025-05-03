@@ -11,6 +11,30 @@
 </head>
 <body>
     <main class="flex">
+        @if (session('success'))
+            <div id="success-message" class="absolute top-6 right-3 z-50 font-light text-sm bg-green-100 text-green-800 py-2 px-5 border border-green-200 border-r-4 border-r-green-500 
+               opacity-0 translate-x-10 transition-all duration-500 ease-in-out">
+                {{ session('success') }}
+            </div>
+
+            <script>
+                const message = document.getElementById('success-message');
+        
+                setTimeout(() => {
+                    message.classList.remove('opacity-0', 'translate-x-10');
+                    message.classList.add('opacity-100', 'translate-x-0');
+                }, 100); 
+
+                
+                setTimeout(() => {
+                    message.classList.remove('opacity-100', 'translate-x-0');
+                    message.classList.add('opacity-0', 'translate-x-10');
+                    
+                    setTimeout(() => message.remove(), 500);
+                }, 5000);
+            </script>
+        @endif
+
         <!-- Sidebar Navigation -->
         <nav class="flex flex-col justify-between h-screen bg-[#222222] text-white p-4 w-56">
             <!-- Logo and Title -->
