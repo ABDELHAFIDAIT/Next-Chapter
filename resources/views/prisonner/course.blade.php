@@ -3,11 +3,11 @@
 @section('main')
     <!-- Navigation Section -->
     <section class="px-20 py-5">
-        <a href="{{ route('prisonner.course.details', $course->id) }}" class="flex items-center gap-1 font-medium text-lg">
+        <a href="{{ route('prisonner.my-courses') }}" class="flex items-center gap-1 font-medium text-lg">
             <svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
                 <path d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z"/>
             </svg>
-            <span>Back to Course Details</span>
+            <span>Return To My Course</span>
         </a>
     </section>
 

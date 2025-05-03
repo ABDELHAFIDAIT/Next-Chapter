@@ -67,7 +67,15 @@ class CourseController extends Controller
     }
 
     public function indexForPrisonner(){
-        $courses = Course::with(['category', 'teacher'])->paginate(6);
+        $id_prisonner = Auth::user()->id;
+
+        $enrolledCourseIds = \App\Models\Enrollment::where('id_prisonner', $id_prisonner)
+        ->pluck('id_course');
+
+        $courses = Course::with(['category', 'teacher'])
+        ->whereNotIn('id', $enrolledCourseIds)
+        ->paginate(6);
+        
         $categories = Category::orderBy('name','asc')->get();
         return view('prisonner.courses', compact('courses','categories'));
     }
@@ -161,5 +169,24 @@ class CourseController extends Controller
         ])->findOrFail($id);
 
         return view('prisonner.course', compact('course'));
+    }
+
+    public function showPrisonnerCourses(){
+        $id_prisonner = Auth::user()->id;
+
+        $courses = DB::table('courses')
+        ->leftJoin('categories', 'courses.id_category', '=', 'categories.id')
+        ->leftJoin('users', 'courses.id_teacher', '=', 'users.id')
+        ->whereIn('courses.id', function ($query) use ($id_prisonner) {
+            $query->select('id_course')
+                ->from('enrollments')
+                ->where('id_prisonner', $id_prisonner);
+        })->select(
+            'courses.*',
+            'categories.name as category_name',
+        )
+        ->paginate(6);
+        
+        return view('prisonner.mycourses', compact('courses'));
     }
 }

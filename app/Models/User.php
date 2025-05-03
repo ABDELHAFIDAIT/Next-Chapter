@@ -74,4 +74,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Media::class, 'id_user');
     }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'id_teacher');
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class, 'id_prisonner');
+    }
 }

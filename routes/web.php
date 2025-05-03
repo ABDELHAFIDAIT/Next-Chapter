@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
+use App\Models\Enrollment;
 use App\Models\Prisonner;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PrisonnerController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\EnrollmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +65,6 @@ Route::middleware(['auth'])->group(function () {
         // Update Profile
         Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('prisonner.update.profile');
         Route::post('/update-profile', [PrisonnerController::class, 'updateInformations'])->name('prisonner.profile.update');
-
         Route::get('/profil-update', [PrisonnerController::class, 'showupdateProfile'])->name('prisonner.update');
         Route::post('/infos-update', [PrisonnerController::class, 'updateProfileInfos'])->name('prisonner.infos.update');
         Route::post('/links-update', [PrisonnerController::class, 'updateProfileLinks'])->name('prisonner.links.update');
@@ -76,6 +77,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/courses/search', [CourseController::class, 'search'])->name('prisonner.courses.search');
         Route::post('/courses/filter', [CourseController::class, 'filterByCategory'])->name('prisonner.courses.filter');
         Route::get('/course/{id}', [CourseController::class, 'showForPrisonner'])->name('prisonner.course');
+
+        Route::post('/course/enroll', [EnrollmentController::class, 'enroll'])->name('prisonner.course.enroll');
+        Route::post('/course/unenroll', [EnrollmentController::class, 'unenroll'])->name('prisonner.course.unenroll');
+
+        Route::get('/my-courses', [CourseController::class, 'showPrisonnerCourses'] )->name('prisonner.my-courses');
     });
 
     

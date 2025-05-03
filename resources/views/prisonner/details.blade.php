@@ -48,16 +48,19 @@
             <img src="{{ asset('storage/'. $course->cover) }}" class="rounded-md">
         </div>
         <div class="col-span-2 ">
-            <a href="#">
+            <form method="POST" action="{{ route('prisonner.course.enroll') }}">
+                @csrf
+                <input type="hidden" name="id_course" value="{{ $course->id }}">
+                <input type="hidden" name="id_prisonner" value="{{ Auth::user()->id }}">
                 <button class="py-2 px-28 bg-[#222] text-white font-medium rounded-lg cursor-pointer transition-all ease-in-out duration-300 hover:bg-[#303030]">Subscribe To Course</button>
-            </a>
+            </form>
         </div>
     </section>
     
     <section class="grid grid-cols-2 gap-10 px-20 pt-10 pb-20">
         <div>
             <h1 class="mb-8 font-semibold text-3xl text-[#003877]">Overview</h1>
-            <p class="font-light text-justify">
+            <p class="font-light text-justify ck-content prose">
                 {!! $course->overview !!}
             </p>
         </div>
@@ -255,7 +258,7 @@
                         <p class=" font-light text-justify">{{ $suggested->description }}</p>
                         <div class="flex items-end justify-between pt-2">
                             <div class="flex items-center gap-3 pt-3">
-                                <img src="{{ asset( $suggested->teacher->photo ) }}" class="w-10 h-10 rounded-full border-2 border-[#E19219]">
+                                <img src="{{ asset( 'storage/'.$suggested->teacher->photo ) }}" class="w-10 h-10 rounded-full border-2 border-[#E19219]">
                                 <div class="flex flex-col gap-1">
                                     <h1 class="text-xs font-medium">{{ $suggested->teacher->f_name }} {{ $suggested->teacher->l_name }}</h1>
                                     <div class="flex items-center gap-2">
@@ -312,7 +315,7 @@
                         <p class=" font-light text-justify">{{ $other->description }}</p>
                         <div class="flex items-end justify-between pt-2">
                             <div class="flex items-center gap-3 pt-3">
-                                <img src="{{ asset( $other->teacher->photo ) }}" class="w-10 h-10 rounded-full border-2 border-[#E19219]">
+                                <img src="{{ asset( 'storage/'. $other->teacher->photo ) }}" class="w-10 h-10 rounded-full border-2 border-[#E19219]">
                                 <div class="flex flex-col gap-1">
                                     <h1 class="text-xs font-medium">{{ $other->teacher->f_name }} {{ $other->teacher->l_name }}</h1>
                                     <div class="flex items-center gap-2">

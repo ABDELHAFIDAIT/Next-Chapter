@@ -11,6 +11,50 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <style>
+            .ck-content {
+                @apply prose prose-sm max-w-none;
+
+                /* Pour Tailwind non-JIT, fais-le à la main : */
+                font-size: 1rem;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            .ck-content h1 {
+                @apply text-2xl font-bold;
+            }
+
+            .ck-content h2 {
+                @apply text-xl font-semibold;
+            }
+
+            .ck-content p {
+                @apply mb-4;
+            }
+
+            .ck-content ul {
+                @apply list-disc pl-6 mb-4;
+            }
+
+            .ck-content ol {
+                @apply list-decimal pl-6 mb-4;
+            }
+
+            .ck-content table {
+                @apply w-full border-collapse border border-gray-300 text-sm mb-4;
+            }
+
+            .ck-content th, .ck-content td {
+                @apply border border-gray-300 px-2 py-1;
+            }
+
+            .ck-content blockquote {
+                @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 mb-4;
+            }
+
+        </style>
     </head>
     <body>
 
@@ -33,22 +77,18 @@
                             points="6 9 12 15 18 9"></polyline></svg>
                 </div>
                 <div id="menu"
-                    class="absolute z-50 hidden bg-[#222] text-sm flex flex-col w-42 text-white rounded-sm top-[90px] right-[80px]">
-                    <a href="dashboard.html"
-                        class="px-5 flex items-center gap-2 hover:bg-[#D6FF40] hover:text-[#222222] rounded-t-sm py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
-                        <svg width="16px" height="16px" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" fill="none"
-                            stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-grid"><rect x="3" y="3"
-                                width="7" height="7"></rect><rect x="14" y="3"
-                                width="7" height="7"></rect><rect x="14" y="14"
-                                width="7" height="7"></rect><rect x="3" y="14"
-                                width="7" height="7"></rect></svg>
-                        <span>Dashboard</span>
+                    class="absolute z-50 hidden bg-[#222] text-sm flex flex-col w-50 text-white rounded-sm top-[90px] right-[80px]">
+                    <a href="{{ route('prisonner.my-courses')}}"
+                        class="px-5 flex items-center gap-3 hover:bg-[#D6FF40] hover:text-[#222222] rounded-t-sm py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
+                        <svg fill="currentColor" width="16px" height="16px" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;}</style></defs><title>course</title><path d="M24,30H8a2.0023,2.0023,0,0,1-2-2V4A2.002,2.002,0,0,1,8,2H24a2.0023,2.0023,0,0,1,2,2V20.6182l-5-2.5-5,2.5V4H8V28H24V24h2v4A2.0027,2.0027,0,0,1,24,30ZM21,15.8818l3,1.5V4H18V17.3818Z"></path><rect id="_Transparent_Rectangle_" data-name="<Transparent Rectangle>" class="cls-1" width="32" height="32"></rect></g></svg>
+                        <span>My Courses</span>
+                    </a>
+                    <a href="#" class="px-5 flex items-center gap-3 hover:bg-[#D6FF40] hover:text-[#222222] py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
+                        <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 7H5C3.89543 7 3 7.89543 3 9V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V9C21 7.89543 20.1046 7 19 7H15M9 7V5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7M9 7H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        <span>My Applications</span>
                     </a>
                     <a href="{{ route('prisonner.profile') }}"
-                        class="px-5 flex items-center gap-2 hover:bg-[#D6FF40] hover:text-[#222222] py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
+                        class="px-5 flex items-center gap-3 hover:bg-[#D6FF40] hover:text-[#222222] py-3 border-b border-b-[#303030] transition-all ease-in-out duration-300">
                         <svg width="16px" height="16px" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" fill="none"
                             stroke="currentColor" stroke-width="2"
@@ -61,7 +101,7 @@
                     <form method="post" action="{{ route('logout') }}"
                         class="px-5 hover:bg-[#D6FF40] hover:text-[#222222] py-3 transition-all ease-in-out duration-300 rounded-b-sm cursor-pointer">
                         @csrf
-                        <button class="cursor-pointer flex items-center gap-2">
+                        <button class="cursor-pointer flex items-center gap-3">
                             <svg width="16px" height="16px" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg" fill="none"
                                 stroke="currentColor" stroke-width="2"
