@@ -104,7 +104,7 @@ class AuthController extends Controller
 
         if($user){
             Mail::to($email)->send(new AccountMail($email, $password));
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Account created successfully. An email has been sent to the user with the password.');
         }
     }
 

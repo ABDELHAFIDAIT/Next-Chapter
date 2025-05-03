@@ -173,18 +173,31 @@
                                                 @if($user->status === 'suspended')
                                                     <form method="POST" action="{{ route('change.user.status', $user->id) }}">
                                                         @csrf
-                                                        <button class="px-3 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 transition-all ease-in-out duration-300 cursor-pointer">
-                                                            Activate
+                                                        <button class="cursor-pointer">
+                                                            <svg fill="#02ba17" width="25px" height="25px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M208.00146,32h-160a16.01582,16.01582,0,0,0-16,16V208a16.01583,16.01583,0,0,0,16,16h160a16.01582,16.01582,0,0,0,16-16V48A16.01581,16.01581,0,0,0,208.00146,32ZM177.5249,109.78125l-58.67187,56a7.98451,7.98451,0,0,1-11.04688,0l-29.32812-28a7.99571,7.99571,0,1,1,11.04687-11.5625l23.80469,22.71875L166.478,98.21875a7.99571,7.99571,0,1,1,11.04687,11.5625Z"/>
+                                                            </svg>
                                                         </button>
                                                     </form>
                                                 @else
                                                     <form method="POST" action="{{ route('change.user.status', $user->id) }}">
                                                         @csrf
-                                                        <button class="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-all ease-in-out duration-300 cursor-pointer">
-                                                            Suspend
+                                                        <button class="cursor-pointer">
+                                                            <svg fill="#fc8e08" xmlns="http://www.w3.org/2000/svg" 
+                                                                width="22px" height="22px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                                            <path d="M26,2C12.8,2,2,12.8,2,26s10.8,24,24,24s24-10.8,24-24S39.2,2,26,2z M37.9,27.7c-0.1,0.7-0.7,1.3-1.5,1.3
+                                                                H15.6c-0.8,0-1.4-0.5-1.5-1.3c-0.1-1.2-0.1-2.3,0-3.4c0.1-0.7,0.7-1.3,1.5-1.3h20.8c0.8,0,1.4,0.6,1.5,1.3
+                                                                C38,25.5,38,26.6,37.9,27.7z"/>
+                                                            </svg>
                                                         </button>
                                                     </form>
                                                 @endif
+                                                <form method="post" action="{{ route('admin.delete', $user->id) }}">
+                                                    @csrf
+                                                    <button class="cursor-pointer">
+                                                        <svg fill="#fc0505" width="22px" height="22px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
