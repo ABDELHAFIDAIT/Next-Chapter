@@ -56,6 +56,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
             Route::post('/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.categories.delete');
         });
+
+        Route::get('/course/{id}', [CourseController::class, 'showForAdmin'])->name('admin.course');
+        Route::get('/courses',[CourseController::class, 'index'])->name('admin.courses');
     });
 
     
@@ -103,6 +106,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/delete/{id}',[CourseController::class,'delete'])->name('teacher.courses.delete');
             Route::get('/create/{course}', [CourseController::class, 'complete'])->name('teacher.course.create');
         });
+
+        Route::get('/course/{id}', [CourseController::class, 'showForTeacher'])->name('teacher.course');
 
         Route::get('/students', function(){ return view('teacher.students');} )->name('teacher.students');
     });

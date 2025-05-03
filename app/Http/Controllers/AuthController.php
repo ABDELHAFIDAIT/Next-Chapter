@@ -30,7 +30,7 @@ class AuthController extends Controller
                 if(auth()->user()->first_login === true){
                     return redirect()->intended('/password');
                 }
-                return redirect()->intended('/teacher');
+                return redirect()->intended('/teacher/dashboard');
             }else if(auth()->user()->role == 'recruiter' && auth()->user()->status == 'active'){
                 if(auth()->user()->first_login === true){
                     return redirect()->intended('/password');

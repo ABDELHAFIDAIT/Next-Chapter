@@ -11,50 +11,6 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
-        <style>
-            .ck-content {
-                @apply prose prose-sm max-w-none;
-
-                /* Pour Tailwind non-JIT, fais-le à la main : */
-                font-size: 1rem;
-                color: #333;
-                line-height: 1.6;
-            }
-
-            .ck-content h1 {
-                @apply text-2xl font-bold;
-            }
-
-            .ck-content h2 {
-                @apply text-xl font-semibold;
-            }
-
-            .ck-content p {
-                @apply mb-4;
-            }
-
-            .ck-content ul {
-                @apply list-disc pl-6 mb-4;
-            }
-
-            .ck-content ol {
-                @apply list-decimal pl-6 mb-4;
-            }
-
-            .ck-content table {
-                @apply w-full border-collapse border border-gray-300 text-sm mb-4;
-            }
-
-            .ck-content th, .ck-content td {
-                @apply border border-gray-300 px-2 py-1;
-            }
-
-            .ck-content blockquote {
-                @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 mb-4;
-            }
-
-        </style>
     </head>
     <body>
 

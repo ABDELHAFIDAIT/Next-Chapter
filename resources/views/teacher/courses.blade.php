@@ -100,12 +100,13 @@
                 @if (count($courses) > 0)
                     @foreach ($courses as $course)
                         <div class="relative rounded-xl shadow-lg h-min">
-                            <img src="{{ asset('storage/'.$course->cover) }}" class="rounded-t-xl">
+                            <img src="{{ asset('storage/'.$course->cover) }}" class="rounded-t-md h-[200px] w-full">
                             <div class="px-5 py-2">
-                                <div class="flex flex-col gap-5">
-                                    <a href="#" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
+                                <div class="flex flex-col text-center gap-3">
+                                    <a href="{{ route('teacher.course', $course->id ) }}" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
                                         <h1 class="font-medium text-sm">{{ $course->title }}</h1>
                                     </a>
+                                    <p class="text-xs text-gray-500 font-light">{{ substr($course->description, 0 , 100).'...' }}</p>
                                 </div>
                             </div>
                             <div class="flex items-center text-white text-xs" >
@@ -127,39 +128,12 @@
                                 </form>
                             </div>
                             <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">{{ $course->category->name }}</p>
+                            <p class="absolute top-10 right-3 py-1 px-5 text-xs text-white bg-lime-600 rounded-full">{{ $course->enrollments->count() }} Enrollments</p>
                         </div>
                     @endforeach
                 @else
                     <div class="col-span-4 flex items-center justify-center h-full text-gray-500 text-lg">No courses created for the moment !</div>
                 @endif
-                {{-- <div class="relative rounded-xl shadow-lg h-min">
-                    <img src="{{ asset('storage/images/finance.jpg') }}" class="rounded-t-xl">
-                    <div class="px-5 py-2">
-                        <div class="flex flex-col gap-5">
-                            <a href="#" class="transition-all ease-in-out duration-300 hover:text-[#222] hover:underline">
-                                <h1 class="font-medium text-sm">Finance: Budget Management & Saving</h1>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex items-center text-white text-xs" >
-                        <a href="#" class="flex-1 bg-blue-500 rounded-bl-md flex items-center justify-center gap-3 py-2 transition-all ease-in-out duration-300 hover:bg-blue-700">
-                            <svg fill="none" stroke="#FFF" width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                            </svg>
-                            <span>Edit</span>
-                        </a>
-                        <form action="" class="flex-1 flex">
-                            <button class="flex-1 bg-red-500 rounded-br-md flex items-center justify-center gap-3 py-2 cursor-pointer transition-all ease-in-out duration-300 hover:bg-red-700">
-                                <svg fill="#FFF" width="15px" height="15px" viewBox="-2 -5 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-delete">
-                                    <path d='M7.828 0H18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7.828a2 2 0 0 1-1.414-.586L.707 7.707a1 1 0 0 1 0-1.414L6.414.586A2 2 0 0 1 7.828 0zm0 12H18V2H7.828l-5 5 5 5zm6.586-5l1.414 1.414a1 1 0 0 1-1.414 1.414L13 8.414l-1.414 1.414a1 1 0 1 1-1.414-1.414L11.586 7l-1.414-1.414a1 1 0 1 1 1.414-1.414L13 5.586l1.414-1.414a1 1 0 1 1 1.414 1.414L14.414 7z' />
-                                </svg>
-                                <span>Delete</span>
-                            </button>
-                        </form>
-                    </div>
-                    <p class="absolute top-2 right-3 py-1 px-5 text-xs text-white bg-[#222] rounded-full">Finance</p>
-                </div> --}}
                 @if ($courses->hasPages())
                     <nav class="col-span-4">
                         <ul class="flex items-center justify-center gap-5">

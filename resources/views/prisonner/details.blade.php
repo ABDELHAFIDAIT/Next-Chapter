@@ -60,141 +60,28 @@
     <section class="grid grid-cols-2 gap-10 px-20 pt-10 pb-20">
         <div>
             <h1 class="mb-8 font-semibold text-3xl text-[#003877]">Overview</h1>
-            <p class="font-light text-justify ck-content prose">
+            <p class="font-light text-justify">
                 {!! $course->overview !!}
             </p>
         </div>
         <div>
             <h1 class="mb-8 font-semibold text-3xl text-[#003877]">Resume</h1>
             @foreach ($course->chapters as $chapter)
-            <div>
-                <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Chapter {{ $chapter->order}} : {{  $chapter->title }}</h1>
-                <div class="ml-10 border-l border-l-gray-400 py-5 flex flex-col gap-5">
-                    @foreach ($chapter->parts as $part)
-                        <div class="text-sm flex items-center gap-3">
-                            <div class="bg-gray-400 h-[1px] w-10"></div>
-                            <h1 class="font-light">
-                                <span class="font-medium">Part {{ $part->order }} : </span>
-                                {{ $part->title }}
-                            </h1>
-                        </div>
-                    @endforeach
-                    {{-- <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter I : </span>
-                            Set up your Python Environment
-                        </h1>
+                <div>
+                    <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Chapter {{ $chapter->order}} : {{  $chapter->title }}</h1>
+                    <div class="ml-10 border-l border-l-gray-400 py-5 flex flex-col gap-5">
+                        @foreach ($chapter->parts as $part)
+                            <div class="text-sm flex items-center gap-3">
+                                <div class="bg-gray-400 h-[1px] w-10"></div>
+                                <h1 class="font-light">
+                                    <span class="font-medium">Part {{ $part->order }} : </span>
+                                    {{ $part->title }}
+                                </h1>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter II : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter III : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter VI : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div> --}}
                 </div>
-            </div>
             @endforeach
-            {{-- <div>
-                <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Course 1 : Introduction to Python</h1>
-                <div class="ml-10 border-l border-l-gray-400 py-5 flex flex-col gap-5">
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter I : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter II : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter III : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter VI : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Course 2 : Introduction to Python</h1>
-                <div class="ml-10 border-l border-l-gray-400 py-5 flex flex-col gap-5">
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter I : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter II : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter III : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-center gap-3">
-                        <div class="bg-gray-400 h-[1px] w-10"></div>
-                        <h1 class="font-light">
-                            <span class="font-medium">Chapter VI : </span>
-                            Set up your Python Environment
-                        </h1>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h1 class="text-lg font-medium text-white bg-[#222] py-2 px-5 rounded-md">Course 3 : Introduction to Python</h1>
-                <div class="ml-10 border-l border-l-gray-400 pt-5 flex flex-col gap-5">
-                    <div class="text-sm flex items-end gap-3">
-                        <div class="bg-gray-400 h-[0.5px] w-10"></div>
-                        <h1 class="font-light flex items-center gap-1">
-                            <span class="font-medium">Chapter I : </span>
-                            <p>Set up your Python Environment</p>
-                        </h1>
-                    </div>
-                    <div class="text-sm flex items-end gap-3">
-                        <div class="bg-gray-400 h-[0.5px] w-10"></div>
-                        <h1 class="font-light flex items-center gap-1">
-                            <span class="font-medium">Chapter II : </span>
-                            <p>Set up your Python Environment</p>
-                        </h1>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </section>
     

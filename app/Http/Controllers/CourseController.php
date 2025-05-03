@@ -189,4 +189,39 @@ class CourseController extends Controller
         
         return view('prisonner.mycourses', compact('courses'));
     }
+
+    public function showForTeacher($id){
+        $course = Course::with([
+            'category',
+            'teacher',
+            'chapters' => function ($query) {
+                $query->orderBy('order', 'asc');
+            },
+            'chapters.parts' => function ($query) {
+                $query->orderBy('order', 'asc');
+            }
+        ])->withCount('enrollments')->findOrFail($id);
+
+        return view('teacher.courses.details', compact('course'));
+    }
+
+    public function showForAdmin($id){
+        $course = Course::with([
+            'category',
+            'teacher',
+            'chapters' => function ($query) {
+                $query->orderBy('order', 'asc');
+            },
+            'chapters.parts' => function ($query) {
+                $query->orderBy('order', 'asc');
+            }
+        ])->findOrFail($id);
+
+        return view('admin.details', compact('course'));
+    }
+
+    public function index(){
+        $courses = Course::with(['category', 'teacher'])->withCount('enrollments')->withCount('chapters')->paginate(8);
+        return view('admin.courses', compact('courses'));
+    }
 }
