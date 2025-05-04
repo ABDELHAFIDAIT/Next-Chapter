@@ -189,4 +189,6 @@ class PrisonnerController extends Controller
         
         return redirect()->route('prisonner.profile');
     }
+
+    // public function 
 }

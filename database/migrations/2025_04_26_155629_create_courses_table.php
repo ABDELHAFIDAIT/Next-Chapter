@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('objectifs');
             $table->text('overview');
-            $table->enum('status',['refused','published','pending'])->default('published');
+            $table->enum('status',['refused','published','pending'])->default('pending');
             $table->enum('level',['beginner','intermediate','advanced']);
             $table->integer('duration');
             $table->unsignedBigInteger('id_teacher');

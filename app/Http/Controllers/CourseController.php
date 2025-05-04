@@ -73,6 +73,7 @@ class CourseController extends Controller
         ->pluck('id_course');
 
         $courses = Course::with(['category', 'teacher'])
+        ->where('status', 'published')
         ->whereNotIn('id', $enrolledCourseIds)
         ->paginate(6);
         
@@ -148,6 +149,7 @@ class CourseController extends Controller
         }
         
         $courses = Course::with(['category', 'teacher'])
+            ->where('status', 'published')
             ->where('id_category', $id_category)
             ->paginate(6);
         
