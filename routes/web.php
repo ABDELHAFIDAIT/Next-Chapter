@@ -97,8 +97,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('teacher.update.profile');
         Route::post('/update-profile', [TeacherController::class, 'updateInformations'])->name('teacher.profile.update');
 
+        Route::get('/profil-update', [TeacherController::class, 'showupdateProfile'])->name('teacher.update');
+        Route::post('/password-update', [TeacherController::class, 'changePassword'])->name('teacher.password.update');
+        Route::post('/infos-update', [TeacherController::class, 'updateProfileInfos'])->name('teacher.infos.update');
+        Route::post('/links-update', [TeacherController::class, 'updateProfileLinks'])->name('teacher.links.update');
+
+
+
         Route::get('/dashboard', function(){ return view('teacher.dashboard'); })->name('teacher.dashboard');
-        Route::get('/profile', function(){ return view('teacher.profile');} )->name('teacher.profile');
+        Route::get('/profile', [TeacherController::class, 'showProfile'])->name('teacher.profile');
         
 
         Route::prefix('/courses')->group(function(){
