@@ -78,7 +78,7 @@
                 </button>
             </form>
         </nav>
-        <section class="col-span-19 flex flex-col gap-5 h-screen px-5 pt-5">
+        <section class="col-span-19 flex flex-col gap-5 h-screen overflow-auto px-5 pt-5">
             <div class="flex items-center justify-between">
                 <h1 class="font-semibold text-2xl">My Courses</h1>
                 <form class="flex items-center gap-2 py-2 px-5 bg-white border border-gray-200 text-sm rounded-md outline-none">

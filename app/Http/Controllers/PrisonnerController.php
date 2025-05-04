@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Prisonner;
 use App\Models\Media;
 use App\Models\City;
+use Illuminate\Support\Facades\DB;
 
 
 class PrisonnerController extends Controller
@@ -190,5 +191,36 @@ class PrisonnerController extends Controller
         return redirect()->route('prisonner.profile');
     }
 
-    // public function 
+    public function indexStudents()
+    {
+        $id_teacher = Auth::id();
+
+        $prisonners = DB::table('enrollments')
+            ->join('courses', 'enrollments.id_course', '=', 'courses.id')
+            ->join('categories', 'courses.id_category', '=', 'categories.id')
+            ->join('users', 'enrollments.id_prisonner', '=', 'users.id')
+            ->join('prisonners', 'users.id', '=', 'prisonners.id_prisonner')
+            ->join('cities', 'prisonners.id_city', '=', 'cities.id')
+            ->where('courses.id_teacher', $id_teacher)
+            ->where('users.role', 'prisonner')
+            ->select(
+                'users.*',
+                'prisonners.*',
+                'cities.name as city_name',
+                DB::raw('COUNT(DISTINCT enrollments.id_course) as courses_count'),
+            )
+            ->groupBy(
+                'users.id',
+                'users.f_name',
+                'users.l_name',
+                'users.email',
+                'users.photo',
+                'prisonners.id',
+                'cities.name'
+            )
+            ->paginate(6);
+
+        return view('teacher.students', compact('prisonners'));
+    }
+
 }

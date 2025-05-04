@@ -20,38 +20,43 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    
+        $user = User::where('email', $credentials['email'])->first();
+    
+        if ($user && $user->status == 'suspended') {
+            return back()->withErrors([
+                'status' => 'Vous êtes suspendu pour le moment !'
+            ]);
+        }
+    
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-
-            if(auth()->user()->role == 'admin' && auth()->user()->status == 'active'){
+    
+            if(auth()->user()->role == 'admin'){
                 return redirect()->intended('/admin/dashboard');
-            }else if(auth()->user()->role == 'teacher' && auth()->user()->status == 'active'){
-                if(auth()->user()->first_login === true){
+            } elseif(auth()->user()->role == 'teacher'){
+                if(auth()->user()->first_login){
                     return redirect()->intended('/password');
                 }
                 return redirect()->intended('/teacher/dashboard');
-            }else if(auth()->user()->role == 'recruiter' && auth()->user()->status == 'active'){
-                if(auth()->user()->first_login === true){
+            } elseif(auth()->user()->role == 'recruiter'){
+                if(auth()->user()->first_login){
                     return redirect()->intended('/password');
                 }
                 return redirect()->intended('/recruiter');
-            }else if(auth()->user()->role == 'prisonner' && auth()->user()->status == 'active'){
-                if(auth()->user()->first_login === true){
+            } elseif(auth()->user()->role == 'prisonner'){
+                if(auth()->user()->first_login){
                     return redirect()->intended('/password');
                 }
                 return redirect()->intended('/prisonner');
-            }else if(auth()->user()->status == 'suspended'){
-                return redirect()->back()->withErrors([
-                    'status' => 'Vous êtes Suspendu pour le Moment !'
-                ]);
             }
         }
-
+    
         return back()->withErrors([
             'email' => 'Les identifiants fournis ne correspondent pas à nos enregistrements.',
         ])->withInput($request->except('password'));
     }
+    
 
     public function logout(Request $request)
     {

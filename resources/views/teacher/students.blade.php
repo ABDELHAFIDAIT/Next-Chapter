@@ -82,8 +82,225 @@
                 </button>
             </form>
         </nav>
-        <section class="col-span-19 h-screen overflow-auto px-10">
-            
+        <section class="col-span-19 flex flex-col gap-5 h-screen overflow-auto px-5 pt-5">
+            <div class="flex items-center justify-between">
+                <h1 class="font-semibold text-2xl">My Students</h1>
+                <div>
+                    @php
+                        $photo = Auth::user()->photo ;
+                    @endphp
+                    <img src="{{ asset('storage/'.$photo) }}" class="w-10 rounded-full">
+                </div>
+            </div>
+            <div class="flex items-center justify-between py-2">
+                <p class="text-sm text-gray-500">Welcome to Students Managment Space</p>
+            </div>
+            <div class="flex flex-col gap-5">
+                @if(count($prisonners) == 0)
+                    <h1 class="col-span-3 text-2xl font-semibold text-red-600">No Prisonners are Registred Yet !</h1>
+                @else
+                    <div class="overflow-x-auto bg-white rounded-lg border border-gray-100">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-[#222] text-gray-200">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Photo</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Full Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Nb_Enrollments</th>
+                                    <th class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
+                                @foreach($prisonners as $user)
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-6 py-4">
+                                            <img src="{{ asset('storage/'.$user->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="photo">
+                                        </td>
+                                        <td class="px-6 py-4 font-medium">
+                                            {{ $user->f_name }} {{ $user->l_name }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <a href="mailto:{{ $user->email }}" class="text-blue-600 hover:underline">{{ $user->email }}</a>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-block px-2 py-1 text-xs font-semibold bg-gray-800 text-white rounded">
+                                                {{ ucfirst($user->courses_count) }} Courses
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            @php
+                                                $prisonner = json_encode($user);
+                                            @endphp
+                                            <span class="open-user-infos-popup underline transition-all ease-in-out duration-300 cursor-pointer hover:text-green-400" data-student="{{ $prisonner }}">View Details</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @if ($prisonners->hasPages())
+                        <nav>
+                            <ul class="flex items-center justify-center gap-5">
+                                {{-- Previous Page Link --}}
+                                @if ($prisonners->onFirstPage())
+                                    <li class="">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> <path d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" fill="#0F0F0F"></path> 
+                                            </g>
+                                        </svg>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ $prisonners->previousPageUrl() }}" class="">
+                                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier"> <path d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" fill="#0F0F0F"></path> 
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                {{-- Pagination Elements --}}
+                                @foreach ($prisonners->getUrlRange(1, $prisonners->lastPage()) as $page => $url)
+                                    @if ($page == $prisonners->currentPage())
+                                        <li class="text-blue-500 font-semibold">{{ $page }}</li>
+                                    @else
+                                        <li><a href="{{ $url }}" class="hover:text-gray-600 font-semibold">{{ $page }}</a></li>
+                                    @endif
+                                @endforeach
+
+                                {{-- Next Page Link --}}
+                                @if ($prisonners->hasMorePages())
+                                    <li>
+                                        <a href="{{ $prisonners->nextPageUrl() }}" class="">
+                                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier"> 
+                                                    <path d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" fill="#0F0F0F"></path> 
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> 
+                                                <path d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" fill="#0F0F0F"></path> 
+                                            </g>
+                                        </svg>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
+                    @endif
+                @endif
+            </div>
         </section>
+
+        <!-- User Infos Popup -->
+        <section id="user-infos-popup" class="hidden flex items-center justify-center fixed inset-0 bg-[rgba(0,0,0,0.7)] z-50">
+            <div class="bg-[#EDF7F1] flex flex-col gap-5 p-5 rounded-md w-2/3 text-black">
+                <div class="flex items-center justify-between pb-5 border-b border-b-gray-400">
+                    <h1 class="text-xl font-medium ">Prisonner Informations</h1>
+                    <button id="close-user-infos-popup" class="text-2xl cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col gap-5 max-h-[70vh] overflow-auto">
+                    <div class="flex items-center gap-10 pb-5 border-b border-b-gray-400">
+                        <div class="flex items-center gap-10 px-10">
+                            <div>
+                                {{-- photo --}}
+                                <img id="photo" src="" class="h-36 w-36 rounded-full ">
+                            </div>
+                            <div class="flex flex-col gap-10">
+                                {{-- full name --}}
+                                <h1 id="name" class="text-3xl font-semibold"></h1>
+                                <div class="flex items-center gap-5">
+                                    <div class="flex items-center gap-2">
+                                        <svg fill="#000000" width="25px" height="25px" viewBox="-4 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <title>mail</title>
+                                            <path d="M24 8.375l-12 10.281-12-10.281v-0.594h24v0.594zM24 22.875l-7.938-5.719 7.938-6.875v12.594zM0 10.281l7.938 6.875-7.938 5.719v-12.594zM12 20.688l3.281-2.875 8.719 6.281v0.125h-24v-0.125l8.719-6.281z"></path>
+                                            </svg>
+                                        {{-- Email --}}
+                                        <a id="email" href=""></a>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg version="1.1"
+                                            id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="phone.svg" inkscape:version="0.48.4 r9939"
+                                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="18px" height="18px"
+                                            viewBox="0 0 1200 1200" enable-background="new 0 0 1200 1200" xml:space="preserve">
+                                            <path id="path16102" inkscape:connector-curvature="0" d="M1183.326,997.842l-169.187,167.83
+                                            c-24.974,25.612-58.077,34.289-90.316,34.328c-142.571-4.271-277.333-74.304-387.981-146.215
+                                            C354.22,921.655,187.574,757.82,82.984,559.832C42.87,476.809-4.198,370.878,0.299,278.209c0.401-34.86,9.795-69.073,34.346-91.543
+                                            L203.831,17.565c35.132-29.883,69.107-19.551,91.589,15.257l136.111,258.102c14.326,30.577,6.108,63.339-15.266,85.188l-62.332,62.3
+                                            c-3.848,5.271-6.298,11.271-6.36,17.801c23.902,92.522,96.313,177.799,160.281,236.486
+                                            c63.967,58.688,132.725,138.198,221.977,157.021c11.032,3.077,24.545,4.158,32.438-3.179l72.51-73.743
+                                            c24.996-18.945,61.086-28.205,87.771-12.714h1.272l245.51,144.943C1205.373,927.619,1209.131,971.279,1183.326,997.842
+                                            L1183.326,997.842z"/>
+                                        </svg>
+                                        {{-- Phone --}}
+                                        <a id="phone" href=""></a>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg fill="#000000" height="18px" width="18px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                                        <path d="M256,0C149.3,0,64,85.3,64,192c0,36.9,11,65.4,30.1,94.3l141.7,215v0c4.3,6.5,11.7,10.7,20.2,10.7c8.5,0,16-4.3,20.2-10.7
+                                            l141.7-215C437,257.4,448,228.9,448,192C448,85.3,362.7,0,256,0z M256,298.6c-58.9,0-106.7-47.8-106.7-106.8
+                                            c0-59,47.8-106.8,106.7-106.8c58.9,0,106.7,47.8,106.7,106.8C362.7,250.8,314.9,298.6,256,298.6z"/>
+                                        </svg>
+                                        {{-- City --}}
+                                        <p id="city"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-10 pb-5 px-10 border-b border-b-gray-400">
+                        <h1 class="font-medium text-lg">About </h1>
+                        <p class="col-span-2 font-light text-sm text-justify" id="about"></p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-x-10 px-10">
+                        <h1 class="font-medium text-lg">CV </h1>
+                        <a id="cv" href="" download="" class="col-span-2 font-light text-sm text-justify">CurriculumVitae.pdf</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <script>
+            const userInfosPopup = document.getElementById('user-infos-popup');
+            const closeUserInfosPopup = document.getElementById('close-user-infos-popup');
+            const openUserInfosPopupButtons = document.querySelectorAll('.open-user-infos-popup');
+    
+            openUserInfosPopupButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const user = JSON.parse(btn.getAttribute('data-student'));
+                    console.log(user);
+                    document.querySelector('#photo').src = `{{ asset('storage') }}/${user.photo}`;
+                    document.querySelector('#name').innerText = `${user.f_name} ${user.l_name}`;
+                    document.querySelector('#email').href = `mailto:${user.email}`;	
+                    document.querySelector('#email').innerText = `${user.email}`;	
+                    document.querySelector('#phone').innerText = user.phone;
+                    document.querySelector('#city').innerText = user.city_name;
+                    document.querySelector('#about').innerText = user.about;
+                    document.querySelector('#cv').href = `{{ asset('storage') }}/${user.cv}`;
+                    document.querySelector('#cv').download = `CV-${user.f_name}-${user.l_name}.pdf`;
+                    
+                    userInfosPopup.classList.remove('hidden');
+                });
+            });
+    
+            closeUserInfosPopup.addEventListener('click', () => {
+                userInfosPopup.classList.add('hidden');
+            });
+    
+        </script>
     </body>
 </html>

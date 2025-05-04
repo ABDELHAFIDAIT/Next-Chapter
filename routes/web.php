@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/course/{id}', [CourseController::class, 'showForTeacher'])->name('teacher.course');
 
-        Route::get('/students', function(){ return view('teacher.students');} )->name('teacher.students');
+        Route::get('/students', [PrisonnerController::class, 'indexStudents'])->name('teacher.students');
     });
 
 
