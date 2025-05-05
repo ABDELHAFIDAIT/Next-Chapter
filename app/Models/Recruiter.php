@@ -10,11 +10,22 @@ class Recruiter extends Model
     use HasFactory;
 
     protected $fillable = [
-        'company',
+        'id_recruiter',
+        'company_name',
         'logo',
         'sector',
         'about',
         'id_city',
-        'founded_at',
+        'established_at',
     ];
+
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'id_city');
+    }
+
+    public function user(){
+        return $this->hasOne(User::class, 'id_recruiter');
+    }
 }

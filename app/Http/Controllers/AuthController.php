@@ -132,7 +132,7 @@ class AuthController extends Controller
         $user->save();
 
         if($user->role == 'recruiter'){
-            return redirect()->route('recruiter');
+            return redirect()->route('recruiter.update.profile');
         }else if($user->role == 'teacher'){
             return redirect()->route('teacher.update.profile');
         }else if($user->role == 'prisonner'){

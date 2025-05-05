@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('recruiters', function (Blueprint $table) {
             $table->id();
-            $table->string('company');
-            $table->string('logo')->nullable();
+            $table->unsignedBigInteger('id_recruiter');
+            $table->foreign('id_recruiter')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('company_name');
+            $table->string('logo');
             $table->string('sector');
             $table->text('about');
+            $table->year('established_at');
             $table->unsignedBigInteger('id_city');
-            $table->foreign('id_city')->references('id')->on('cities')->onDelete('cascade');
-            $table->date('founded_at')->nullable();
+            $table->foreign('id_city')->references('id')->on('cities')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

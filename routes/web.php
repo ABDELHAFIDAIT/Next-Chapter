@@ -3,9 +3,6 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
-use App\Models\Enrollment;
-use App\Models\Prisonner;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -13,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PrisonnerController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\RecruiterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/prisonners',[UserController::class, 'prisonners'])->name('admin.prisonners');
         Route::post('/delete/{id}',[UserController::class, 'delete'])->name('admin.delete');
         Route::get('/teachers',[UserController::class, 'teachers'])->name('admin.teachers');
+        Route::get('/recruiters',[UserController::class, 'recruiters'])->name('admin.recruiters');
 
         // Category Routes
         Route::prefix('/categories')->group(function(){
@@ -124,7 +123,12 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-
+    // All Recruiter Routes
+    Route::prefix('/recruiter')->middleware(['role:recruiter'])->group(function(){
+        // Update Profile
+        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('recruiter.update.profile');
+        Route::post('/update-profile', [RecruiterController::class, 'updateInformations'])->name('recruiter.profile.update');
+    });
 
 
 
