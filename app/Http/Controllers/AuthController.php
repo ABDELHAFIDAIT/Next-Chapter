@@ -43,7 +43,7 @@ class AuthController extends Controller
                 if(auth()->user()->first_login){
                     return redirect()->intended('/password');
                 }
-                return redirect()->intended('/recruiter');
+                return redirect()->intended('/recruiter/dashboard');
             } elseif(auth()->user()->role == 'prisonner'){
                 if(auth()->user()->first_login){
                     return redirect()->intended('/password');

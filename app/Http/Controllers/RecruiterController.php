@@ -73,6 +73,6 @@ class RecruiterController extends Controller
             ]);
         }
 
-        return redirect()->route('recruiter');
+        return redirect()->route('recruiter.dashboard');
     }
 }
