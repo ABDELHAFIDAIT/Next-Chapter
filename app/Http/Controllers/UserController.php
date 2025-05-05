@@ -29,7 +29,7 @@ class UserController extends Controller
     }
 
     public function recruiters(){
-        $recruiters = User::where( 'recruiter')->where('first_login',false)->paginate(5);
+        $recruiters = User::with( 'recruiter','recruiter.city','links')->where('role', 'recruiter')->where('first_login',false)->paginate(5);
         return view('admin.recruiters', compact('recruiters'));
     }
 
