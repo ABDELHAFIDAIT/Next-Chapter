@@ -130,7 +130,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update-profile', [RecruiterController::class, 'updateInformations'])->name('recruiter.profile.update');
 
         Route::get('/dashboard', function(){ return view('recruiter.dashboard'); })->name('recruiter.dashboard');
-        Route::get('/profile', function(){ return view('recruiter.dashboard'); })->name('recruiter.profile');
+        Route::get('/profile', function(){ return view('recruiter.profile'); })->name('recruiter.profile');
         Route::get('/offers', function(){ return view('recruiter.offers'); })->name('recruiter.offers');
         Route::get('/applications', function(){ return view('recruiter.applications'); })->name('recruiter.applications');
     });
