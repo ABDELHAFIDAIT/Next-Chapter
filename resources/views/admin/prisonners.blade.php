@@ -187,7 +187,7 @@
                                                         <svg fill="#fc0505" width="22px" height="22px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
                                                     </button>
                                                 </form>
-                                                <button class="open-user-infos-popup cursor-pointer" data-id-user="{{ $user}}">
+                                                <button class="open-user-infos-popup cursor-pointer" data-id-user="{{ $offer}}">
                                                     <svg fill="#2196F3" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                                             viewBox="0 0 42 42" enable-background="new 0 0 42 42" xml:space="preserve">
                                                         <path d="M15.3,20.1c0,3.1,2.6,5.7,5.7,5.7s5.7-2.6,5.7-5.7s-2.6-5.7-5.7-5.7S15.3,17,15.3,20.1z M23.4,32.4

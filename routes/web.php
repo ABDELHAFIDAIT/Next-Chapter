@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -131,8 +132,17 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/dashboard', function(){ return view('recruiter.dashboard'); })->name('recruiter.dashboard');
         Route::get('/profile', function(){ return view('recruiter.profile'); })->name('recruiter.profile');
-        Route::get('/offers', function(){ return view('recruiter.offers'); })->name('recruiter.offers');
+        Route::get('/offers', [OfferController::class, 'indexForRecruiter'])->name('recruiter.offers');
         Route::get('/applications', function(){ return view('recruiter.applications'); })->name('recruiter.applications');
+
+
+        Route::prefix('/offers')->group(function(){
+            Route::post('/create',[OfferController::class,'store'])->name('recruiter.offer.create');
+            Route::post('/delete/{id}',[OfferController::class,'delete'])->name('recruiter.offer.delete');
+            // Route::get('/{id}', [OfferController::class, 'showForRecruiter'])->name('recruiter.offer');
+            Route::post('/close/{id}',[OfferController::class,'close'])->name('recruiter.offer.close');
+            Route::post('/update',[OfferController::class,'update'])->name('recruiter.offer.update');
+        });
     });
 
 
