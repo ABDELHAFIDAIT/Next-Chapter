@@ -21,7 +21,7 @@
                 <ul class="flex items-center gap-10">
                     <a href="{{ route('prisonner.index') }}"><li>Home</li></a>
                     <a href="{{ route('prisonner.courses') }}"><li>Courses</li></a>
-                    <a href="#"><li>Jobs</li></a>
+                    <a href="{{ route('prisonner.jobs') }}"><li>Jobs</li></a>
                 </ul>
                 <div id="toggle-menu" class="flex items-center gap-5 p-1 border border-gray-400 rounded-full cursor-pointer">
                     <img src="{{ asset('storage/'.Auth::user()->photo) }}" class="w-10 rounded-full">

@@ -7,6 +7,8 @@ use App\Models\Offer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\City;
+use Illuminate\Support\Carbon;
 
 class OfferController extends Controller
 {
@@ -50,21 +52,27 @@ class OfferController extends Controller
     }
 
     public function show($id){
-        $offer = Offer::with(['recruiter','recruiter.user'])->withCount('applications')->findOrFail($id);
-
+        $offer = Offer::with(['recruiter','recruiter.recruiter'])->withCount('applications')->findOrFail($id);
+        $city = City::findOrFail($offer->recruiter->recruiter->id_city);
         switch(Auth::user()->role){
             case 'recruiter':
                 return view('recruiter.offer.show', compact('offer'));
             case 'admin':
                 return view('admin.offer.show', compact('offer'));
             case 'prisonner':
-                return view('prisonner.offer.show', compact('offer'));
+                return view('prisonner.job-details', compact('offer','city'));
         }
     }
 
     public function index(){
-        $offers = Offer::with(['recruiter','recruiter.user'])->withCount('applications')->paginate(6);
-        return view('admin.offers', compact('offers'));
+        $offers = Offer::with(['recruiter','recruiter.recruiter'])->withCount('applications')->orderBy('created_at', 'desc')->paginate(6);
+        $cities = City::orderBy('name', 'asc')->get();
+        if(Auth::user()->role == 'admin'){
+            return view('admin.offers', compact('offers','cities'));
+        }
+        if(Auth::user()->role == 'prisonner'){
+            return view('prisonner.jobs', compact('offers','cities'));
+        }
     }
 
     public function indexForRecruiter(){
@@ -105,4 +113,49 @@ class OfferController extends Controller
 
         return redirect()->back()->with('success', 'Offer Closed Successfully.');
     }
+
+    public function search(Request $request){
+        $offers = Offer::with(['recruiter','recruiter.recruiter'])->withCount('applications')->where('title', 'like', '%'.$request->input('search').'%')->orderBy('created_at', 'desc')->paginate(6);
+        $cities = City::orderBy('name', 'asc')->get();
+        return view('prisonner.search-offer', compact('offers','cities'));
+    }
+
+    public function filter(Request $request){
+        $offers = Offer::query();
+
+        if ($request->filled('date-filter')) {
+            $now = Carbon::now();
+    
+            switch ($request->input('date-filter')) {
+                case '24_hours':
+                    $offers->where('created_at', '>=', $now->copy()->subDay());
+                    break;
+                case '7_days':
+                    $offers->where('created_at', '>=', $now->copy()->subDays(7));
+                    break;
+                case '14_days':
+                    $offers->where('created_at', '>=', $now->copy()->subDays(14));
+                    break;
+            }
+        }
+    
+        if ($request->filled('city-filter')) {
+            $cityId = $request->input('city-filter');
+    
+            $offers->whereHas('recruiter.recruiter', function ($query) use ($cityId) {
+                $query->where('id_city', $cityId);
+            });
+        }
+    
+        if ($request->filled('contract-filter') && $request->input('contract-filter') !== 'All') {
+            $offers->where('type', $request->input('contract-filter'));
+        }
+    
+        $offers = $offers->latest()->paginate(6);
+
+        $cities = City::orderBy('name', 'asc')->get();
+    
+        return view('prisonner.filter-jobs', compact('offers','cities'));
+    }
+
 }

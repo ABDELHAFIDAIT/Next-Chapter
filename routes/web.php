@@ -87,6 +87,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/course/unenroll', [EnrollmentController::class, 'unenroll'])->name('prisonner.course.unenroll');
 
         Route::get('/my-courses', [CourseController::class, 'showPrisonnerCourses'] )->name('prisonner.my-courses');
+
+
+        Route::get('/jobs',[OfferController::class, 'index'])->name('prisonner.jobs');
+        Route::get('/job/{id}', [OfferController::class, 'show'])->name('prisonner.offer.show');
+        Route::post('/jobs/search',[OfferController::class, 'search'])->name('prisonner.jobs.search');
+        Route::post('/jobs/filter',[OfferController::class, 'filter'])->name('prisonner.jobs.filter');
     });
 
     
