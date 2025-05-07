@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Change Password Route
     Route::get('/password', [AuthController::class, 'showChangePassword'])->name('show.change.password')->middleware(['first_login']);
-    Route::post('/password/change', [AuthController::class, 'changePassword'])->name('change.password');
+    Route::post('/password/change', [AuthController::class, 'changePassword'])->name('change.password')->middleware(['first_login']);
 
     // All Admin Routes
     Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
@@ -68,8 +68,8 @@ Route::middleware(['auth'])->group(function () {
     // All Prisonner Routes
     Route::prefix('/prisonner')->middleware(['role:prisonner'])->group(function(){
         // Update Profile
-        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('prisonner.update.profile');
-        Route::post('/update-profile', [PrisonnerController::class, 'updateInformations'])->name('prisonner.profile.update');
+        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('prisonner.update.profile')->middleware(['first_login']);
+        Route::post('/update-profile', [PrisonnerController::class, 'updateInformations'])->name('prisonner.profile.update')->middleware(['first_login']);
         Route::get('/profil-update', [PrisonnerController::class, 'showupdateProfile'])->name('prisonner.update');
         Route::post('/infos-update', [PrisonnerController::class, 'updateProfileInfos'])->name('prisonner.infos.update');
         Route::post('/links-update', [PrisonnerController::class, 'updateProfileLinks'])->name('prisonner.links.update');
@@ -100,8 +100,8 @@ Route::middleware(['auth'])->group(function () {
     // All Teacher Routes
     Route::prefix('/teacher')->middleware(['role:teacher'])->group(function(){
         // Update Profile
-        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('teacher.update.profile');
-        Route::post('/update-profile', [TeacherController::class, 'updateInformations'])->name('teacher.profile.update');
+        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('teacher.update.profile')->middleware(['first_login']);
+        Route::post('/update-profile', [TeacherController::class, 'updateInformations'])->name('teacher.profile.update')->middleware(['first_login']);
 
         Route::get('/profil-update', [TeacherController::class, 'showupdateProfile'])->name('teacher.update');
         Route::post('/password-update', [TeacherController::class, 'changePassword'])->name('teacher.password.update');
@@ -133,8 +133,8 @@ Route::middleware(['auth'])->group(function () {
     // All Recruiter Routes
     Route::prefix('/recruiter')->middleware(['role:recruiter'])->group(function(){
         // Update Profile
-        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('recruiter.update.profile');
-        Route::post('/update-profile', [RecruiterController::class, 'updateInformations'])->name('recruiter.profile.update');
+        Route::get('/update-profile', [UserController::class, 'showUpdateInformations'])->name('recruiter.update.profile')->middleware(['first_login']);
+        Route::post('/update-profile', [RecruiterController::class, 'updateInformations'])->name('recruiter.profile.update')->middleware(['first_login']);
 
         Route::get('/dashboard', function(){ return view('recruiter.dashboard'); })->name('recruiter.dashboard');
         Route::get('/profile', function(){ return view('recruiter.profile'); })->name('recruiter.profile');
