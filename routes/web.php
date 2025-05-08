@@ -12,6 +12,8 @@ use App\Http\Controllers\PrisonnerController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\RecruiterController;
+use App\Http\Controllers\ApplicationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +95,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/job/{id}', [OfferController::class, 'show'])->name('prisonner.offer.show');
         Route::post('/jobs/search',[OfferController::class, 'search'])->name('prisonner.jobs.search');
         Route::post('/jobs/filter',[OfferController::class, 'filter'])->name('prisonner.jobs.filter');
+        Route::post('/job/apply',[ApplicationController::class, 'store'])->name('prisonner.offer.apply');
+
+        Route::get('/applications', [ApplicationController::class, 'indexForPrisonner'])->name('prisonner.applications');
+        Route::get('/application/{id}', [ApplicationController::class, 'show'])->name('prisonner.application');
     });
 
     
@@ -149,6 +155,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/close/{id}',[OfferController::class,'close'])->name('recruiter.offer.close');
             Route::post('/update',[OfferController::class,'update'])->name('recruiter.offer.update');
         });
+
+        Route::get('/applications/{id}', [ApplicationController::class, 'indexForRecruiter'])->name('recruiter.application');
+        Route::post('/application/{id}', [ApplicationController::class, 'updateStatus'])->name('recruiter.application.update');
     });
 
 

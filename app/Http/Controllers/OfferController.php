@@ -65,10 +65,20 @@ class OfferController extends Controller
     }
 
     public function index(){
-        $offers = Offer::with(['recruiter','recruiter.recruiter'])->withCount('applications')->orderBy('created_at', 'desc')->paginate(6);
+        $offres = Offer::with(['recruiter','recruiter.recruiter'])->withCount('applications')->orderBy('created_at', 'desc')->paginate(6);
+
+        $offers = Offer::with(['recruiter','recruiter.recruiter'])
+            ->withCount('applications')
+            ->whereDoesntHave('applications', function ($query) {
+                $query->where('id_candidate', Auth::id());
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+
         $cities = City::orderBy('name', 'asc')->get();
+
         if(Auth::user()->role == 'admin'){
-            return view('admin.offers', compact('offers','cities'));
+            return view('admin.offers', compact('offres','cities'));
         }
         if(Auth::user()->role == 'prisonner'){
             return view('prisonner.jobs', compact('offers','cities'));
@@ -115,7 +125,15 @@ class OfferController extends Controller
     }
 
     public function search(Request $request){
-        $offers = Offer::with(['recruiter','recruiter.recruiter'])->withCount('applications')->where('title', 'like', '%'.$request->input('search').'%')->orderBy('created_at', 'desc')->paginate(6);
+        $offers = Offer::with(['recruiter','recruiter.recruiter'])
+                ->withCount('applications')
+                ->where('title', 'like', '%'.$request->input('search').'%')
+                ->whereDoesntHave('applications', function ($query) {
+                    $query->where('id_candidate', Auth::id());
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
+
         $cities = City::orderBy('name', 'asc')->get();
         return view('prisonner.search-offer', compact('offers','cities'));
     }
@@ -125,7 +143,7 @@ class OfferController extends Controller
 
         if ($request->filled('date-filter')) {
             $now = Carbon::now();
-    
+
             switch ($request->input('date-filter')) {
                 case '24_hours':
                     $offers->where('created_at', '>=', $now->copy()->subDay());
@@ -138,23 +156,26 @@ class OfferController extends Controller
                     break;
             }
         }
-    
+
         if ($request->filled('city-filter')) {
             $cityId = $request->input('city-filter');
-    
+
             $offers->whereHas('recruiter.recruiter', function ($query) use ($cityId) {
                 $query->where('id_city', $cityId);
             });
         }
-    
+
         if ($request->filled('contract-filter') && $request->input('contract-filter') !== 'All') {
             $offers->where('type', $request->input('contract-filter'));
         }
-    
-        $offers = $offers->latest()->paginate(6);
+        
+        $offers->whereDoesntHave('applications', function ($query) {
+            $query->where('id_candidate', Auth::id());
+        });
 
+        $offers = $offers->latest()->paginate(6);
         $cities = City::orderBy('name', 'asc')->get();
-    
+
         return view('prisonner.filter-jobs', compact('offers','cities'));
     }
 
